@@ -47,8 +47,6 @@ void _serialize() {
 //---------------------------------------------------------------------
 
 void main() {
-  group('enum_serializer', () {
-    test('deserialize', _deserialize);
-    test('serialize', _serialize);
-  });
+  test('deserialize', _deserialize);
+  test('serialize', _serialize);
 }
