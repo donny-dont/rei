@@ -1,0 +1,17 @@
+<dom-module id="rei-selection-group">
+  <style>
+    :host {
+      display: -webkit-flex;
+      display: flex;
+      box-sizing: border-box;
+    }
+
+    :host([direction="vertical"]) {
+     -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+  </style>
+  <template>
+    <content></content>
+  </template>
+</dom-module>
