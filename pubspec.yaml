@@ -15,9 +15,13 @@ dev_dependencies:
 transformers:
 - web_components:
     entry_points:
-    - web/selection/index.html
+    - test/src/selection/linear_selectable_test.html
+    - web/selection/main.html
+- test/pub_serve:
+    $include: test/**_test{.*,}.dart
 - reflectable:
     entry_points:
+    - test/src/selection/linear_selectable_test.dart
     - web/selection/main.dart
 - $dart2js:
     $include: '**/*.bootstrap.initialize.dart'
