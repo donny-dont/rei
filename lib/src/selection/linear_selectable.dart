@@ -88,7 +88,9 @@ abstract class LinearSelectable implements Selectable {
     // Since this can be overridden by an implementing class the value should
     // be sanitized. It needs to be selectable and contained within the
     // selectableElements list.
-    assert((selected == null) || ((Selectable.canSelect(selected)) && (selectableElements.contains(selected))));
+    assert((selected == null) ||
+        ((Selectable.canSelect(selected)) &&
+            (selectableElements.contains(selected))));
 
     // If there was no preference from onSelect then just get the first
     // selectable element from the container
@@ -271,8 +273,11 @@ abstract class LinearSelectable implements Selectable {
   /// first selectable element is chosen.
   html.Element _getSelectedElement() {
     // Verify that the selected element is present within the container
-    var hasSelection = (_selectedElement != null) && (selectableElements.contains(_selectedElement));
+    var hasSelection = (_selectedElement != null) &&
+        (selectableElements.contains(_selectedElement));
 
-    return hasSelection ? _selectedElement : Selectable.findFirstSelectable(selectableElements);
+    return hasSelection
+        ? _selectedElement
+        : Selectable.findFirstSelectable(selectableElements);
   }
 }
