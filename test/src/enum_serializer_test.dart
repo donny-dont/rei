@@ -1,6 +1,7 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
+@TestOn('vm')
 library rei.test.src.enum_serializer_test;
 
 //---------------------------------------------------------------------
