@@ -100,7 +100,7 @@ abstract class Selectable {
         element is! html.TemplateElement;
   }
 
-  /// Finds the first [Html.Element] in elements that can be selected.
+  /// Finds the first [html.Element] in [elements] that can be selected.
   ///
   /// Uses the [canSelect] method to determine what is selectable.
   static html.Element findFirstSelectable(List<html.Element> elements) {
@@ -108,7 +108,7 @@ abstract class Selectable {
         orElse: () => null);
   }
 
-  /// Finds the last [Html.Element] in elements that can be selected.
+  /// Finds the last [html.Element] in [elements] that can be selected.
   ///
   /// Uses the [canSelect] method to determine what is selectable.
   static html.Element findLastSelectable(List<html.Element> elements) {
