@@ -13,8 +13,11 @@ dev_dependencies:
   test: '^0.12.5+1'
   dart_to_js_script_rewriter: '^0.1.0+4'
 transformers:
-- web_components
-- reflectable
+- web_components:
+    entry_points:
+    - web/selection/index.html
+- reflectable:
+    entry_points:
+    - web/selection/main.dart
 - $dart2js:
     $include: '**/*.bootstrap.initialize.dart'
-- dart_to_js_script_rewriter

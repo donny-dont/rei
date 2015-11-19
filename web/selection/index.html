@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rei - Selection Example</title>
+  <style>
+    body {
+      margin: 20px;
+      background-color: rgb(16, 16, 32);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .tall {
+      width: 256px;
+      height: 512px;
+    }
+
+    .large {
+      width: 256px;
+      height: 128px;
+    }
+
+    .wide {
+      width: 512px;
+      height: 128px;
+    }
+
+    .small {
+      width: 128px;
+      height: 64px;
+    }
+
+    .stretch {
+      flex: 1;
+    }
+
+    .color0 {
+      background-color: #010F56;
+    }
+
+    .color1 {
+      background-color: #213181;
+    }
+
+    .color2 {
+      background-color: #4D5CAC;
+    }
+
+    .color3 {
+      background-color: #66A1C8;
+    }
+
+    .selected {
+      background-color: #35ADFC !important;
+    }
+
+    .nested-grid {
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      margin-bottom: 10px;
+    }
+  </style>
+  <script src="packages/web_components/webcomponents-lite.min.js"></script>
+</head>
+<body unresolved>
+  <rei-selection-group direction="vertical">
+    <div data-not-selectable>Horizontal selection</div>
+    <rei-selection-group>
+      <div class="large color0"></div>
+      <div class="large color1"></div>
+      <div class="large color2"></div>
+      <div class="large color3"></div>
+    </rei-selection-group>
+
+    <div data-not-selectable>Vertical selection</div>
+    <rei-selection-group direction="vertical">
+      <div class="large color0"></div>
+      <div class="large color1"></div>
+      <div class="large color2"></div>
+      <div class="large color3"></div>
+    </rei-selection-group>
+
+    <div data-not-selectable>Nested</div>
+    <rei-selection-group style="width: 1152px; height: 1152px">
+      <div class="stretch color0"></div>
+      <rei-selection-group class="stretch" direction="vertical">
+        <div class="stretch color1" data-selectable></div>
+        <rei-selection-group class="stretch">
+          <div class="stretch color2"></div>
+          <rei-selection-group class="stretch" direction="vertical">
+            <div class="stretch color3"></div>
+            <rei-selection-group class="stretch">
+              <div class="stretch color0"></div>
+              <rei-selection-group class="stretch" direction="vertical">
+                <div class="stretch color1"></div>
+                <rei-selection-group class="stretch">
+                  <div class="stretch color2"></div>
+                  <rei-selection-group class="stretch" direction="vertical">
+                    <div class="stretch color3"></div>
+                    <rei-selection-group class="stretch">
+                      <div class="stretch color0"></div>
+                      <rei-selection-group class="stretch" direction="vertical">
+                        <div class="stretch color1"></div>
+                        <rei-selection-group class="stretch">
+                          <div class="stretch color2"></div>
+                          <rei-selection-group class="stretch" direction="vertical">
+                            <div class="stretch color3"></div>
+                          </rei-selection-group>
+                        </rei-selection-group>
+                      </rei-selection-group>
+                    </rei-selection-group>
+                  </rei-selection-group>
+                </rei-selection-group>
+              </rei-selection-group>
+            </rei-selection-group>
+          </rei-selection-group>
+        </rei-selection-group>
+      </rei-selection-group>
+    </rei-selection-group>
+  </rei-selection-group>
+
+  <script async type="application/dart" src="main.dart"></script>
+  <script async type="packages/browser/dart.js"></script>
+</body>
+</html>
