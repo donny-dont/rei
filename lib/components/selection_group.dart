@@ -60,7 +60,7 @@ class SelectionGroup extends PolymerElement
 
   /// Creates an instance of the [SelectionGroup] class.
   factory SelectionGroup() =>
-      new html.Element.tag(SelectionGroup.customTagName) as SelectionGroup;
+      new html.Element.tag(customTagName) as SelectionGroup;
 
   /// Create an instance of the [SelectionGroup] class.
   ///
