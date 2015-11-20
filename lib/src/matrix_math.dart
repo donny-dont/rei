@@ -26,16 +26,16 @@ import 'dart:typed_data';
 ///     | [1]   0    | [3] scaleY | [5] translationY |
 ///     +------------+------------+------------------+
 void create2DTransform(Float32List out,
-                       double x,
-                       double y,
-                       double scaleX,
-                       double scaleY) {
-  out[0] = scaleX;
+                       num x,
+                       num y,
+                       num scaleX,
+                       num scaleY) {
+  out[0] = scaleX.toDouble();
   out[1] = 0.0;
   out[2] = 0.0;
-  out[3] = scaleY;
-  out[4] = x;
-  out[5] = y;
+  out[3] = scaleY.toDouble();
+  out[4] = x.toDouble();
+  out[5] = y.toDouble();
 }
 
 /// Performs a multiplication of two 2D transformations, [a] and [b], storing
