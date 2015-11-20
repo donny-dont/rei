@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rei - Transform Example</title>
+  <style>
+    body {
+      margin: 20px;
+      background-color: rgb(16, 16, 32);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .large {
+      width: 256px;
+      height: 128px;
+    }
+
+    .color0 {
+      background-color: #010F56;
+    }
+
+    .color1 {
+      background-color: #213181;
+    }
+
+    .color2 {
+      background-color: #4D5CAC;
+    }
+
+    .color3 {
+      background-color: #66A1C8;
+    }
+  </style>
+  <script src="packages/web_components/webcomponents-lite.min.js"></script>
+</head>
+<body unresolved>
+  <div style="position: relative;">
+    <rei-transform-group>
+      <div class="large color0"></div>
+      <rei-transform></rei-transform>
+    </rei-transform-group>
+    <rei-transform-group>
+      <div class="large color1"></div>
+      <rei-transform></rei-transform>
+    </rei-transform-group>
+    <rei-transform-group>
+      <div class="large color2"></div>
+      <rei-transform></rei-transform>
+    </rei-transform-group>
+    <rei-transform-group>
+      <div class="large color3"></div>
+      <rei-transform></rei-transform>
+    </rei-transform-group>
+  </div>
+  <script type="application/dart" src="main.dart"></script>
+  <script type="packages/browser/dart.js"></script>
+</body>
+</html>

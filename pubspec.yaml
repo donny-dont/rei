@@ -16,11 +16,13 @@ transformers:
     entry_points:
     - test/src/selection/linear_selectable_test.html
     - web/selection/index.html
+    - web/transform/index.html
 - test/pub_serve:
     $include: test/**_test{.*,}.dart
 - reflectable:
     entry_points:
     - test/src/selection/linear_selectable_test.dart
     - web/selection/main.dart
+    - web/transform/main.dart
 - $dart2js:
     $include: '**/*.bootstrap.initialize.dart'
