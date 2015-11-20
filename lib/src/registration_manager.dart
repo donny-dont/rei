@@ -5,12 +5,6 @@
 library rei.src.registration_manager;
 
 //---------------------------------------------------------------------
-// Standard libraries
-//---------------------------------------------------------------------
-
-import 'dart:collection';
-
-//---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
@@ -55,10 +49,10 @@ class RegistrationManager<T> {
   void add(T element) {
     if (_toRemove.contains(element)) {
       // Element should be registered if queued for removal
-      assert(_registered.contains(element));
+      assert(registered.contains(element));
 
       _toRemove.remove(element);
-    } else if ((!_registered.contains(element)) && (!_toAdd.contains(element))) {
+    } else if ((!registered.contains(element)) && (!_toAdd.contains(element))) {
       _toAdd.add(element);
     }
   }
@@ -67,10 +61,10 @@ class RegistrationManager<T> {
   void remove(T element) {
     if (_toAdd.contains(element)) {
       // Element should not be registered if queued for addition
-      assert(!_registered.contains(element));
+      assert(!registered.contains(element));
 
       _toAdd.remove(element);
-    } else if ((_registered.contains(element)) && (!_toRemove.contains(element))) {
+    } else if ((registered.contains(element)) && (!_toRemove.contains(element))) {
       _toRemove.add(element);
     }
   }
