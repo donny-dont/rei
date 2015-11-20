@@ -18,7 +18,7 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:rei/direction.dart';
 import 'package:rei/selectable.dart';
-import 'package:web_components/web_components.dart';
+import 'package:web_components/web_components.dart' show HtmlImport;
 
 //---------------------------------------------------------------------
 // Library contents
