@@ -21,8 +21,7 @@ import 'package:polymer/polymer.dart';
 import 'package:test/test.dart';
 
 import 'package:rei/direction.dart';
-import 'package:rei/src/selection/selectable.dart';
-import 'package:rei/src/selection/linear_selectable.dart';
+import 'package:rei/selectable.dart';
 
 import 'linear_selectable_test_element.dart';
 

@@ -17,7 +17,7 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 import 'package:rei/direction.dart';
-import 'package:rei/src/selection/linear_selectable.dart';
+import 'package:rei/selectable.dart';
 import 'package:web_components/web_components.dart';
 
 //---------------------------------------------------------------------
@@ -27,6 +27,7 @@ import 'package:web_components/web_components.dart';
 /// Tag name for the class.
 const String _tagName = 'rei-selection-group';
 
+/// Contains a linear selectable group of elements.
 @PolymerRegister(_tagName)
 class SelectionGroup extends PolymerElement
     with LinearSelectable, PolymerSerialize {

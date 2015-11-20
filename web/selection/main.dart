@@ -16,7 +16,7 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/src/selection/selectable.dart';
+import 'package:rei/selectable.dart';
 import 'package:rei/components/selection_group.dart';
 
 //---------------------------------------------------------------------
