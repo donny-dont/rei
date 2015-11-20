@@ -1,6 +1,9 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
+/// Contains the [Selectable] interface and associated helper functions.
+library rei.src.selection.selectable;
+
 //---------------------------------------------------------------------
 // Standard libraries
 //---------------------------------------------------------------------
@@ -121,6 +124,8 @@ abstract class Selectable {
   /// This method is used to search both the light DOM and the shadow DOM for
   /// the parent.
   static Selectable findParentSelectable(html.Element element) {
+    // \TODO Revisit this with shady DOM implementation
+
     // See if the element is in the light DOM
     var search;
 
