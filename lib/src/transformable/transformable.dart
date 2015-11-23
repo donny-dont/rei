@@ -61,6 +61,10 @@ abstract class Transformable {
   num get scaleY;
   /// Whether a transform changed event should be propagated.
   bool get propagateTransformChange;
+  /// The translation in the x direction within the world.
+  num get worldX => worldMatrix[4];
+  /// The translation in the y direction within the world.
+  num get worldY => worldMatrix[5];
 
   //---------------------------------------------------------------------
   // PolymerElement
