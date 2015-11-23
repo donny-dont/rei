@@ -18,7 +18,8 @@ import 'package:rei/src/enum_serializer.dart';
 /// An easing function specifies the rate of change over time. They are used to
 /// provide more natural looking animations.
 ///
-/// The following values are defined in the [CSS Transitions specification](http://www.w3.org/TR/css3-transitions/).
+/// The following values are defined in the
+/// [CSS Transitions specification](http://www.w3.org/TR/css3-transitions/).
 /// - [EasingFunction.linear]
 /// - [EasingFunction.ease]
 /// - [EasingFunction.easeIn]
