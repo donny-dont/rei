@@ -29,11 +29,9 @@ enum Direction {
 /// Deserializes the [value] into the equivalent [Direction].
 ///
 /// If no value can be found the default is [Direction.horizontal].
-Direction deserializeDirection(String value) {
-  return deserializeEnum(value, Direction.values);
-}
+Direction deserializeDirection(String value) =>
+  deserializeEnum(value, Direction.values);
 
 /// Serializes the [value] into a string.
-String serializeDirection(Direction value) {
-  return serializeEnum(value);
-}
+String serializeDirection(Direction value) =>
+  serializeEnum(value);

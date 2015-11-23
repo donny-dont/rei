@@ -35,11 +35,9 @@ enum PlaybackDirection {
 /// Deserializes the [value] into the equivalent [PlaybackDirection].
 ///
 /// If no value can be found the default is [PlaybackDirection.forward].
-PlaybackDirection deserializePlaybackDirection(String value) {
-  return deserializeEnum(value, PlaybackDirection.values);
-}
+PlaybackDirection deserializePlaybackDirection(String value) =>
+    deserializeEnum(value, PlaybackDirection.values);
 
 /// Serializes the [value] into a string.
-String serializeDirection(PlaybackDirection value) {
-  return serializeEnum(value);
-}
+String serializePlaybackDirection(PlaybackDirection value) =>
+    serializeEnum(value);
