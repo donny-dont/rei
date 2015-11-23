@@ -1,7 +1,5 @@
-//  SONY CONFIDENTIAL MATERIAL. DO NOT DISTRIBUTE.
-//  SNEI REI (Really Elegant Interface)
-//  Copyright (C) 2014-2015 Sony Network Entertainment Inc
-//  All Rights Reserved
+// Copyright (c) 2015, the Rei Project Authors.
+// Please see the AUTHORS file for details. All rights reserved.
 
 /// Contains the [LinearSelectable] mixin.
 library rei.src.selection.linear_selectable;
