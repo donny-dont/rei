@@ -1,6 +1,7 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
+/// Contains the [TransformableElement] mixin.
 library rei.src.transform.transformable_element;
 
 //---------------------------------------------------------------------
