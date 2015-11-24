@@ -34,8 +34,8 @@ const String _tagName = 'rei-transform-group';
 @PolymerRegister(_tagName)
 class TransformGroup extends PolymerElement
                         with LinearSelectable,
-                             Transformable,
                              TransformableElement,
+                             Transformable,
                              PolymerSerialize {
   //---------------------------------------------------------------------
   // Class variables
@@ -123,16 +123,14 @@ class TransformGroup extends PolymerElement
   //---------------------------------------------------------------------
 
   @override
-  dynamic deserialize(String value, Type type) {
-    return (type == Direction)
-        ? deserializeDirection(value)
-        : super.deserialize(value, type);
-  }
+  dynamic deserialize(String value, Type type) =>
+      (type == Direction)
+          ? deserializeDirection(value)
+          : super.deserialize(value, type);
 
   @override
-  String serialize(Object value) {
-    return (value is Direction)
-        ? serializeDirection(value)
-        : super.serialize(value);
-  }
+  String serialize(Object value) =>
+      (value is Direction)
+          ? serializeDirection(value)
+          : super.serialize(value);
 }
