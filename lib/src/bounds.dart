@@ -196,6 +196,5 @@ html.Rectangle getAbsoluteBounds(html.Element element) {
 /// Parses the attribute with the given [key] into a [double].
 ///
 /// Currently assumes that the attribute is present.
-double _parseDoubleAttribute(String key, Map<String, String> attributes) {
-  return double.parse(attributes[key]);
-}
+double _parseDoubleAttribute(String key, Map<String, String> attributes) =>
+    double.parse(attributes[key]);
