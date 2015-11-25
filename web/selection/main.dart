@@ -59,6 +59,8 @@ void _onSelectionChanged(html.CustomEvent event) {
 Future<Null> main() async {
   await initPolymer();
 
+  html.document.body.style.opacity = '1';
+
   // Setup the listeners
   html.window.onKeyUp.listen(_onKeyUp);
   html.window.on[Selectable.selectionChangedEvent].listen(_onSelectionChanged);
