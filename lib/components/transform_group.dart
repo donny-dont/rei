@@ -18,6 +18,7 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
+import 'package:rei/animatable.dart';
 import 'package:rei/direction.dart';
 import 'package:rei/selectable.dart';
 import 'package:rei/transformable.dart';
@@ -33,7 +34,8 @@ const String _tagName = 'rei-transform-group';
 /// transformed.
 @PolymerRegister(_tagName)
 class TransformGroup extends PolymerElement
-                        with LinearSelectable,
+                        with Animatable,
+                             LinearSelectable,
                              TransformableElement,
                              Transformable,
                              PolymerSerialize {
@@ -88,7 +90,14 @@ class TransformGroup extends PolymerElement
   TransformGroup.created() : super.created();
 
   //---------------------------------------------------------------------
-  // LinearSelectable methods
+  // Animatable
+  //---------------------------------------------------------------------
+
+  @override
+  html.Element get animatableElement => this;
+
+  //---------------------------------------------------------------------
+  // LinearSelectable
   //---------------------------------------------------------------------
 
   @override
@@ -96,7 +105,7 @@ class TransformGroup extends PolymerElement
       (Polymer.dom(this) as PolymerDom).children;
 
   //---------------------------------------------------------------------
-  // TransformableElement methods
+  // TransformableElement
   //---------------------------------------------------------------------
 
   @override

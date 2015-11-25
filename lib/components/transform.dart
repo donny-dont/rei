@@ -17,6 +17,7 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 
 import 'package:rei/transformable.dart';
+import 'package:rei/animatable.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -26,7 +27,7 @@ import 'package:rei/transformable.dart';
 const String _tagName = 'rei-transform';
 
 @PolymerRegister(_tagName)
-class Transform extends PolymerElement with Transformable {
+class Transform extends PolymerElement with Animatable, Transformable {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -72,6 +73,13 @@ class Transform extends PolymerElement with Transformable {
   void ready() {
     style.display = 'none';
   }
+
+  //---------------------------------------------------------------------
+  // Animatable
+  //---------------------------------------------------------------------
+
+  @override
+  html.Element get animatableElement => this;
 
   //---------------------------------------------------------------------
   // Transformable
