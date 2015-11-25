@@ -23,22 +23,40 @@ import 'package:rei/animation_target.dart';
 /// Applies a [value] to the [style].
 typedef void _ApplyCssProperty(html.CssStyleDeclaration style, dynamic value);
 
+/// Regular expression for matching numbers.
+const _numRegex = r'[-+]?[0-9]+\.?[0-9]*([Ee][+-]?[0-9]+)*';
+
 /// Regular expression for a blur filter value.
-final RegExp _blurRegex = new RegExp(r'blur\([-+]?[0-9]*\.?[0-9]+px\)');
+final RegExp _blurRegex =
+    new RegExp('blur\\(${_numRegex}px\\)');
+
 /// Regular expression for a sepia filter value.
-final RegExp _sepiaRegex = new RegExp(r'sepia\([-+]?[0-9]*\.?[0-9]+\)');
+final RegExp _sepiaRegex =
+    new RegExp('sepia\\($_numRegex\\)');
+
 /// Regular expression for a grayscale filter value.
-final RegExp _grayscaleRegex = new RegExp(r'grayscale\([-+]?[0-9]*\.?[0-9]+\)');
+final RegExp _grayscaleRegex =
+    new RegExp('grayscale\\($_numRegex\\)');
+
 /// Regular expression for a brightness filter value.
-final RegExp _brightnessRegex = new RegExp(r'brightness\([-+]?[0-9]*\.?[0-9]+\)');
+final RegExp _brightnessRegex =
+    new RegExp('brightness\\($_numRegex\\)');
+
 /// Regular expression for a contrast filter value.
-final RegExp _contrastRegex = new RegExp(r'contrast\([-+]?[0-9]*\.?[0-9]+\)');
+final RegExp _contrastRegex =
+    new RegExp('contrast\\($_numRegex\\)');
+
 /// Regular expression for a hue rotation filter value.
-final RegExp _hueRotateRegex = new RegExp(r'hue-rotate\([-+]?[0-9]*\.?[0-9]+deg\)');
+final RegExp _hueRotateRegex =
+    new RegExp('hue-rotate\\(${_numRegex}deg\\)');
+
 /// Regular expression for an invert filter value.
-final RegExp _invertRegex = new RegExp(r'invert\([-+]?[0-9]*\.?[0-9]+\)');
+final RegExp _invertRegex =
+    new RegExp('invert\\($_numRegex\\)');
+
 /// Regular expression for a saturate filter value.
-final RegExp _saturateRegex = new RegExp(r'saturate\([-+]?[0-9]*\.?[0-9]+\)');
+final RegExp _saturateRegex =
+    new RegExp('saturate\\($_numRegex\\)');
 
 /// List of functions to apply styles.
 ///
