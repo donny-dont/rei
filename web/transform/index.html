@@ -8,11 +8,25 @@
       margin: 20px;
       background-color: rgb(16, 16, 32);
       color: rgba(255, 255, 255, 0.8);
+      opacity: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      z-index: 99;
+      pointer-events: none;
     }
 
     .large {
-      width: 256px;
-      height: 128px;
+      width: 200px;
+      height: 358px;
+      margin: 20px;
+
+      background-image: url(http://www.w3schools.com/cssref/img_tree.gif);
     }
 
     .color0 {
@@ -34,24 +48,37 @@
   <script src="packages/web_components/webcomponents-lite.min.js"></script>
 </head>
 <body unresolved>
-  <div style="position: relative;">
+  <canvas width="1920" height="1080"></canvas>
+  <rei-selection-group style="position: relative;">
     <rei-transform-group>
       <div class="large color0"></div>
-      <rei-transform></rei-transform>
+      <rei-easing-animation animation-target="saturate" end="1" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      <rei-transform>
+        <rei-easing-animation end="100" animation-target="translateX" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      </rei-transform>
     </rei-transform-group>
-    <rei-transform-group>
+    <rei-transform-group x="256">
       <div class="large color1"></div>
-      <rei-transform></rei-transform>
+      <rei-easing-animation animation-target="huerotate" end="360" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      <rei-transform y="128">
+        <rei-easing-animation start="128" end="228" animation-target="translateY" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      </rei-transform>
     </rei-transform-group>
-    <rei-transform-group>
+    <rei-transform-group x="512">
       <div class="large color2"></div>
-      <rei-transform></rei-transform>
+      <rei-easing-animation animation-target="invert" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      <rei-transform y="256">
+        <rei-easing-animation end="100" animation-target="translateX" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      </rei-transform>
     </rei-transform-group>
-    <rei-transform-group>
+    <rei-transform-group x="768">
       <div class="large color3"></div>
-      <rei-transform></rei-transform>
+      <rei-easing-animation animation-target="sepia" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      <rei-transform y="384">
+        <rei-easing-animation start="384" end="484" animation-target="translateY" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      </rei-transform>
     </rei-transform-group>
-  </div>
+  </rei-selection-group>
   <script type="application/dart" src="main.dart"></script>
   <script type="packages/browser/dart.js"></script>
 </body>
