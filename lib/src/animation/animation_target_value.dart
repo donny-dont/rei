@@ -180,7 +180,7 @@ void _applySaturate(html.Element element, double value) {
 /// [element].
 void _applyTranslateX(html.Element element, double value) {
   assert(element is Transformable);
-  final Transformable transformable = element as Transformable;
+  var transformable = element as Transformable;
 
   transformable.x = value;
 }
@@ -189,7 +189,7 @@ void _applyTranslateX(html.Element element, double value) {
 /// [element].
 void _applyTranslateY(html.Element element, double value) {
   assert(element is Transformable);
-  final Transformable transformable = element as Transformable;
+  var transformable = element as Transformable;
 
   transformable.y = value;
 }
@@ -197,7 +197,7 @@ void _applyTranslateY(html.Element element, double value) {
 /// Applies a scale in the x direction with the given [value] to the [element].
 void _applyScaleX(html.Element element, double value) {
   assert(element is Transformable);
-  final Transformable transformable = element as Transformable;
+  var transformable = element as Transformable;
 
   transformable.scaleX = value;
 }
@@ -205,7 +205,7 @@ void _applyScaleX(html.Element element, double value) {
 /// Applies a scale in the y direction with the given [value] to the [element].
 void _applyScaleY(html.Element element, double value) {
   assert(element is Transformable);
-  final Transformable transformable = element as Transformable;
+  var transformable = element as Transformable;
 
   transformable.scaleY = value;
 }
