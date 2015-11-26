@@ -53,12 +53,16 @@ abstract class Transformable {
 
   /// The translation in the x direction.
   num get x;
+  set x(num value);
   /// The translation in the y direction.
   num get y;
+  set y(num value);
   /// The scale in the x direction.
   num get scaleX;
+  set scaleX(num value);
   /// The scale in the y direction.
   num get scaleY;
+  set scaleY(num value);
   /// Whether a transform changed event should be propagated.
   bool get propagateTransformChange;
   /// The translation in the x direction within the world.
