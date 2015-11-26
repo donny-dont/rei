@@ -164,11 +164,10 @@ class EasingAnimation extends PolymerElement
   //---------------------------------------------------------------------
 
   @Observe('easing')
-  void easingChanged(value) {
-    // \TODO still need cast? otherwise EfficientLength warning
-    var curveValues = ((value is EasingFunction)
+  void easingChanged(dynamic value) {
+    List<num> curveValues = (value is EasingFunction)
         ? getEasingCurve(value)
-        : value) as List<num>;
+        : value;
 
     curve[0] = curveValues[0].toDouble();
     curve[1] = curveValues[1].toDouble();
