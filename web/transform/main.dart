@@ -20,6 +20,7 @@ import 'package:rei/components/easing_animation.dart';
 import 'package:rei/components/selection_group.dart';
 import 'package:rei/components/transform.dart';
 import 'package:rei/components/transform_group.dart';
+import 'package:rei/components/kinetic_animation.dart';
 import 'package:rei/animation.dart';
 import 'package:rei/selection_visualizer.dart';
 import 'package:rei/transformable.dart';
@@ -33,6 +34,7 @@ import 'package:rei/src/bounds.dart';
 /// [TransformGroup]
 /// [Transform]
 /// [EasingAnimation]
+/// [KineticAnimation]
 Future<Null> main() async {
   await initPolymer();
 
