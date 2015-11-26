@@ -96,9 +96,9 @@ void applyAnimationTargetValue(AnimationTarget target,
 // Opacity modifier
 //---------------------------------------------------------------------
 
-/// Sets the opacity to the given [value] on the [style].
-void _applyOpacity(html.CssStyleDeclaration style, double value) {
-  style.opacity = value.toString();
+/// Sets the opacity to the given [value] on the [element].
+void _applyOpacity(html.Element element, double value) {
+  element.style.opacity = value.toString();
 }
 
 //---------------------------------------------------------------------
