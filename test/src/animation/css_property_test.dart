@@ -17,7 +17,7 @@ import 'dart:html' as html;
 import 'package:test/test.dart';
 
 import 'package:rei/animation_target.dart';
-import 'package:rei/src/animation/css_property.dart';
+import 'package:rei/src/animation/animation_target_value.dart';
 
 //---------------------------------------------------------------------
 // Tests
@@ -35,28 +35,28 @@ void _applyValue() {
   var grayscaleValue;
 
   blurValue = 0.5;
-  applyValue(AnimationTarget.blur, style, blurValue);
+  applyAnimationTargetValue(AnimationTarget.blur, element, blurValue);
   _expectFilter(style, 'blur(${blurValue}px)');
 
   blurValue = 1.5;
-  applyValue(AnimationTarget.blur, style, blurValue);
+  applyAnimationTargetValue(AnimationTarget.blur, element, blurValue);
   _expectFilter(style, 'blur(${blurValue}px)');
 
   sepiaValue = 0.2;
-  applyValue(AnimationTarget.sepia, style, sepiaValue);
-  _expectFilter(style, 'blur(${blurValue}px) sepia(${sepiaValue})');
+  applyAnimationTargetValue(AnimationTarget.sepia, element, sepiaValue);
+  _expectFilter(style, 'blur(${blurValue}px) sepia($sepiaValue)');
 
   sepiaValue = 0.8;
-  applyValue(AnimationTarget.sepia, style, sepiaValue);
-  _expectFilter(style, 'blur(${blurValue}px) sepia(${sepiaValue})');
+  applyAnimationTargetValue(AnimationTarget.sepia, element, sepiaValue);
+  _expectFilter(style, 'blur(${blurValue}px) sepia($sepiaValue)');
 
   grayscaleValue = 0.5;
-  applyValue(AnimationTarget.grayscale, style, grayscaleValue);
-  _expectFilter(style, 'blur(${blurValue}px) sepia(${sepiaValue}) grayscale(${grayscaleValue})');
+  applyAnimationTargetValue(AnimationTarget.grayscale, element, grayscaleValue);
+  _expectFilter(style, 'blur(${blurValue}px) sepia($sepiaValue) grayscale($grayscaleValue)');
 
   grayscaleValue = 0.1;
-  applyValue(AnimationTarget.grayscale, style, grayscaleValue);
-  _expectFilter(style, 'blur(${blurValue}px) sepia(${sepiaValue}) grayscale(${grayscaleValue})');
+  applyAnimationTargetValue(AnimationTarget.grayscale, element, grayscaleValue);
+  _expectFilter(style, 'blur(${blurValue}px) sepia($sepiaValue) grayscale($grayscaleValue)');
 }
 
 //---------------------------------------------------------------------

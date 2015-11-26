@@ -24,34 +24,46 @@ import 'bezier_curve.dart';
 //---------------------------------------------------------------------
 
 /// An animation whose value is determined by a bezier curve.
-abstract class BezierCurveAnimation {
+abstract class BezierCurveAnimation implements Animation<num> {
   //---------------------------------------------------------------------
   // Member variables
+  //---------------------------------------------------------------------
+
+  double _value;
+
+  //---------------------------------------------------------------------
+  // Properties
   //---------------------------------------------------------------------
 
   /// The values for the bezier curve.
   Float32List get curve;
   /// The starting value.
   num get start;
-  /// The ending value.
-  num get end;
   /// The duration of the animation.
   num get duration;
 
   //---------------------------------------------------------------------
-  // AnimationValue
+  // Animation
   //---------------------------------------------------------------------
 
-  double get value {
+  @override
+  double get value => _value;
+
+  @override
+  void timeUpdate(double dt) {
+    currentTime += dt;
+
     var range = end.toDouble() - start.toDouble();
     var time = animationTime / duration.toDouble();
 
-    return (range * calculateBezierPoint(time, curve)) + start.toDouble();
+    _value = (range * calculateBezierPoint(time, curve)) + start.toDouble();
   }
 
   //---------------------------------------------------------------------
   // IntervalAnimation
   //---------------------------------------------------------------------
 
+  double get currentTime;
+  set currentTime(double value);
   double get animationTime;
 }

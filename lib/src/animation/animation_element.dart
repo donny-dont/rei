@@ -16,14 +16,18 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
+import 'package:rei/animation_target.dart';
+
+import 'animation.dart';
 import 'animation_manager.dart';
+import 'animation_target_value.dart';
 
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
 @behavior
-abstract class AnimationElement {
+abstract class AnimationElement implements Animation<num> {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -34,6 +38,7 @@ abstract class AnimationElement {
   // Member variables
   //---------------------------------------------------------------------
 
+  /// The [html.Element] to apply the animation to.
   html.Element _animationElement;
 
   //---------------------------------------------------------------------
@@ -52,9 +57,13 @@ abstract class AnimationElement {
     _animationElement = value;
 
     if (_animationElement != null) {
+      print('I BE ADDED!');
       animationManager.add(this);
     }
   }
+
+  AnimationTarget get animationTarget;
+  num get playbackRate;
 
   //---------------------------------------------------------------------
   // PolymerElement
@@ -78,8 +87,12 @@ abstract class AnimationElement {
   }
 
   //---------------------------------------------------------------------
-  // Animation
+  // Public methods
   //---------------------------------------------------------------------
 
-  void update(double dt);
+  void update(double dt) {
+    timeUpdate(dt * playbackRate);
+
+    applyAnimationTargetValue(animationTarget, animationElement, value);
+  }
 }

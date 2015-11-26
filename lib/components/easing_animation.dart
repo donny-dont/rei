@@ -21,7 +21,6 @@ import 'package:rei/animation.dart';
 import 'package:rei/animation_target.dart';
 import 'package:rei/easing_function.dart';
 import 'package:rei/playback_direction.dart';
-import 'package:rei/transformable.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -33,7 +32,10 @@ const String _tagName = 'rei-easing-animation';
 /// An element that performs an easing animation.
 @PolymerRegister(_tagName)
 class EasingAnimation extends PolymerElement
-    with AnimationElement, BezierCurveAnimation, IntervalAnimation, PolymerSerialize {
+                         with AnimationElement,
+                              BezierCurveAnimation,
+                              IntervalAnimation,
+                              PolymerSerialize {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -133,29 +135,6 @@ class EasingAnimation extends PolymerElement
       return serializeAnimationTarget(value);
     } else {
       return super.serialize(value);
-    }
-  }
-
-  //---------------------------------------------------------------------
-  // Animation
-  //---------------------------------------------------------------------
-
-  @override
-  void update(double dt) {
-    currentTime += dt * playbackRate;
-
-    var currentValue = value;
-
-    if (!isTransformTarget(animationTarget)) {
-      applyValue(animationTarget, animationElement.style, currentValue);
-    } else {
-      var transformable = animationElement as Transformable;
-
-      if (animationTarget == AnimationTarget.translateX) {
-        transformable.x = currentValue;
-      } else if (animationTarget == AnimationTarget.translateY) {
-        transformable.y = currentValue;
-      }
     }
   }
 
