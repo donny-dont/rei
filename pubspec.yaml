@@ -6,8 +6,8 @@ version: 0.0.1
 environment:
   sdk: '>=1.13.0 <2.0.0'
 dependencies:
-  polymer: '1.0.0-rc.6'
-  reflectable: '^0.3.3'
+  polymer: '1.0.0-rc.8'
+  reflectable: '^0.4.0'
   web_components: '^0.12.0+3'
 dev_dependencies:
   test: '^0.12.5+1'
