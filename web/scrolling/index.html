@@ -9,6 +9,8 @@
     }
 
     body {
+      display: -webkit-flex;
+      display: flex;
       margin: 0;
       background-color: rgb(16, 16, 32);
       color: rgba(255, 255, 255, 0.8);
@@ -56,15 +58,6 @@
       background-color: #66A1C8;
     }
 
-    #wrapper {
-      display: -webkit-flex;
-      display: flex;
-     -webkit-flex: 1;
-      flex: 1;
-
-      margin: 20px;
-    }
-
     rei-scrollable-group {
       padding: 20px;
       flex: 1;
@@ -74,7 +67,7 @@
 </head>
 <body unresolved>
   <canvas width="1920" height="1080"></canvas>
-  <rei-scrollable-group direction="vertical">
+  <rei-scrollable-group direction="vertical" scrollbar>
     <div class="large-horizontal color0"></div>
     <div class="large-horizontal color1"></div>
     <div class="large-horizontal color2"></div>
