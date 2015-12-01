@@ -57,7 +57,6 @@ abstract class AnimationElement implements Animation<num> {
     _animationElement = value;
 
     if (_animationElement != null) {
-      print('I BE ADDED!');
       animationManager.add(this);
     }
   }

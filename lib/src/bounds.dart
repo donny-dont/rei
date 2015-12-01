@@ -187,8 +187,6 @@ html.Rectangle getAbsoluteBounds(html.Element element) {
       }
     }
 
-    print('Computing bounds tree');
-
     // Compute the bounds tree
     _computeBoundsTree(parentBounds, child, useRelative);
 
