@@ -1,6 +1,6 @@
 <dom-module id="rei-scrollbar">
   <template>
-    <style>
+    <style type="text/less">
       :host {
         display: -webkit-flex;
         display: flex;
@@ -12,14 +12,6 @@
         background-color: rgba(255, 255, 255, 0.2);
       }
 
-      :host([direction="vertical"]) {
-        -webkit-flex-direction: column;
-        flex-direction: column;
-
-        width: 10px;
-        height: auto;
-      }
-
       #thumb {
         height: auto;
         width: 20px;
@@ -27,9 +19,17 @@
         background-color: rgba(255, 255, 255, 0.5);
       }
 
-      :host([direction="vertical"]) #thumb {
-        width: auto;
-        height: 20px;
+      :host([direction="vertical"]) {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+
+        width: 10px;
+        height: auto;
+
+        #thumb {
+          width: auto;
+          height: 20px;
+        }
       }
     </style>
     <div id="thumb"></div>

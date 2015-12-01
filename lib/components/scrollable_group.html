@@ -1,12 +1,12 @@
 <dom-module id="rei-scrollable-group">
   <template>
-    <style>
+    <style type="text/less">
       :host {
         display: -webkit-flex;
         display: flex;
         box-sizing: border-box;
 
-        -webkit-flex-direction: column;
+       -webkit-flex-direction: column;
         flex-direction: column;
       }
 
@@ -16,21 +16,21 @@
 
         -webkit-flex: 1;
         flex: 1;
+
+        > ::content * {
+          -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+        }
       }
 
       :host([direction="vertical"]) {
         -webkit-flex-direction: row;
         flex-direction: row;
-      }
 
-      :host([direction="vertical"]) #content-wrapper {
-        -webkit-flex-direction: column;
-        flex-direction: column;
-      }
-
-      #content-wrapper > ::content * {
-        -webkit-flex-shrink: 0;
-        flex-shrink: 0;
+        #content-wrapper {
+         -webkit-flex-direction: column;
+          flex-direction: column;
+        }
       }
     </style>
     <div id="content-wrapper">
