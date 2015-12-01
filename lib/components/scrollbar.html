@@ -1,37 +1,37 @@
 <dom-module id="rei-scrollbar">
-  <style>
-    :host {
-      display: -webkit-flex;
-      display: flex;
-      box-sizing: border-box;
-
-      height: 10px;
-      width: 100%;
-
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    :host([direction="vertical"]) {
-      -webkit-flex-direction: column;
-      flex-direction: column;
-
-      width: 10px;
-      height: 100%;
-    }
-
-    #thumb {
-      height: 100%;
-      width: 20px;
-
-      background-color: rgba(255, 255, 255, 0.5);
-    }
-
-    :host([direction="vertical"]) #thumb {
-      width: 100%;
-      height: 20px;
-    }
-  </style>
   <template>
+    <style>
+      :host {
+        display: -webkit-flex;
+        display: flex;
+        box-sizing: border-box;
+
+        height: 10px;
+        width: auto;
+
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      :host([direction="vertical"]) {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+
+        width: 10px;
+        height: auto;
+      }
+
+      #thumb {
+        height: auto;
+        width: 20px;
+
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+
+      :host([direction="vertical"]) #thumb {
+        width: auto;
+        height: 20px;
+      }
+    </style>
     <div id="thumb"></div>
     <content></content>
   </template>
