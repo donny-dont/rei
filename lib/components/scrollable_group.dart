@@ -76,11 +76,8 @@ class ScrollableGroup extends PolymerElement
   /// Whether the scrollbar should be visible.
   @Property(reflectToAttribute: true)
   bool scrollbar = false;
-  @property
-  AnimationTarget get animationTarget =>
-      (direction == Direction.horizontal)
-          ? AnimationTarget.translateX
-          : AnimationTarget.translateY;
+  @Property(computed: 'computeTarget(direction)')
+  AnimationTarget animationTarget = AnimationTarget.translateX;
 
   //---------------------------------------------------------------------
   // Construction
@@ -133,6 +130,16 @@ class ScrollableGroup extends PolymerElement
   void detached() {
     detachedTransformableElement();
   }
+
+  //---------------------------------------------------------------------
+  // Computed properties
+  //---------------------------------------------------------------------
+
+  @reflectable
+  AnimationTarget computeTarget(Direction value) =>
+      (direction == Direction.horizontal)
+          ? AnimationTarget.translateX
+          : AnimationTarget.translateY;
 
   //---------------------------------------------------------------------
   // PolymerSerialize

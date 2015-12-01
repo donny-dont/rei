@@ -1,43 +1,44 @@
 <dom-module id="rei-scrollable-group">
-  <style>
-    :host {
-      display: -webkit-flex;
-      display: flex;
-      box-sizing: border-box;
-
-     -webkit-flex-direction: column;
-      flex-direction: column;
-    }
-
-    #content-wrapper {
-      display: -webkit-flex;
-      display: flex;
-
-     -webkit-flex: 1;
-      flex: 1;
-    }
-
-    :host([direction="vertical"]) {
-      -webkit-flex-direction: row;
-      flex-direction: row;
-    }
-
-    :host([direction="vertical"]) #content-wrapper {
-     -webkit-flex-direction: column;
-      flex-direction: column;
-    }
-
-    :host([direction="horizontal"]) #content-wrapper > ::content * {
-     -webkit-flex-shrink: 0;
-      flex-shrink: 0;
-      border: solid 2px red;
-    }
-  </style>
   <template>
+    <style>
+      :host {
+        display: -webkit-flex;
+        display: flex;
+        box-sizing: border-box;
+
+        -webkit-flex-direction: column;
+        flex-direction: column;
+      }
+
+      #content-wrapper {
+        display: -webkit-flex;
+        display: flex;
+
+        -webkit-flex: 1;
+        flex: 1;
+      }
+
+      :host([direction="vertical"]) {
+        -webkit-flex-direction: row;
+        flex-direction: row;
+      }
+
+      :host([direction="vertical"]) #content-wrapper {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+      }
+
+      #content-wrapper > ::content * {
+        -webkit-flex-shrink: 0;
+        flex-shrink: 0;
+      }
+    </style>
     <div id="content-wrapper">
       <content></content>
     </div>
-    <rei-scrollbar direction="{{direction}}"></rei-scrollbar>
+    <template is="dom-if" if="{{scrollbar}}">
+      <rei-scrollbar direction="{{direction}}"></rei-scrollbar>
+    </template>
     <rei-kinetic-animation animation-target="{{animationTarget}}"></rei-kinetic-animation>
   </template>
 </dom-module>
