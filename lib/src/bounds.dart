@@ -25,14 +25,18 @@ import 'package:rei/selectable.dart';
 // Library contents
 //---------------------------------------------------------------------
 
-/// An attribute containing the position along the x axis of the element relative to its parent.
+/// An attribute containing the position along the x axis of the element
+/// relative to its parent.
 const String relativeXAttribute = 'data-relative-x';
-/// An attribute containing the position along the y axis of the element relative to its parent.
+/// An attribute containing the position along the y axis of the element
+/// relative to its parent.
 const String relativeYAttribute = 'data-relative-y';
 
-/// An attribute containing the absolute position along the x axis of the element relative to the document.
+/// An attribute containing the absolute position along the x axis of the
+/// element relative to the document.
 const String absoluteXAttribute = 'data-absolute-x';
-/// An attribute containing the absolute position along the y axis of the element relative to the document.
+/// An attribute containing the absolute position along the y axis of the
+/// element relative to the document.
 const String absoluteYAttribute = 'data-absolute-y';
 
 /// An attribute containing the computed width of the element.
