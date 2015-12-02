@@ -105,7 +105,7 @@ class UpdateLoop {
     // now() within the application.
     time = html.window.performance.now();
 
-    Time.update(time);
+    Time.update(time.toDouble());
 
     if (onFrame != null) {
       onFrame(new Time());
