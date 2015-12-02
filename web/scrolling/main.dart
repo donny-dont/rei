@@ -19,8 +19,8 @@ import 'package:polymer/polymer.dart';
 import 'package:rei/components/kinetic_animation.dart';
 import 'package:rei/components/scrollbar.dart';
 import 'package:rei/components/scrollable_group.dart';
-import 'package:rei/animation.dart';
-import 'package:rei/transformable.dart';
+
+import '../shared/loop.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -35,21 +35,6 @@ Future<Null> main() async {
 
   html.document.body.style.opacity = '1';
 
-  // Create the transformable manager and update the current positioning
-  var transformableManager = new TransformableManager();
-  transformableManager.update();
-
-  // Create the animation manager
-  var animationManager = new AnimationManager();
-
-  var lastTime = await html.window.animationFrame;
-
-  while (true) {
-    var time = await html.window.animationFrame;
-
-    animationManager.update(time - lastTime);
-    transformableManager.update();
-
-    lastTime = time;
-  }
+  // Start the update loop
+  start();
 }
