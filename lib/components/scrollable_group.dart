@@ -18,6 +18,8 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
+import 'package:rei/components/kinetic_animation.dart';
+import 'package:rei/components/scrollbar.dart';
 import 'package:rei/animatable.dart';
 import 'package:rei/animation_target.dart';
 import 'package:rei/direction.dart';
@@ -31,6 +33,13 @@ import 'package:rei/transformable.dart';
 /// Tag name for the class.
 const String _tagName = 'rei-scrollable-group';
 
+///
+/// A [ScrollableGroup] uses [KineticAnimation] to animate the scrolling
+/// behavior.
+///
+/// A [Scrollbar] is visible if [scrollbar] is true. Otherwise it will not be
+/// displayed. This is only useful if the size of the scrollable area is
+/// finite.
 @PolymerRegister(_tagName)
 class ScrollableGroup extends PolymerElement
                          with Animatable,
