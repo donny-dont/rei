@@ -1,35 +1,32 @@
 <dom-module id="rei-scrollbar">
   <template>
-    <style>
+    <style include="rei-layout">
       :host {
-        display: -webkit-flex;
-        display: flex;
-        box-sizing: border-box;
+        @apply(--layout-horizontal);
 
-        height: 10px;
+        height: var(--scrollbar-track-size, 10px);
         width: auto;
 
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: var(--scrollbar-track-color, rgba(255, 255, 255, 0.2));
       }
 
       #thumb {
+        width: var(--scrollbar-thumb-size, 20px);
         height: auto;
-        width: 20px;
 
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: var(--scrollbar-thumb-color, rgba(255, 255, 255, 0.5));
       }
 
       :host([direction="vertical"]) {
-        -webkit-flex-direction: column;
-        flex-direction: column;
+        @apply(--flex-vertical);
 
-        width: 10px;
+        width: var(--scrollbar-track-size, 10px);
         height: auto;
       }
 
       :host([direction="vertical"]) #thumb {
         width: auto;
-        height: 20px;
+        height: var(--scrollbar-thumb-size, 20px);
       }
     </style>
     <div id="thumb"></div>

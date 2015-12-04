@@ -21,6 +21,8 @@ import 'package:web_components/web_components.dart' show HtmlImport;
 import 'package:rei/direction.dart';
 import 'package:rei/selectable.dart';
 
+import 'layout.dart';
+
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------

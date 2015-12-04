@@ -22,6 +22,8 @@ import 'package:rei/animatable.dart';
 import 'package:rei/direction.dart';
 import 'package:rei/transformable.dart';
 
+import 'layout.dart';
+
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------

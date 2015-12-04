@@ -1,15 +1,12 @@
 <dom-module id="rei-selection-group">
   <template>
-    <style>
+    <style include="rei-layout">
       :host {
-        display: -webkit-flex;
-        display: flex;
-        box-sizing: border-box;
+        @apply(--layout-horizontal);
       }
 
       :host([direction="vertical"]) {
-        -webkit-flex-direction: column;
-        flex-direction: column;
+        @apply(--flex-vertical);
       }
     </style>
     <content></content>
