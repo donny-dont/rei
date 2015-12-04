@@ -1,6 +1,6 @@
 <dom-module id="rei-scrollbar">
   <template>
-    <style type="text/less">
+    <style>
       :host {
         display: -webkit-flex;
         display: flex;
@@ -25,11 +25,11 @@
 
         width: 10px;
         height: auto;
+      }
 
-        #thumb {
-          width: auto;
-          height: 20px;
-        }
+      :host([direction="vertical"]) #thumb {
+        width: auto;
+        height: 20px;
       }
     </style>
     <div id="thumb"></div>

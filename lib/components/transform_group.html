@@ -1,16 +1,13 @@
 <dom-module id="rei-transform-group">
   <template>
-    <style type="text/less">
+    <style include="rei-layout">
       :host {
-        display: -webkit-flex;
-        display: flex;
-        box-sizing: border-box;
+        @apply(--layout-horizontal);
         position: absolute;
       }
 
       :host([direction="vertical"]) {
-       -webkit-flex-direction: column;
-        flex-direction: column;
+        @apply(--flex-vertical);
       }
     </style>
     <content></content>

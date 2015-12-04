@@ -26,6 +26,8 @@ import 'package:rei/direction.dart';
 import 'package:rei/selectable.dart';
 import 'package:rei/transformable.dart';
 
+import 'layout.dart';
+
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
