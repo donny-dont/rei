@@ -1,0 +1,44 @@
+<dom-module id="rei-layout">
+  <template>
+    <style is="custom-style">
+      :root {
+        --display-flex: {
+          display: -webkit-flex;
+          display: flex;
+
+          box-sizing: border-box;
+        };
+
+        --flex-horizontal: {
+          -webkit-flex-direction: row;
+          flex-direction: row;
+        };
+
+        --flex-vertical: {
+          -webkit-flex-direction: column;
+          flex-direction: column;
+        };
+
+        --flex-1: {
+          -webkit-flex: 1;
+          flex: 1;
+        };
+
+        --flex-shrink-none: {
+          -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+        };
+
+        --layout-horizontal: {
+          @apply(--display-flex);
+          @apply(--flex-horizontal);
+        };
+
+        --layout-vertical: {
+          @apply(--display-flex);
+          @apply(--flex-vertical);
+        };
+      }
+    </style>
+  </template>
+</dom-module>
