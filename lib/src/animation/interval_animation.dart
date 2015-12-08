@@ -35,13 +35,18 @@ abstract class IntervalAnimation {
   /// The rate at which the animation progresses.
   ///
   /// This value can be used to speed up, when greater than 1.0, or slow down,
-  /// when less than 1.0, the playback of the animation.
+  /// when less than 1.0, the playback of the animation. Negative values can
+  /// be used to reverse the animation's playback.
   num get playbackRate;
 
   /// The direction to playback in.
   PlaybackDirection get direction;
+
   /// The duration of a single iteration of the animation.
   num get duration;
+
+  /// The delay before the animation begins.
+  num get delay;
 
   /// The current time of the animation.
   ///
@@ -60,6 +65,12 @@ abstract class IntervalAnimation {
   ///
   /// It is only updated when [currentTime] is modified.
   double get animationTime => _animationTime;
+
+  /// The total time for the animation.
+  ///
+  /// This takes into account the number of iterations and the delay.
+  double get totalTime =>
+      delay.toDouble() + duration.toDouble() * iterations;
 
   //---------------------------------------------------------------------
   // Private methods

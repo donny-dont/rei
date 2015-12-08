@@ -19,7 +19,7 @@ import 'dart:typed_data';
 ///
 /// It is assumed that [time] is in the range of \[0.0 - 1.0\]. It is also
 /// assumed that [points] has a length of 4.
-double calculateBezierPoint(double time, Float32List points) {
+double calculateBezierPoint(Float32List points, double time) {
   assert(time >= 0.0 && time <= 1.0);
   assert(points.length == 4);
 
@@ -42,4 +42,16 @@ double calculateBezierPoint(double time, Float32List points) {
       points[1] * (3.0 * timeSquared * oneMinusTime) +   // B2(t)
       points[2] * (3.0 * time * oneMinusTimeSquared) +   // B3(t)
       points[3] * (oneMinusTimeSquared * oneMinusTime);  // B4(t)
+}
+
+double calculateBezierValue(Float32List points,
+                            num time,
+                            num duration,
+                            num start,
+                            num end) {
+  var startDouble = start.toDouble();
+  var range = end.toDouble() - startDouble;
+  var normalizedTime = time.toDouble() / duration.toDouble();
+
+  return (range * calculateBezierPoint(points, normalizedTime)) + startDouble;
 }
