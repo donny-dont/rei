@@ -47,7 +47,7 @@ class EasingAnimation extends PolymerElement
   // Member variables
   //---------------------------------------------------------------------
 
-  final Float32List curve = new Float32List(4);
+  BezierCurve curve;
 
   //---------------------------------------------------------------------
   // Attributes
@@ -148,9 +148,6 @@ class EasingAnimation extends PolymerElement
         ? getEasingCurve(value)
         : value;
 
-    curve[0] = curveValues[0].toDouble();
-    curve[1] = curveValues[1].toDouble();
-    curve[2] = curveValues[2].toDouble();
-    curve[3] = curveValues[3].toDouble();
+    curve = new BezierCurve(curveValues);
   }
 }

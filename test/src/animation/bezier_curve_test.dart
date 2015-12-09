@@ -24,9 +24,15 @@ import 'package:rei/src/animation/bezier_curve.dart';
 
 final Float32List _curveLinear = new Float32List.fromList([0.0, 0.0, 1.0, 1.0]);
 
+void expectDouble(double actual, double expected, [double delta = 0.001]) {
+  expect(actual, closeTo(actual, delta));
+}
+
 void _bezierPoint() {
+  var linearCurve = new BezierCurve(_curveLinear);
+
   for (var i = 0.0; i < 1.0; i += 0.01) {
-    print('$i: ${calculateBezierPoint(_curveLinear, i)} ${1.0 - i}');
+    expectDouble(linearCurve.solveUnit(i), i);
   }
   /*
   expect(calculateBezierPoint(_curveLinear, 0.0), 0.0);

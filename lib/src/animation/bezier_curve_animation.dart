@@ -33,8 +33,8 @@ abstract class BezierCurveAnimation implements Animation<num> {
   // Properties
   //---------------------------------------------------------------------
 
-  /// The values for the bezier curve.
-  Float32List get curve;
+  /// The bezier curve.
+  BezierCurve get curve;
   /// The starting value.
   num get start;
   /// The duration of the animation.
@@ -51,10 +51,7 @@ abstract class BezierCurveAnimation implements Animation<num> {
   void timeUpdate(double dt) {
     currentTime += dt;
 
-    var range = end.toDouble() - start.toDouble();
-    var time = animationTime / duration.toDouble();
-
-    _value = (range * calculateBezierPoint(time, curve)) + start.toDouble();
+    _value = curve.solve(animationTime, duration, start, end);
   }
 
   //---------------------------------------------------------------------
