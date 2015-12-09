@@ -14,9 +14,19 @@
           flex-direction: row;
         };
 
+        --flex-horizontal-reverse: {
+          -webkit-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+        };
+
         --flex-vertical: {
           -webkit-flex-direction: column;
           flex-direction: column;
+        };
+
+        --flex-vertical-reverse: {
+          -webkit-flex-direction: column-reverse;
+          flex-direction: column-reverse;
         };
 
         --flex-1: {
@@ -29,14 +39,29 @@
           flex-shrink: 0;
         };
 
+        --flex-align-items-center: {
+          -webkit-align-items: center;
+          align-items: center;
+        };
+
         --layout-horizontal: {
           @apply(--display-flex);
           @apply(--flex-horizontal);
         };
 
+        --layout-horizontal-reverse: {
+          @apply(--display-flex);
+          @apply(--flex-horizontal-reverse);
+        };
+
         --layout-vertical: {
           @apply(--display-flex);
           @apply(--flex-vertical);
+        };
+
+        --layout-vertical-reverse: {
+          @apply(--display-flex);
+          @apply(--flex-vertical-reverse);
         };
       }
     </style>
