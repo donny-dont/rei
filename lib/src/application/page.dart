@@ -200,6 +200,8 @@ class Page {
     if ((rightTrigger == ButtonState.released) && (rightTrigger != lastRightTriggerState)) {
       onRightTrigger();
     }
+
+    updatePage(time);
   }
 
   //---------------------------------------------------------------------
@@ -213,6 +215,9 @@ class Page {
 
   void onLeftShoulder() {}
   void onRightShoulder() {}
+
+  void updatePage(double time) {}
+  void selectElement(html.Element selected) {}
 
   //---------------------------------------------------------------------
   // Private methods
@@ -249,6 +254,8 @@ class Page {
     }
 
     _selectedGroup = Selectable.findParentSelectable(_selectedElement);
+
+    selectElement(_selectedElement);
   }
 
   static double _computeNextDelay(double nextTime, double delay) {
