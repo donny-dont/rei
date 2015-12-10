@@ -8,5 +8,6 @@ library rei.application;
 // Exports
 //---------------------------------------------------------------------
 
+export 'src/application/page.dart';
 export 'src/application/time.dart';
 export 'src/application/update_loop.dart';
