@@ -120,14 +120,19 @@ abstract class Transformable {
       var childCount = 0;
       // Get the children within the element
       var children = new PolymerDom(this).children;
+      var transformableChildren = <Transformable>[];
 
       // Update the world matrix for the child elements
       for (var child in children) {
         if (child is Transformable) {
           var transformable = child as Transformable;
-          transformable.updateWorldMatrix();
 
-          ++childCount;
+          if (transformable.propagateTransformChange) {
+            transformableChildren.add(transformable);
+            transformable.updateWorldMatrix();
+
+            ++childCount;
+          }
         }
       }
 
@@ -143,7 +148,7 @@ abstract class Transformable {
         var out = (childCount % 2 == 1) ? worldMatrix : _scratchMatrix;
         var lhs = localMatrix;
 
-        for (var child in children) {
+        for (var child in transformableChildren) {
           if (child is Transformable) {
             var transformable = child as Transformable;
 
