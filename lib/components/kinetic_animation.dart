@@ -59,10 +59,10 @@ class KineticAnimation extends PolymerElement
 
   @override
   @Property(reflectToAttribute: true)
-  num constant = 15.0;
+  num constant = 250.0;
   @override
   @Property(reflectToAttribute: true)
-  num friction = 5.0;
+  num friction = 50.0;
   @override
   @Property(reflectToAttribute: true)
   num end = 0.0;
