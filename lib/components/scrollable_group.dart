@@ -142,6 +142,12 @@ class ScrollableGroup extends PolymerElement
     detachedTransformableElement();
   }
 
+  void scrollTo(num value) {
+    var animation = $['animation'] as KineticAnimation;
+
+    animation.end = -value;
+  }
+
   //---------------------------------------------------------------------
   // Computed properties
   //---------------------------------------------------------------------
