@@ -71,7 +71,7 @@ abstract class TransformableElement {
   //---------------------------------------------------------------------
 
   /// Updates the translation for the element.
-  void update() {
+  void updateTransform() {
     if (updateWorldMatrix()) {
       transformableElement.style.transform = css2DTransform(worldMatrix);
     }

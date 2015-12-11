@@ -60,7 +60,7 @@ class TransformableManager extends RegistrationManager<TransformableElement> {
     updateRegistration();
 
     for (var element in registered) {
-      element.update();
+      element.updateTransform();
     }
   }
 }
