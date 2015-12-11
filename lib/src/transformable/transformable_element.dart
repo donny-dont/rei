@@ -17,6 +17,7 @@ import 'dart:typed_data';
 
 import 'package:polymer/polymer.dart';
 
+import 'package:rei/transform_origin.dart';
 import 'package:rei/src/matrix_math.dart';
 
 import 'transformable_manager.dart';
@@ -37,6 +38,8 @@ abstract class TransformableElement {
   /// is called to reflect the applicable CSS transform.
   html.Element get transformableElement;
 
+  TransformOrigin get transformOrigin => TransformOrigin.leftTop;
+
   //---------------------------------------------------------------------
   // PolymerElement
   //---------------------------------------------------------------------
@@ -47,7 +50,7 @@ abstract class TransformableElement {
     var style = transformableElement.style;
 
     // Set the origin to the upper left corner
-    style.transformOrigin = 'left top 0';
+    style.transformOrigin = transformOriginStyle(transformOrigin);
 
     // Adding will change property
     style.willChange = 'transform';
