@@ -38,7 +38,7 @@ abstract class TransformableElement {
   /// is called to reflect the applicable CSS transform.
   html.Element get transformableElement;
 
-  TransformOrigin get transformOrigin => TransformOrigin.leftTop;
+  TransformOrigin get transformOrigin;
 
   //---------------------------------------------------------------------
   // PolymerElement
