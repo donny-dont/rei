@@ -17,6 +17,7 @@ import 'dart:typed_data';
 
 import 'package:polymer/polymer.dart';
 
+import 'package:rei/transform_origin.dart';
 import 'package:rei/src/matrix_math.dart';
 
 //---------------------------------------------------------------------
@@ -69,6 +70,12 @@ abstract class Transformable {
   num get worldX => worldMatrix[4];
   /// The translation in the y direction within the world.
   num get worldY => worldMatrix[5];
+  /// The scale in the x direction within the world.
+  num get worldScaleX => worldMatrix[0];
+  /// The scale in the y direction within the world.
+  num get worldScaleY => worldMatrix[3];
+  /// The transformation origin.
+  TransformOrigin get transformOrigin => TransformOrigin.leftTop;
 
   //---------------------------------------------------------------------
   // PolymerElement
@@ -150,9 +157,7 @@ abstract class Transformable {
 
         for (var child in transformableChildren) {
           if (child is Transformable) {
-            var transformable = child as Transformable;
-
-            multiply2DTransform(out, lhs, transformable.worldMatrix);
+            multiply2DTransform(out, lhs, child.worldMatrix);
 
             lhs = out;
 
