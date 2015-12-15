@@ -9,7 +9,6 @@ library rei.components.easing_animation;
 //---------------------------------------------------------------------
 
 import 'dart:html' as html;
-import 'dart:typed_data';
 
 //---------------------------------------------------------------------
 // Imports
@@ -60,6 +59,9 @@ class EasingAnimation extends PolymerElement
   @override
   @Property(reflectToAttribute: true)
   num playbackRate = 1.0;
+  @override
+  @Property(reflectToAttribute: true)
+  num delay = 0.0;
   @override
   @Property(reflectToAttribute: true)
   int iterations = 1;
@@ -144,10 +146,10 @@ class EasingAnimation extends PolymerElement
 
   @Observe('easing')
   void easingChanged(dynamic value) {
-    List<num> curveValues = (value is EasingFunction)
+    var curveValues = (value is EasingFunction)
         ? getEasingCurve(value)
         : value;
 
-    curve = new BezierCurve(curveValues);
+    curve = new BezierCurve(curveValues as List<num>);
   }
 }
