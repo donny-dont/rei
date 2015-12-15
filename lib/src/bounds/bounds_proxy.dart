@@ -27,7 +27,7 @@ class BoundsProxy implements html.Element {
   BoundsProxy(this.proxied);
 
   html.Rectangle getBoundingClientRect() {
-    return getAbsoluteBounds(proxied);
+    return getAbsoluteBounds(proxied, true);
   }
 
   Map<String, String> get attributes => proxied.attributes;

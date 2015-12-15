@@ -70,7 +70,7 @@ class SelectionVisualizer {
   //---------------------------------------------------------------------
 
   void _drawSelection(html.Element element, int level) {
-    var bounds = getAbsoluteBounds(element);
+    var bounds = getAbsoluteBounds(element, true);
     var strokeColor = colors[level % colors.length];
     var fillColor = strokeColor;
     var children;
