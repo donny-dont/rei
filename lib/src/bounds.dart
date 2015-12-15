@@ -16,7 +16,10 @@ import 'dart:html' as html;
 // Imports
 //---------------------------------------------------------------------
 
+import 'package:polymer/polymer.dart';
+
 import 'package:rei/transformable.dart';
+import 'package:rei/transform_origin.dart';
 import 'package:rei/selectable.dart';
 
 //---------------------------------------------------------------------
@@ -42,15 +45,29 @@ const String widthAttribute = 'data-width';
 /// An attribute containing the computed height of the element.
 const String heightAttribute = 'data-height';
 
-void computeBoundsTree(html.Element root, [html.Rectangle bounds]) {
+/// Computes the bounds tree for the [root].
+///
+/// If [bounds] is set then it is used as the parent bounds when computing the
+/// tree. By default it will be a rectangle without a width or height at (0,0).
+/// It should be set if the offset value is already known.
+///
+/// Typically the bounds tree is just used for determining the positioning of
+/// [Selectable] elements. However if the bounds tree should go into all the
+/// children of the elements then [onlySelectable] can be set to false.
+void computeBoundsTree(html.Element root,
+                      {html.Rectangle bounds,
+                       bool onlySelectable: true}) {
   if (bounds == null) {
     bounds = new html.Rectangle(0, 0, 0, 0);
   }
 
-  _computeBoundsTree(bounds, root, false);
+  _computeBoundsTree(bounds, root, false, onlySelectable);
 }
 
-void _computeBoundsTree(html.Rectangle parentBounds, html.Element element, bool useRelative) {
+void _computeBoundsTree(html.Rectangle parentBounds,
+                        html.Element element,
+                        bool useRelative,
+                        bool onlySelectable) {
   // Determine if relative coordinates should be used.
   //
   // If the child is Transformable then relative will be used and this will
@@ -66,10 +83,10 @@ void _computeBoundsTree(html.Rectangle parentBounds, html.Element element, bool 
   }
 
   // Iterate into the children to get the rest of the tree.
-  var children = _getChildren(element);
+  var children = _getChildren(element, onlySelectable);
 
   for (var child in children) {
-    _computeBoundsTree(bounds, child, useRelative);
+    _computeBoundsTree(bounds, child, useRelative, onlySelectable);
   }
 }
 
@@ -91,9 +108,19 @@ html.Rectangle _computeRelativeBounds(html.Rectangle parentBounds, html.Element 
 
   var x = bounds.left - parentBounds.left;
   var y = bounds.top - parentBounds.top;
+  var width = bounds.width;
+  var height = bounds.height;
 
   if (element is Transformable) {
     var transformable = element as Transformable;
+
+    // \TODO Account for origin
+
+    var inverseScaleX = 1.0 / transformable.worldScaleX;
+    var inverseScaleY = 1.0 / transformable.worldScaleY;
+
+    width *= inverseScaleX;
+    height *= inverseScaleY;
 
     x -= transformable.worldX;
     y -= transformable.worldY;
@@ -101,24 +128,32 @@ html.Rectangle _computeRelativeBounds(html.Rectangle parentBounds, html.Element 
 
   attributes[relativeXAttribute] = x.toString();
   attributes[relativeYAttribute] = y.toString();
-  attributes[widthAttribute] = bounds.width.toString();
-  attributes[heightAttribute] = bounds.height.toString();
+  attributes[widthAttribute] = width.toString();
+  attributes[heightAttribute] = height.toString();
 
   return bounds;
 }
 
-List<html.Element> _getChildren(html.Element parent) {
+List<html.Element> _getChildren(html.Element parent, bool onlySelectable) {
   if (parent is Selectable) {
     var selectable = parent as Selectable;
 
     return selectable.selectableElements;
+  }
+
+  if (!onlySelectable) {
+    if (parent is PolymerElement) {
+      return new PolymerDom(parent).children;
+    } else {
+      return parent.children;
+    }
   } else {
-    return parent.children;
+    return <html.Element>[];
   }
 }
 
 /// Retrieves the absolute bounds of the [element].
-html.Rectangle getAbsoluteBounds(html.Element element) {
+html.Rectangle getAbsoluteBounds(html.Element element, bool onlySelectable) {
   var attributes = element.attributes;
 
   // See if the absolute position was already determined
@@ -136,7 +171,7 @@ html.Rectangle getAbsoluteBounds(html.Element element) {
     // Get the absolute bounds of the parent
     var parent = Selectable.findParentSelectable(element) as html.Element;
     var parentBounds = (parent != null)
-        ? getAbsoluteBounds(parent)
+        ? getAbsoluteBounds(parent, onlySelectable)
         : new html.Rectangle(0.0, 0.0, 0.0, 0.0);
 
     // Get the element's relative bounds
@@ -146,10 +181,11 @@ html.Rectangle getAbsoluteBounds(html.Element element) {
     var height = _parseDoubleAttribute(heightAttribute, attributes);
 
     // Account for transformations
-    //
-    // \TODO ACCOUNT FOR SCALE
     if (element is Transformable) {
       var transformable = element as Transformable;
+
+      width *= transformable.worldScaleX;
+      height *= transformable.worldScaleY;
 
       x += transformable.worldX;
       y += transformable.worldY;
@@ -166,11 +202,11 @@ html.Rectangle getAbsoluteBounds(html.Element element) {
       var parentAttributes = parent.attributes;
 
       if (parentAttributes.containsKey(absoluteXAttribute)) {
-        parentBounds = getAbsoluteBounds(parent);
+        parentBounds = getAbsoluteBounds(parent, onlySelectable);
 
         break;
       } else if (parentAttributes.containsKey(relativeXAttribute)) {
-        parentBounds = getAbsoluteBounds(parent);
+        parentBounds = getAbsoluteBounds(parent, onlySelectable);
         useRelative = true;
 
         break;
@@ -186,10 +222,10 @@ html.Rectangle getAbsoluteBounds(html.Element element) {
     }
 
     // Compute the bounds tree
-    _computeBoundsTree(parentBounds, child, useRelative);
+    _computeBoundsTree(parentBounds, child, useRelative, onlySelectable);
 
     // Try it again
-    return getAbsoluteBounds(element);
+    return getAbsoluteBounds(element, onlySelectable);
   }
 }
 
