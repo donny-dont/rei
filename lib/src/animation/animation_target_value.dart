@@ -2,7 +2,7 @@
 // Please see the AUTHORS file for details. All rights reserved.
 
 /// Contains functions to apply a CSS value based on an [AnimationTarget].
-library rei.src.animation.css_property;
+library rei.src.animation.animation_target_value;
 
 //---------------------------------------------------------------------
 // Standard libraries
