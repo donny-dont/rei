@@ -8,29 +8,30 @@ library rei.src.animation.bezier_curve_animation;
 // Imports
 //---------------------------------------------------------------------
 
+import 'package:rei/bezier_curve.dart';
+
 import 'animation.dart';
-import 'bezier_curve.dart';
 
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
 /// An animation whose value is determined by a bezier curve.
-abstract class BezierCurveAnimation implements Animation<num> {
+abstract class BezierCurveAnimation<T> implements Animation<T> {
   //---------------------------------------------------------------------
   // Member variables
   //---------------------------------------------------------------------
 
-  double _value;
+  T _value;
 
   //---------------------------------------------------------------------
   // Properties
   //---------------------------------------------------------------------
 
   /// The bezier curve.
-  BezierCurve get curve;
+  BezierCurve<T> get curve;
   /// The starting value.
-  num get start;
+  T get start;
   /// The duration of the animation.
   num get duration;
 
@@ -39,7 +40,7 @@ abstract class BezierCurveAnimation implements Animation<num> {
   //---------------------------------------------------------------------
 
   @override
-  double get value => _value;
+  T get value => _value;
 
   @override
   void timeUpdate(double dt) {

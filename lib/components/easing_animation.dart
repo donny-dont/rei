@@ -18,6 +18,7 @@ import 'package:polymer/polymer.dart';
 
 import 'package:rei/animation.dart';
 import 'package:rei/animation_target.dart';
+import 'package:rei/bezier_curve.dart';
 import 'package:rei/easing_function.dart';
 import 'package:rei/playback_direction.dart';
 
@@ -32,7 +33,7 @@ const String _tagName = 'rei-easing-animation';
 @PolymerRegister(_tagName)
 class EasingAnimation extends PolymerElement
                          with AnimationElement,
-                              BezierCurveAnimation,
+                              BezierCurveAnimation<num>,
                               IntervalAnimation,
                               PolymerSerialize {
   //---------------------------------------------------------------------
@@ -46,7 +47,7 @@ class EasingAnimation extends PolymerElement
   // Member variables
   //---------------------------------------------------------------------
 
-  BezierCurve curve;
+  BezierCurve<num> curve;
 
   //---------------------------------------------------------------------
   // Attributes
@@ -150,6 +151,6 @@ class EasingAnimation extends PolymerElement
         ? getEasingCurve(value)
         : value;
 
-    curve = new BezierCurve(curveValues as List<num>);
+    curve = new BezierCurveScalar(curveValues as List<num>);
   }
 }

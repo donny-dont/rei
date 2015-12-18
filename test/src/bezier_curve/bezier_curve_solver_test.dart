@@ -2,7 +2,7 @@
 // Please see the AUTHORS file for details. All rights reserved.
 
 @TestOn('vm')
-library rei.test.src.animation.bezier_curve_test;
+library rei.test.src.bezier_curve.bezier_curve_solver_test;
 
 //---------------------------------------------------------------------
 // Standard libraries
@@ -16,7 +16,7 @@ import 'dart:typed_data';
 
 import 'package:test/test.dart';
 
-import 'package:rei/src/animation/bezier_curve.dart';
+import 'package:rei/src/bezier_curve/bezier_curve_solver.dart';
 
 //---------------------------------------------------------------------
 // Tests
@@ -28,17 +28,12 @@ void expectDouble(double actual, double expected, [double delta = 0.001]) {
   expect(actual, closeTo(actual, delta));
 }
 
-void _bezierPoint() {
-  var linearCurve = new BezierCurve(_curveLinear);
+void _solve() {
+  var linearCurve = new BezierCurveSolver(_curveLinear);
 
   for (var i = 0.0; i < 1.0; i += 0.01) {
-    expectDouble(linearCurve.solveUnit(i), i);
+    expectDouble(linearCurve.solve(i), i);
   }
-  /*
-  expect(calculateBezierPoint(_curveLinear, 0.0), 0.0);
-  expect(calculateBezierPoint(_curveLinear, 0.5), 0.5);
-  expect(calculateBezierPoint(_curveLinear, 1.0), 1.0);
-  */
 }
 
 //---------------------------------------------------------------------
@@ -46,5 +41,5 @@ void _bezierPoint() {
 //---------------------------------------------------------------------
 
 void main() {
-  test('applyValue', _bezierPoint);
+  test('solve', _solve);
 }

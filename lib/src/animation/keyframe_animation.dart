@@ -8,21 +8,22 @@ library rei.src.animation.keyframe_animation;
 // Imports
 //---------------------------------------------------------------------
 
+import 'package:rei/bezier_curve.dart';
+
 import 'animation.dart';
-import 'bezier_curve.dart';
 import 'keyframe.dart';
 
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
-abstract class KeyframeAnimation<T> implements Animation {
+abstract class KeyframeAnimation<T> implements Animation<T> {
   //---------------------------------------------------------------------
   // Member variables
   //---------------------------------------------------------------------
 
   /// The value of the animation at the current animation time.
-  double _value;
+  T _value;
 
   /// The keyframes associated with the animation.
   List<Keyframe<T>> get keyframes;
@@ -32,7 +33,7 @@ abstract class KeyframeAnimation<T> implements Animation {
   //---------------------------------------------------------------------
 
   /// The bezier curve used to animate the value.
-  BezierCurve get curve;
+  BezierCurve<T> get curve;
   /// The duration of the animation.
   num get duration;
 
@@ -41,7 +42,7 @@ abstract class KeyframeAnimation<T> implements Animation {
   //---------------------------------------------------------------------
 
   @override
-  double get value => _value;
+  T get value => _value;
 
   @override
   void timeUpdate(double dt) {
@@ -50,7 +51,7 @@ abstract class KeyframeAnimation<T> implements Animation {
     // Get the current animation time based on percentage
     var percentDone = (animationTime * 0.01) / duration;
     var previous = keyframes[0];
-    var current;
+    var current = previous;
 
     for (var keyframe in keyframes) {
       if (keyframe.offset <= percentDone) {
@@ -71,7 +72,7 @@ abstract class KeyframeAnimation<T> implements Animation {
     _value = curve.solve(
         normalizedTime,
         keyframeDuration,
-        previous.value as num,
+        previous.value,
         current.value
     );
   }

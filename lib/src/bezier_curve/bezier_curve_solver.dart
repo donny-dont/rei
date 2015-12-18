@@ -1,15 +1,23 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
-/// Contains functions for using bezier curves to animate.
-library rei.src.animation.bezier_curve;
+/// Contains the [BezierCurveSolver] class.
+library rei.src.bezier_curve.bezier_curve_solver;
 
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
-class BezierCurve {
+/// Solves a bezier curve using the same implementation as what is found in
+/// WebKit based browsers.
+class BezierCurveSolver {
   static const double _epsilon = 1.0 / (200.0 * 400.0);
+
+  static double computeEpsilon(double duration) {
+    var computed = 1.0 / (200 * duration);
+
+    return computed <= _epsilon ? computed : _epsilon;
+  }
 
   /// The control points.
   final List<num> points;
@@ -20,7 +28,7 @@ class BezierCurve {
   final double _by;
   final double _cy;
 
-  factory BezierCurve(List<num> points) {
+  factory BezierCurveSolver(List<num> points) {
     var p1x = points[0].toDouble();
     var p1y = points[1].toDouble();
     var p2x = points[2].toDouble();
@@ -36,28 +44,19 @@ class BezierCurve {
     var by = 3.0 * (p2y - p1y) - cy;
     var ay = 1.0 - cy - by;
 
-    return new BezierCurve._(points, ax, bx, cx, ay, by, cy);
+    return new BezierCurveSolver._(points, ax, bx, cx, ay, by, cy);
   }
 
-  BezierCurve._(this.points,
-                this._ax,
-                this._bx,
-                this._cx,
-                this._ay,
-                this._by,
-                this._cy);
+  BezierCurveSolver._(this.points,
+                      this._ax,
+                      this._bx,
+                      this._cx,
+                      this._ay,
+                      this._by,
+                      this._cy);
 
-  double solveUnit(double time, [double epsilon = _epsilon]) =>
+  double solve(double time, [double epsilon = _epsilon]) =>
       _sampleCurveY(_solveCurveX(time, epsilon));
-
-  double solve(double time, num duration, num start, num end) {
-    var startDouble = start.toDouble();
-    var range = end.toDouble() - startDouble;
-    var normalizedTime = time.toDouble() / duration.toDouble();
-    var epsilon = 1.0 / (200.0 * duration);
-
-    return (range * solveUnit(normalizedTime, epsilon)) + startDouble;
-  }
 
   double _sampleCurveX(double t) =>
       ((_ax * t + _bx) * t + _cx) * t;
