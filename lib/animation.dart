@@ -12,7 +12,12 @@ export 'src/animation/animation.dart';
 export 'src/animation/animation_element.dart';
 export 'src/animation/animation_manager.dart';
 export 'src/animation/animation_target_value.dart';
+export 'src/animation/animation_update.dart';
 export 'src/animation/bezier_curve_animation.dart';
 export 'src/animation/easing_function_curves.dart';
 export 'src/animation/interval_animation.dart';
+export 'src/animation/keyframe.dart';
+export 'src/animation/keyframe_animation.dart';
 export 'src/animation/spring_animation.dart';
+export 'src/animation/synced_animation.dart';
+

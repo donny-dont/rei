@@ -15,8 +15,8 @@ abstract class Keyframe<T> {
   /// This needs to be a value in the range \[0, 1\]. The actual duration of
   /// the keyframe is determined by the offset which is a percentage of the
   /// animation's duration.
-  num get offset;
-  set offset(num value);
+  num get frameOffset;
+  set frameOffset(num value);
   /// The value of the keyframe.
   T get value;
 }

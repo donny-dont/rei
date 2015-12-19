@@ -54,7 +54,7 @@ abstract class KeyframeAnimation<T> implements Animation<T> {
     var current = previous;
 
     for (var keyframe in keyframes) {
-      if (keyframe.offset <= percentDone) {
+      if (keyframe.frameOffset <= percentDone) {
         current = keyframe;
         break;
       }
@@ -63,8 +63,8 @@ abstract class KeyframeAnimation<T> implements Animation<T> {
     }
 
     // Compute the value
-    var startTime = duration * previous.offset;
-    var endTime = duration * current.offset;
+    var startTime = duration * previous.frameOffset;
+    var endTime = duration * current.frameOffset;
     var keyframeDuration = endTime - startTime;
 
     var normalizedTime = animationTime - startTime;

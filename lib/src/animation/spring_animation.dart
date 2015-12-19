@@ -40,9 +40,6 @@ abstract class SpringAnimation implements Animation<num> {
   //---------------------------------------------------------------------
 
   @override
-  num get end;
-
-  @override
   num get value => _value;
 
   @override
