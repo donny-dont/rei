@@ -6,16 +6,19 @@ version: 0.0.1
 environment:
   sdk: '>=1.13.0 <2.0.0'
 dependencies:
-  polymer: '1.0.0-rc.9'
-  reflectable: '^0.4.0'
-  web_components: '^0.12.0+3'
-  less_dart: '^0.3.2'
+  polymer: '1.0.0-rc.6'
+  reflectable: '0.3.3'
+  web_components: '0.12.0+4'
+  less_dart: '^0.3.3'
 dev_dependencies:
   test: '^0.12.5+1'
 transformers:
+- less_dart:
+    compress: true
 - web_components:
     entry_points:
     - test/src/selection/linear_selectable_test.html
+    - web/animation/index.html
     - web/scrolling/index.html
     - web/selection/index.html
     - web/transform/index.html
@@ -24,6 +27,7 @@ transformers:
 - reflectable:
     entry_points:
     - test/src/selection/linear_selectable_test.dart
+    - web/animation/main.dart
     - web/scrolling/main.dart
     - web/selection/main.dart
     - web/transform/main.dart
