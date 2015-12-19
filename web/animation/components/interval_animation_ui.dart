@@ -1,9 +1,9 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
-/// Contains the [EasingAnimationUI] class.
-@HtmlImport('easing_animation_ui.html')
-library rei.web.animation.components.easing_animation_ui;
+/// Contains the [IntervalAnimationUI] class.
+@HtmlImport('interval_animation_ui.html')
+library rei.web.animation.components.interval_animation_ui;
 
 //---------------------------------------------------------------------
 // Standard libraries
@@ -18,8 +18,7 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
-import 'package:rei/animation_target.dart';
-import 'package:rei/easing_function.dart';
+import 'package:rei/playback_direction.dart';
 
 import 'enum_option.dart';
 
@@ -28,10 +27,10 @@ import 'enum_option.dart';
 //---------------------------------------------------------------------
 
 /// Tag name for the class.
-const String _tagName = 'rei-easing-animation-ui';
+const String _tagName = 'rei-interval-animation-ui';
 
 @PolymerRegister(_tagName)
-class EasingAnimationUI extends PolymerElement with EnumOption {
+class IntervalAnimationUI extends PolymerElement with EnumOption {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -43,42 +42,39 @@ class EasingAnimationUI extends PolymerElement with EnumOption {
   // Attributes
   //---------------------------------------------------------------------
 
-  /// The value for the keyframe.
-  @property String value = '0';
-  /// The offset for the keyframe.
-  @property String frameOffset = '';
+  /// The duration of the animation.
+  @property String duration = '1';
+  /// The delay before the animation begins.
+  @property String delay = '0';
+  /// The number of iterations the animation should go through.
+  @property String iterations = '1';
+  /// The playback direction
+  @property String playbackDirection;
 
   //---------------------------------------------------------------------
   // Construction
   //---------------------------------------------------------------------
 
-  /// Creates an instance of the [KeyframeUI] class.
-  factory EasingAnimationUI() =>
-      new html.Element.tag(customTagName) as EasingAnimationUI;
+  /// Creates an instance of the [IntervalAnimationUI] class.
+  factory IntervalAnimationUI() =>
+      new html.Element.tag(customTagName) as IntervalAnimationUI;
 
-  /// Create an instance of the [EasingAnimationUI] class.
+  /// Create an instance of the [IntervalAnimationUI] class.
   ///
   /// This constructor should not be called directly. Instead use the
   /// default constructor.
-  EasingAnimationUI.created() : super.created();
+  IntervalAnimationUI.created() : super.created();
 
   //---------------------------------------------------------------------
   // PolymerElement
   //---------------------------------------------------------------------
 
-  void attached() {
+  void ready() {
     addOptions(
-        $['easing'] as html.SelectElement,
-        'easingFunction',
-        EasingFunction.values,
-        serializeEasingFunction
-    );
-
-    addOptions(
-        $['target'] as html.SelectElement,
-        'animationTarget',
-        AnimationTarget.values,
-        serializeAnimationTarget
+        $['playback'] as html.SelectElement,
+        'playbackDirection',
+        PlaybackDirection.values,
+        serializePlaybackDirection
     );
   }
 
@@ -87,12 +83,7 @@ class EasingAnimationUI extends PolymerElement with EnumOption {
   //---------------------------------------------------------------------
 
   @reflectable
-  void changeEasingFunction([html.Event event, _]) {
-    set('easingFunction', (event.target as html.SelectElement).value);
-  }
-
-  @reflectable
-  void changeAnimationTarget([html.Event event, _]) {
-    set('animationTarget', (event.target as html.SelectElement).value);
+  void changePlaybackDirection([html.Event event, _]) {
+    set('playbackDirection', (event.target as html.SelectElement).value);
   }
 }

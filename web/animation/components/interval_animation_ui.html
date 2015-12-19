@@ -1,0 +1,21 @@
+<dom-module id="rei-interval-animation-ui">
+  <template>
+    <style type="text/less"></style>
+    <div>
+      <div>Duration</div>
+      <input type="number" value="{{duration::input}}">
+    </div>
+    <div>
+      <div>Delay</div>
+      <input type="number" value="{{delay::input}}">
+    </div>
+    <div>
+      <div>Iterations</div>
+      <input type="number" value="{{iterations::input}}">
+    </div>
+    <div>
+      <div>Playback Direction</div>
+      <select id="playback" on-change="changePlaybackDirection"></select>
+    </div>
+  </template>
+</dom-module>

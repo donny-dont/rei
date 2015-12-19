@@ -6,8 +6,11 @@
   <script src="packages/web_components/webcomponents-lite.min.js"></script>
 </head>
 <body>
-  <rei-easing-animation-ui></rei-easing-animation-ui>
-  <rei-keyframe-ui></rei-keyframe-ui>
+  <rei-keyframe-animation-ui>
+    <rei-interval-animation-ui></rei-interval-animation-ui>
+    <rei-keyframe-ui value="0"></rei-keyframe-ui>
+    <rei-keyframe-ui value="1"></rei-keyframe-ui>
+  </rei-keyframe-animation-ui>
   <script type="application/dart" src="main.dart"></script>
   <script type="packages/browser/dart.js"></script>
 </body>
