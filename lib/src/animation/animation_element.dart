@@ -70,14 +70,8 @@ abstract class AnimationElement implements Animation<num> {
 
   // \TODO Change to appropriate names after https://github.com/dart-lang/sdk/issues/23770
 
-  html.CustomEvent fire(String type,
-                       {detail,
-                        bool canBubble: true,
-                        bool cancelable: true,
-                        html.Node node});
-
   void attachedAnimationElement() {
-    fire(animationElementReadyEvent);
+    _animationElement.dispatchEvent(new html.CustomEvent(animationElementReadyEvent, canBubble: true, cancelable:true, detail: _animationElement));
   }
 
   void detachedAnimationElement() {

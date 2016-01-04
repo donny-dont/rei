@@ -78,16 +78,6 @@ abstract class Transformable {
   TransformOrigin get transformOrigin => TransformOrigin.leftTop;
 
   //---------------------------------------------------------------------
-  // PolymerElement
-  //---------------------------------------------------------------------
-
-  html.CustomEvent fire(String type,
-                       {detail,
-                        bool canBubble: true,
-                        bool cancelable: true,
-                        html.Node node});
-
-  //---------------------------------------------------------------------
   // Public methods
   //---------------------------------------------------------------------
 
@@ -100,7 +90,11 @@ abstract class Transformable {
     _isDirty = true;
 
     if (propagateTransformChange) {
-      fire(transformChangedEvent);
+      var he = this as html.Element;
+      if(he != null) {
+      he.dispatchEvent(new html.CustomEvent(transformChangedEvent, canBubble: true, cancelable:true, detail: he));
+    }
+
     }
   }
 

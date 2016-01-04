@@ -61,16 +61,6 @@ abstract class LinearSelectable implements Selectable {
   html.Element get parent;
 
   //---------------------------------------------------------------------
-  // PolymerElement
-  //---------------------------------------------------------------------
-
-  html.CustomEvent fire(String type,
-                       {detail,
-                        bool canBubble: true,
-                        bool cancelable: true,
-                        html.Node node});
-
-  //---------------------------------------------------------------------
   // Selectable
   //---------------------------------------------------------------------
 
@@ -257,7 +247,7 @@ abstract class LinearSelectable implements Selectable {
 
       selectable.select(previous);
     } else {
-      fire(Selectable.selectionChangedEvent, detail: element);
+      element.dispatchEvent(new html.CustomEvent(Selectable.selectionChangedEvent, canBubble: true, cancelable:true, detail: element));
     }
 
     return true;
