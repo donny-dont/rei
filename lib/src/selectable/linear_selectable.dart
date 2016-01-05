@@ -92,7 +92,7 @@ abstract class LinearSelectable implements Selectable {
   @override
   void back() {
     if (canMoveBack) {
-      _previous();
+      selectPrevious();
     } else if (parent is Selectable) {
       var selectable = parent as Selectable;
 
@@ -102,7 +102,7 @@ abstract class LinearSelectable implements Selectable {
 
   @override
   void up() {
-    var selected = (direction == Direction.vertical) ? _previous() : false;
+    var selected = (direction == Direction.vertical) ? selectPrevious() : false;
 
     if ((!selected) && (parent is Selectable)) {
       var selectable = parent as Selectable;
@@ -113,7 +113,7 @@ abstract class LinearSelectable implements Selectable {
 
   @override
   void down() {
-    var selected = (direction == Direction.vertical) ? _next() : false;
+    var selected = (direction == Direction.vertical) ? selectNext() : false;
 
     if ((!selected) && (parent is Selectable)) {
       var selectable = parent as Selectable;
@@ -124,7 +124,7 @@ abstract class LinearSelectable implements Selectable {
 
   @override
   void left() {
-    var selected = (direction == Direction.horizontal) ? _previous() : false;
+    var selected = (direction == Direction.horizontal) ? selectPrevious() : false;
 
     if ((!selected) && (parent is Selectable)) {
       var selectable = parent as Selectable;
@@ -135,7 +135,7 @@ abstract class LinearSelectable implements Selectable {
 
   @override
   void right() {
-    var selected = (direction == Direction.horizontal) ? _next() : false;
+    var selected = (direction == Direction.horizontal) ? selectNext() : false;
 
     if ((!selected) && (parent is Selectable)) {
       var selectable = parent as Selectable;
@@ -175,7 +175,7 @@ abstract class LinearSelectable implements Selectable {
   //---------------------------------------------------------------------
 
   /// Retrieves the previous element within the container.
-  bool _previous() {
+  bool selectPrevious() {
     var selectedElement = _getSelectedElement();
     var previous;
 
@@ -197,7 +197,7 @@ abstract class LinearSelectable implements Selectable {
   }
 
   /// Retrieves the next element within the container.
-  bool _next() {
+  bool selectNext() {
     var selectedElement = _getSelectedElement();
     var next;
 
@@ -228,12 +228,16 @@ abstract class LinearSelectable implements Selectable {
   /// The method returns true if the [element] was selected; false otherwise
   /// which is only the case if the element is null.
   bool _selectElement(html.Element element) {
-    if (element == null) return false;
+    if (element == null) {
+      print("_selectElement NULL");
+      return false;
+    }
 
     // Ensure that the element being selected is contained in the
     // selectableElements container. If this is not the case then the contract
     // of selectableElements is being violated.
     assert(selectableElements.contains(element));
+    
 
     // Get the previous element
     var previous = _selectedElement;
@@ -243,10 +247,12 @@ abstract class LinearSelectable implements Selectable {
 
     // See if the selection hierarchy needs to be entered further
     if (element is Selectable) {
+      print("_selectElement is Selectable");
       var selectable = element as Selectable;
 
       selectable.select(previous);
     } else {
+      print("_selectElement ${element.text}");
       element.dispatchEvent(new html.CustomEvent(Selectable.selectionChangedEvent, canBubble: true, cancelable:true, detail: element));
     }
 
