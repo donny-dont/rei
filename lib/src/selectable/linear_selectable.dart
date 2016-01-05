@@ -229,7 +229,6 @@ abstract class LinearSelectable implements Selectable {
   /// which is only the case if the element is null.
   bool _selectElement(html.Element element) {
     if (element == null) {
-      print("_selectElement NULL");
       return false;
     }
 
@@ -247,12 +246,10 @@ abstract class LinearSelectable implements Selectable {
 
     // See if the selection hierarchy needs to be entered further
     if (element is Selectable) {
-      print("_selectElement is Selectable");
       var selectable = element as Selectable;
 
       selectable.select(previous);
     } else {
-      print("_selectElement ${element.text}");
       element.dispatchEvent(new html.CustomEvent(Selectable.selectionChangedEvent, canBubble: true, cancelable:true, detail: element));
     }
 
