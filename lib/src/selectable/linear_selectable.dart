@@ -65,10 +65,13 @@ abstract class LinearSelectable implements Selectable {
   //---------------------------------------------------------------------
 
   @override
+  List<html.Element> get selectableElements => Selectable.findAllSelectable();
+
+  @override
   html.Element get selectedElement => _selectedElement;
 
   @override
-  void select([html.Element element = null]) {
+  html.Element select([html.Element element = null]) {
     var selected = selectInternal(element);
 
     // Check that the value received from onSelect is a valid one
@@ -83,10 +86,10 @@ abstract class LinearSelectable implements Selectable {
     // If there was no preference from onSelect then just get the first
     // selectable element from the container
     if (selected == null) {
-      selected = _getSelectedElement();
+      selected = Selectable.findFirstSelectable(selectableElements);
     }
 
-    _selectElement(selected);
+    return _selectElement(selected);
   }
 
   @override
@@ -102,44 +105,44 @@ abstract class LinearSelectable implements Selectable {
 
   @override
   void up() {
-    var selected = (direction == Direction.vertical) ? selectPrevious() : false;
+    if((direction == Direction.vertical) && (selectPrevious() != null))
+      return;
 
-    if ((!selected) && (parent is Selectable)) {
+    if (parent is Selectable) {
       var selectable = parent as Selectable;
-
       selectable.up();
     }
   }
 
   @override
   void down() {
-    var selected = (direction == Direction.vertical) ? selectNext() : false;
+    if((direction == Direction.vertical) && (selectNext() != null))
+      return;
 
-    if ((!selected) && (parent is Selectable)) {
+    if (parent is Selectable) {
       var selectable = parent as Selectable;
-
       selectable.down();
     }
   }
 
   @override
   void left() {
-    var selected = (direction == Direction.horizontal) ? selectPrevious() : false;
+    if((direction == Direction.horizontal) && (selectPrevious() != null))
+      return;
 
-    if ((!selected) && (parent is Selectable)) {
+    if (parent is Selectable) {
       var selectable = parent as Selectable;
-
       selectable.left();
     }
   }
 
   @override
   void right() {
-    var selected = (direction == Direction.horizontal) ? selectNext() : false;
+    if((direction == Direction.horizontal) && (selectNext() != null))
+      return;
 
-    if ((!selected) && (parent is Selectable)) {
+    if (parent is Selectable) {
       var selectable = parent as Selectable;
-
       selectable.right();
     }
   }
@@ -175,47 +178,52 @@ abstract class LinearSelectable implements Selectable {
   //---------------------------------------------------------------------
 
   /// Retrieves the previous element within the container.
-  bool selectPrevious() {
-    var selectedElement = _getSelectedElement();
-    var previous;
+  html.Element selectPrevious() {
 
-    if (selectedElement != null) {
-      // Find the previous selectable element
-      previous = selectedElement.previousElementSibling;
+    // Get Index of Selection
+    var indexOfSel = selectableElements.indexOf(selectedElement);
+    if (indexOfSel >= 0) {
 
-      while ((previous != null) && (!Selectable.canSelect(previous))) {
-        previous = previous.previousElementSibling;
+      var maxSteps = selectableElements.length;
+
+      // Iterate ONLY through the selectableElements
+      // Previous implentation went through siblings without respecting selectableElements
+      for (var i = 1; (i < maxSteps) && (wrapStart || (i <= indexOfSel)); i++) {
+        var element = selectableElements[(indexOfSel-i) % maxSteps];
+        if(Selectable.canSelect(element)) {
+          return _selectElement(element);
+        }
       }
 
-      // Check if the element should wrap
-      if ((previous == null) && (wrapStart)) {
-        previous = Selectable.findLastSelectable(selectableElements);
-      }
-    }
+      return null;
+    } 
 
-    return _selectElement(previous);
+    return _selectElement(Selectable.findFirstSelectable(selectableElements));
   }
 
   /// Retrieves the next element within the container.
-  bool selectNext() {
-    var selectedElement = _getSelectedElement();
+  html.Element selectNext() {
     var next;
 
-    if (selectedElement != null) {
-      // Find the next selectable element
-      next = selectedElement.nextElementSibling;
+    // Get Index of Selection
+    var indexOfSel = selectableElements.indexOf(selectedElement);
+    if (indexOfSel >= 0) {
 
-      while ((next != null) && (!Selectable.canSelect(next))) {
-        next = next.nextElementSibling;
+      var maxSteps = selectableElements.length;
+
+      // Iterate ONLY through the selectableElements
+      // Previous implentation went through siblings without respecting selectableElements
+      for (var i = 1; (i < maxSteps) && (wrapEnd || ((indexOfSel+i) < maxSteps)); i++) {
+        var element = selectableElements[(indexOfSel+i) % maxSteps];
+        if(Selectable.canSelect(element)) {
+          return _selectElement(element);
+        }
       }
 
-      // Check if the element should wrap
-      if ((next == null) && (wrapEnd)) {
-        next = Selectable.findFirstSelectable(selectableElements);
-      }
-    }
+      return null;
+    } 
 
-    return _selectElement(next);
+    return _selectElement(Selectable.findLastSelectable(selectableElements));
   }
 
   /// Selects the given [element].
@@ -227,7 +235,7 @@ abstract class LinearSelectable implements Selectable {
   ///
   /// The method returns true if the [element] was selected; false otherwise
   /// which is only the case if the element is null.
-  bool _selectElement(html.Element element) {
+  html.Element _selectElement(html.Element element) {
     if (element == null) {
       return false;
     }
@@ -248,27 +256,12 @@ abstract class LinearSelectable implements Selectable {
     if (element is Selectable) {
       var selectable = element as Selectable;
 
-      selectable.select(previous);
+      element = selectable.select(previous);
     } else {
       element.dispatchEvent(new html.CustomEvent(Selectable.selectionChangedEvent, canBubble: true, cancelable:true, detail: element));
     }
 
-    return true;
+    return element;
   }
 
-  /// Finds the currently selected element.
-  ///
-  /// The currently selected element is verified by determining if the element
-  /// is still contained in the element. This could happen if the element is
-  /// removed programmatically from the container. If this happens then the
-  /// first selectable element is chosen.
-  html.Element _getSelectedElement() {
-    // Verify that the selected element is present within the container
-    var hasSelection = (_selectedElement != null) &&
-        (selectableElements.contains(_selectedElement));
-
-    return hasSelection
-        ? _selectedElement
-        : Selectable.findFirstSelectable(selectableElements);
-  }
 }

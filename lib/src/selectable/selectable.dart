@@ -9,6 +9,7 @@ library rei.src.selection.selectable;
 //---------------------------------------------------------------------
 
 import 'dart:html' as html;
+import 'package:polymer/polymer.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -62,8 +63,8 @@ abstract class Selectable {
   /// When entering a [Selectable] area the [previous] element that was
   /// was selected should be passed into the method. This gives the
   /// implementation the ability to make a decision based on the previously
-  /// selected element.
-  void select([html.Element previous = null]);
+  /// selected element. Returns selected element
+  html.Element select([html.Element previous = null]);
 
   /// Exits the selectable area.
   ///
@@ -101,6 +102,7 @@ abstract class Selectable {
     return !element.attributes.containsKey(notSelectableAttribute) &&
         element is! html.StyleElement &&
         element is! html.TemplateElement;
+        // Note:: you might also want to check tab-index -1 as that's the web convention for not selectable??
   }
 
   /// Finds the first [html.Element] in [elements] that can be selected.

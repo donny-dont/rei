@@ -80,6 +80,9 @@ class SelectionGroup extends PolymerElement
   List<html.Element> get selectableElements =>
       (Polymer.dom(this) as PolymerDom).children;
 
+  @override
+  html.Element selectInternal(html.Element previous) => selectedElement; // Use last selected
+
   //---------------------------------------------------------------------
   // PolymerSerialize
   //---------------------------------------------------------------------
