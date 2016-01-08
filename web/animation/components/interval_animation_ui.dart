@@ -21,6 +21,15 @@ import 'package:web_components/web_components.dart' show HtmlImport;
 import 'package:rei/playback_direction.dart';
 
 import 'enum_option.dart';
+import 'removable.dart';
+
+//---------------------------------------------------------------------
+// Component imports
+//---------------------------------------------------------------------
+
+import 'package:rei/components/layout.dart';
+
+import 'easing_animation_ui.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -30,7 +39,7 @@ import 'enum_option.dart';
 const String _tagName = 'rei-interval-animation-ui';
 
 @PolymerRegister(_tagName)
-class IntervalAnimationUI extends PolymerElement with EnumOption {
+class IntervalAnimationUI extends PolymerElement with EnumOption, Removable {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------

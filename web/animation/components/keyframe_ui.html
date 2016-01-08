@@ -1,6 +1,26 @@
 <dom-module id="rei-keyframe-ui">
   <template>
-    <style type="text/less"></style>
+    <style type="text/less" include="rei-layout">
+      :host {
+        @apply(--layout-vertical);
+      }
+
+      #header {
+        @apply(--layout-horizontal);
+      }
+
+      #title {
+        @apply(--flex-1);
+      }
+
+      #remove:hover {
+        cursor: pointer;
+      }
+    </style>
+    <div id="header">
+      <div id="title">Frame</div>
+      <div id="remove" on-click="removeSelf">X</div>
+    </div>
     <div>
       <div>Value</div>
       <input type="number" value="{{value::input}}">

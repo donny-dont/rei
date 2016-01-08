@@ -18,9 +18,13 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
+import 'removable.dart';
+
 //---------------------------------------------------------------------
 // Component imports
 //---------------------------------------------------------------------
+
+import 'package:rei/components/layout.dart';
 
 import 'easing_animation_ui.dart';
 import 'keyframe_ui.dart';
@@ -33,7 +37,7 @@ import 'keyframe_ui.dart';
 const String _tagName = 'rei-keyframe-animation-ui';
 
 @PolymerRegister(_tagName)
-class KeyframeAnimationUI extends PolymerElement {
+class KeyframeAnimationUI extends PolymerElement with Removable {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -54,4 +58,13 @@ class KeyframeAnimationUI extends PolymerElement {
   /// This constructor should not be called directly. Instead use the
   /// default constructor.
   KeyframeAnimationUI.created() : super.created();
+
+  //---------------------------------------------------------------------
+  // Callbacks
+  //---------------------------------------------------------------------
+
+  @reflectable
+  void addKeyframe([html.Event event, _]) {
+    Polymer.dom(this).append(new KeyframeUI());
+  }
 }

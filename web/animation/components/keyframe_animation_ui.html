@@ -1,10 +1,36 @@
 <dom-module id="rei-keyframe-animation-ui">
   <template>
-    <style type="text/less"></style>
-    <div>Keyframe Animation</div>
+    <style type="text/less" include="rei-layout">
+      :host {
+        @apply(--layout-vertical);
+      }
+
+      #header {
+        @apply(--layout-horizontal);
+      }
+
+      #title {
+        @apply(--flex-1);
+      }
+
+      .button:hover {
+        cursor: pointer;
+      }
+
+      #content {
+        border-left: solid 1px rgba(0, 0, 0, 0.5);
+        padding-left: 5px;
+      }
+    </style>
+    <div id="header">
+      <div id="title">Keyframe Animation</div>
+      <div id="add" class="button" on-click="addKeyframe">+</div>
+      <div id="remove" class="button" on-click="removeSelf">X</div>
+    </div>
     <rei-easing-animation-ui></rei-easing-animation-ui>
     <content select="rei-interval-animation-ui"></content>
-    <div>Frames</div>
-    <content></content>
+    <div id="content">
+      <content></content>
+    </div>
   </template>
 </dom-module>

@@ -17,8 +17,7 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 
 import '../shared/loop.dart';
-import 'components/interval_animation_ui.dart';
-import 'components/keyframe_animation_ui.dart';
+import 'components/animation_ui.dart';
 
 //---------------------------------------------------------------------
 // Library contents

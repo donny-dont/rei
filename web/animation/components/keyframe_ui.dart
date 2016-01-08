@@ -18,6 +18,8 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
+import 'removable.dart';
+
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
@@ -26,7 +28,7 @@ import 'package:web_components/web_components.dart' show HtmlImport;
 const String _tagName = 'rei-keyframe-ui';
 
 @PolymerRegister(_tagName)
-class KeyframeUI extends PolymerElement {
+class KeyframeUI extends PolymerElement with Removable {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------

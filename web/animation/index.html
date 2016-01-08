@@ -3,14 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <style type="text/less">
+    body, html {
+      height: 100%;
+    }
+
+    body {
+      display: -webkit-flex;
+      display: flex;
+      margin: 0;
+      background-color: rgb(16, 16, 32);
+      color: rgba(255, 255, 255, 0.8);
+      opacity: 0;
+      overflow: hidden;
+    }
+
+    rei-animation-ui {
+      width: 400px;
+      padding: 20px;
+      border-right: 1px solid white;
+      overflow: hidden;
+    }
+
+    #area {
+      display: -webkit-flex;
+      display: flex;
+
+      -webkit-justify-content: center;
+      justify-content: center;
+
+      -webkit-align-items: center;
+      align-items: center;
+
+     -webkit-flex: 1;
+      flex: 1;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .animated {
+      width: 250px;
+      height: 250px;
+      background-color: #010F56;
+    }
+  </style>
   <script src="packages/web_components/webcomponents-lite.min.js"></script>
 </head>
 <body>
-  <rei-keyframe-animation-ui>
+  <rei-animation-ui>
     <rei-interval-animation-ui></rei-interval-animation-ui>
-    <rei-keyframe-ui value="0"></rei-keyframe-ui>
-    <rei-keyframe-ui value="1"></rei-keyframe-ui>
-  </rei-keyframe-animation-ui>
+  </rei-animation-ui>
+  <div id="area">
+    <div class="animated"></div>
+  </div>
   <script type="application/dart" src="main.dart"></script>
   <script type="packages/browser/dart.js"></script>
 </body>
