@@ -50,7 +50,7 @@ class SelectionGroup extends PolymerElement
   Direction direction = Direction.horizontal;
   @override
   @Property(reflectToAttribute: true)
-  bool canMoveBack = true;
+  bool canMoveBack = false;
   @override
   @Property(reflectToAttribute: true)
   bool wrapStart = false;
