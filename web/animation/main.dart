@@ -16,6 +16,8 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
+import 'package:rei/components/transform_group.dart';
+
 import '../shared/loop.dart';
 import 'components/animation_ui.dart';
 
@@ -31,6 +33,9 @@ Future<Null> main() async {
   print('THE POLYMERS THEY ARE INITED');
 
   html.document.body.style.opacity = '1';
+
+  var ui = html.querySelector(AnimationUI.customTagName) as AnimationUI;
+  ui.animatedElement = html.querySelector(TransformGroup.customTagName);
 
   // Start the update loop
   start();

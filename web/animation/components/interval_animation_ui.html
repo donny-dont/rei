@@ -1,40 +1,28 @@
 <dom-module id="rei-interval-animation-ui">
   <template>
-    <style type="text/less" include="rei-layout">
+    <style type="text/less" include="rei-layout rei-styling">
       :host {
         @apply(--layout-vertical);
-      }
-
-      #header {
-        @apply(--layout-horizontal);
-      }
-
-      #title {
-        @apply(--flex-1);
-      }
-
-      .button:hover {
-        cursor: pointer;
       }
     </style>
     <div id="header">
       <div id="title">Interval Animation</div>
-      <div id="remove" class="button" on-click="removeSelf">X</div>
+      <div id="remove" class="button" on-click="removeSelf"></div>
     </div>
-    <rei-easing-animation-ui></rei-easing-animation-ui>
-    <div>
+    <rei-easing-animation-ui id="easing"></rei-easing-animation-ui>
+    <div class="value-area">
       <div>Duration</div>
       <input type="number" value="{{duration::input}}">
     </div>
-    <div>
+    <div class="value-area">
       <div>Delay</div>
       <input type="number" value="{{delay::input}}">
     </div>
-    <div>
+    <div class="value-area">
       <div>Iterations</div>
       <input type="number" value="{{iterations::input}}">
     </div>
-    <div>
+    <div class="value-area">
       <div>Playback Direction</div>
       <select id="playback" on-change="changePlaybackDirection"></select>
     </div>

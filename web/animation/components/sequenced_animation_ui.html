@@ -1,22 +1,16 @@
-<dom-module id="rei-keyframe-animation-ui">
+<dom-module id="rei-sequenced-animation-ui">
   <template>
     <style type="text/less" include="rei-layout rei-styling">
       :host {
         @apply(--layout-vertical);
       }
-
-      #frame-title {
-        @apply(--title-small);
-      }
     </style>
     <div class="header">
-      <div id="title">Keyframe Animation</div>
+      <div id="title">Sequenced Animation</div>
       <div id="remove" class="button" on-click="removeSelf"></div>
     </div>
-    <rei-easing-animation-ui></rei-easing-animation-ui>
-    <content select="rei-interval-animation-ui"></content>
     <div class="header">
-      <div id="frame-title">Frames</div>
+      <div id="frame-title">Animations</div>
       <div id="add" class="button" on-click="addKeyframe"></div>
     </div>
     <div id="content">

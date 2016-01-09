@@ -28,8 +28,11 @@ import 'removable.dart';
 //---------------------------------------------------------------------
 
 import 'package:rei/components/layout.dart';
+import 'package:rei/components/easing_animation.dart';
 
+import 'animation_creator.dart';
 import 'easing_animation_ui.dart';
+import 'styling.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -39,7 +42,10 @@ import 'easing_animation_ui.dart';
 const String _tagName = 'rei-interval-animation-ui';
 
 @PolymerRegister(_tagName)
-class IntervalAnimationUI extends PolymerElement with EnumOption, Removable {
+class IntervalAnimationUI extends PolymerElement
+                             with EnumOption,
+                                  Removable
+                       implements AnimationCreator {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -85,6 +91,25 @@ class IntervalAnimationUI extends PolymerElement with EnumOption, Removable {
         PlaybackDirection.values,
         serializePlaybackDirection
     );
+  }
+
+  //---------------------------------------------------------------------
+  // AnimationCreator
+  //---------------------------------------------------------------------
+
+  @override
+  html.Element createAnimation() {
+    var animation = new EasingAnimation();
+
+    // Get values from easing animation
+    var easingUI = $['easing'] as EasingAnimationUI;
+
+    // Get values from this
+    animation.delay = double.parse(delay);
+    animation.duration = double.parse(duration);
+    animation.iterations = int.parse(iterations);
+
+    return animation;
   }
 
   //---------------------------------------------------------------------

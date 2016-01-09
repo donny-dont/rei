@@ -1,0 +1,144 @@
+<dom-module id="rei-styling">
+  <template>
+    <style include="rei-layout">
+      :root {
+        --header: {
+          @apply(--layout-horizontal);
+          @apply(--flex-align-items-center);
+          position: relative;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        };
+
+        --title-base: {
+          @apply(--flex-1);
+          font-weight: bold;
+        };
+
+        --title-large: {
+          @apply(--title-base);
+          font-size: 32px;
+        };
+
+        --title: {
+          @apply(--title-base);
+          font-size: 24px;
+        };
+
+        --title-small: {
+          @apply(--title-base);
+          font-size: 18px;
+        };
+
+        --button: {
+          font-family: Icon;
+        };
+
+        --button-disabled: {
+          font-family: Icon;
+          color: rgba(255, 255, 255, 0.2);
+        };
+
+        --child-area: {
+          border-left: 1px solid rgba(255, 255, 255, 0.5);
+          padding-left: 11px;
+        };
+
+        --value-area: {
+          @apply(--layout-horizontal);
+          @apply(--flex-justify-content-space-between);
+          padding: 3px 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        };
+
+        --value-area-item: {
+          -webkit-flex-grow: 1;
+          flex-grow: 1;
+
+          -webkit-flex-basis: 0;
+          flex-basis: 0;
+        }
+      }
+
+      /* Shared styles */
+
+      /* Buttons */
+
+      #add {
+        @apply(--button);
+      }
+
+      #add:before {
+        content: '\e800';
+      }
+
+      #remove {
+        @apply(--button);
+      }
+
+      #remove:before {
+        content: '\e801';
+      }
+
+      .disabled {
+        @apply(--button-disabled);
+      }
+
+      .disabled:hover {
+        cursor: auto;
+        pointer-events: none;
+      }
+
+      .button {
+        @apply(--button);
+      }
+
+      .button:hover {
+        cursor: pointer;
+      }
+
+      /* Header */
+
+      #header {
+        @apply(--header);
+      }
+
+      .header {
+        @apply(--header);
+      }
+
+      #title {
+        @apply(--title);
+      }
+
+      /* Values */
+
+      #content {
+        @apply(--child-area);
+      }
+
+      .value-area {
+        @apply(--value-area);
+      }
+
+      .value-area > * {
+        @apply(--value-area-item);
+      }
+
+      /* Menu */
+
+      .hide {
+        display: none;
+      }
+
+      #menu {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      #menu > div {
+        cursor: pointer;
+      }
+    </style>
+  </template>
+</dom-module>

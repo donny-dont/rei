@@ -1,54 +1,46 @@
 <dom-module id="rei-animation-ui">
   <template>
-    <style type="text/less" include="rei-layout">
+    <style type="text/less" include="rei-layout rei-styling">
       :host {
         @apply(--layout-vertical);
       }
 
-      #header {
-        position: relative;
-        @apply(--layout-horizontal);
-      }
-
       #title {
-        @apply(--flex-1);
+        @apply(--title-large);
       }
 
-      .button:hover {
-        cursor: pointer;
+      #controls {
+        @apply(--layout-horizontal);
+        @apply(--flex-justify-content-space-between);
+
+        font-size: 48px;
+        font-family: Icon;
       }
 
-      .disabled {
-        pointer-events: none;
-        cursor: auto;
+      .play:before {
+        content: '\e802';
       }
 
-      #menu {
-        position: absolute;
-        right: 0;
-        top: 0;
+      .pause:before {
+        content: '\e803';
       }
 
-      #menu > div {
-        cursor: pointer;
+      #stop:before {
+        content: '\e804';
       }
 
-      #content {
-        border-left: solid 1px rgba(0, 0, 0, 0.5);
-        padding-left: 5px;
-      }
-
-      .hide {
-        display: none;
+      #reverse:before {
+        content: '\e805';
       }
     </style>
     <div id="controls">
-      <div id="state" on-click="play">Play</div>
-      <div id="stop" on-click="stop">Stop</div>
+      <div id="state" class="play button" on-click="play"></div>
+      <div id="stop" class="disabled button" on-click="stop"></div>
+      <div id="reverse" class="disabled button"></div>
     </div>
     <div id="header">
       <div id="title">Animation</div>
-      <div id="add" class="button" on-click="showMenu">+</div>
+      <div id="add" class="button add" on-click="showMenu"></div>
       <div id="menu" class="hide">
         <div on-click="addIntervalAnimation">Interval</div>
         <div>Synced</div>

@@ -26,9 +26,11 @@ import 'removable.dart';
 
 import 'package:rei/components/layout.dart';
 
+import 'animation_creator.dart';
 import 'interval_animation_ui.dart';
 import 'keyframe_animation_ui.dart';
 import 'keyframe_ui.dart';
+import 'styling.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -61,6 +63,12 @@ class AnimationUI extends PolymerElement {
   AnimationUI.created() : super.created();
 
   //---------------------------------------------------------------------
+  // Properties
+  //---------------------------------------------------------------------
+
+  html.Element animatedElement;
+
+  //---------------------------------------------------------------------
   // PolymerElement
   //---------------------------------------------------------------------
 
@@ -78,7 +86,16 @@ class AnimationUI extends PolymerElement {
 
   @reflectable
   void play([html.Event event, _]) {
+    var animationUI = new PolymerDom(this).children[0] as AnimationCreator;
 
+    var elementDom = new PolymerDom(animatedElement);
+
+    elementDom.children.clear();
+
+    var animation = animationUI.createAnimation();
+    animatedElement.animationElement = animation;
+
+    elementDom.append(animation);
   }
 
   @reflectable
