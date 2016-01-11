@@ -39,3 +39,41 @@ abstract class Animation<T> {
   /// Updates the animation using the given time difference, [dt].
   void timeUpdate(double dt);
 }
+
+abstract class Animation2 {
+  //---------------------------------------------------------------------
+  // Public methods
+  //---------------------------------------------------------------------
+
+  /// The rate of playback for the animation.
+  ///
+  /// To increase the speed of the animation the value should be greater than
+  /// 1.0. To slow down the speed of animation the value should be between
+  /// \[0.0, 1.0\]. To reverse the animation a negative value can be used for
+  /// cases where the animation is based on an interval.
+  num get playbackRate;
+  set playbackRate(num value);
+
+  /// The current time of the animation.
+  ///
+  /// This value will be in the range of 0.0 to the total time of the animation
+  /// based on its total effect time.
+  ///
+  /// Typically this value is only modified when the animation is being updated
+  /// through the [AnimationManager]. However the value can be manually changed
+  /// in code to perform a scrubbing operation for an animation specified by
+  /// an interval. When modifying it directly the [playbackRate] is not taken
+  /// into consideration. This is different behavior than the Web Animations API
+  /// which applies the [playbackRate].
+  double get currentTime;
+  set currentTime(double value);
+
+  //---------------------------------------------------------------------
+  // Public methods
+  //---------------------------------------------------------------------
+
+  /// Begins the animation.
+  void play();
+  /// Pauses the animation.
+  void pause();
+}
