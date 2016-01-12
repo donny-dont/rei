@@ -9,6 +9,7 @@ library rei.src.transform.animation_group;
 //---------------------------------------------------------------------
 
 import 'animation.dart';
+import 'computed_timing.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -21,5 +22,5 @@ import 'animation.dart';
 /// the root group to ensure proper behavior.
 abstract class AnimationGroup {
   /// A list of animations within this group.
-  List<Animation> get animations;
+  List<ComputedTiming> get animations;
 }

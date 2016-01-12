@@ -42,6 +42,16 @@ abstract class Animation<T> {
 
 abstract class Animation2 {
   //---------------------------------------------------------------------
+  // Class members
+  //---------------------------------------------------------------------
+
+  /// Event for when an animation has completed.
+  static const String animationCompleteEvent = 'animation-complete';
+  /// Event for when a value on the animation was changed which would modify
+  /// the computed timings.
+  static const String animationTimingChangedEvent = 'animation-timing';
+
+  //---------------------------------------------------------------------
   // Public methods
   //---------------------------------------------------------------------
 

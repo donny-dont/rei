@@ -17,6 +17,7 @@ transformers:
     compress: true
 - web_components:
     entry_points:
+    - test/src/animation/computed_timing_test.html
     - test/src/selection/linear_selectable_test.html
     - web/animation/index.html
     - web/scrolling/index.html
@@ -26,6 +27,7 @@ transformers:
     $include: test/**_test{.*,}.dart
 - reflectable:
     entry_points:
+    - test/src/animation/computed_timing_test.dart
     - test/src/selection/linear_selectable_test.dart
     - web/animation/main.dart
     - web/scrolling/main.dart

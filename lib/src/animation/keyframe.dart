@@ -5,6 +5,12 @@
 library rei.src.animation.keyframe;
 
 //---------------------------------------------------------------------
+// Imports
+//---------------------------------------------------------------------
+
+import 'package:rei/bezier_curve.dart';
+
+//---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
@@ -17,6 +23,14 @@ abstract class Keyframe<T> {
   /// animation's duration.
   num get frameOffset;
   set frameOffset(num value);
+
+  /// The bezier curve to use when computing the animation value.
+  ///
+  /// If no curve is specified then the enclosing animation's keyframe will be
+  /// used instead.
+  BezierCurve get curve;
+  set curve(BezierCurve value);
+
   /// The value of the keyframe.
   T get value;
 }

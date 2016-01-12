@@ -1,3 +1,5 @@
+import 'package:rei/playback_direction.dart';
+
 /// \TODO Write full docs
 ///
 /// This interface roughly follows the AnimationEffectTiming interface from the
@@ -15,4 +17,5 @@ abstract class AnimationTiming {
   num get iterations;
   /// The duration for a single iteration of the animation in milliseconds.
   num get duration;
+  PlaybackDirection get direction;
 }
