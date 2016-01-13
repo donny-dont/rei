@@ -5,6 +5,18 @@
 library rei.src.animation.animation;
 
 //---------------------------------------------------------------------
+// Standard libraries
+//---------------------------------------------------------------------
+
+import 'dart:html' as html;
+
+//---------------------------------------------------------------------
+// Imports
+//---------------------------------------------------------------------
+
+import 'package:rei/animation_target.dart';
+
+//---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
@@ -52,7 +64,7 @@ abstract class Animation2 {
   static const String animationTimingChangedEvent = 'animation-timing';
 
   //---------------------------------------------------------------------
-  // Public methods
+  // Properties
   //---------------------------------------------------------------------
 
   /// The rate of playback for the animation.
@@ -77,6 +89,14 @@ abstract class Animation2 {
   /// which applies the [playbackRate].
   double get currentTime;
   set currentTime(double value);
+
+  /// The element that the animation will be applied to.
+  html.Element get animatedElement;
+  set animatedElement(html.Element value);
+
+  /// The target of the animation on the element.
+  AnimationTarget get animationTarget;
+  set animationTarget(AnimationTarget target);
 
   //---------------------------------------------------------------------
   // Public methods
