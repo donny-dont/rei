@@ -28,8 +28,8 @@ abstract class Keyframe<T> {
   ///
   /// If no curve is specified then the enclosing animation's keyframe will be
   /// used instead.
-  BezierCurve get curve;
-  set curve(BezierCurve value);
+  BezierCurve<T> get curve;
+  set curve(BezierCurve<T> value);
 
   /// The value of the keyframe.
   T get value;
