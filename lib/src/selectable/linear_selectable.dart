@@ -237,7 +237,7 @@ abstract class LinearSelectable implements Selectable {
   /// which is only the case if the element is null.
   html.Element _selectElement(html.Element element) {
     if (element == null) {
-      return false;
+      return null;
     }
 
     // Ensure that the element being selected is contained in the
