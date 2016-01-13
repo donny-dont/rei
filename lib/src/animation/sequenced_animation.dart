@@ -53,4 +53,3 @@ abstract class SequencedAnimation implements AnimationGroup,
     }
   }
 }
-
