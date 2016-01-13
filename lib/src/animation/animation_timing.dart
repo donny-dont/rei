@@ -1,4 +1,17 @@
+// Copyright (c) 2015, the Rei Project Authors.
+// Please see the AUTHORS file for details. All rights reserved.
+
+library rei.src.animation.animation_timing;
+
+//---------------------------------------------------------------------
+// Imports
+//---------------------------------------------------------------------
+
 import 'package:rei/playback_direction.dart';
+
+//---------------------------------------------------------------------
+// Library contents
+//---------------------------------------------------------------------
 
 /// \TODO Write full docs
 ///
