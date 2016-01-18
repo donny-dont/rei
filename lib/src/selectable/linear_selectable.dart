@@ -179,17 +179,18 @@ abstract class LinearSelectable implements Selectable {
 
   /// Retrieves the previous element within the container.
   html.Element selectPrevious() {
+    var _selList = selectableElements;
 
     // Get Index of Selection
-    var indexOfSel = selectableElements.indexOf(selectedElement);
+    var indexOfSel = _selList.indexOf(selectedElement);
     if (indexOfSel >= 0) {
 
-      var maxSteps = selectableElements.length;
+      var maxSteps = _selList.length;
 
       // Iterate ONLY through the selectableElements
       // Previous implentation went through siblings without respecting selectableElements
       for (var i = 1; (i < maxSteps) && (wrapStart || (i <= indexOfSel)); i++) {
-        var element = selectableElements[(indexOfSel-i) % maxSteps];
+        var element = _selList[(indexOfSel-i) % maxSteps];
         if(Selectable.canSelect(element)) {
           return _selectElement(element);
         }
@@ -198,23 +199,23 @@ abstract class LinearSelectable implements Selectable {
       return null;
     } 
 
-    return _selectElement(Selectable.findFirstSelectable(selectableElements));
+    return _selectElement(Selectable.findFirstSelectable(_selList));
   }
 
   /// Retrieves the next element within the container.
   html.Element selectNext() {
-    var next;
+     var _selList = selectableElements;
 
     // Get Index of Selection
-    var indexOfSel = selectableElements.indexOf(selectedElement);
+    var indexOfSel = _selList.indexOf(selectedElement);
     if (indexOfSel >= 0) {
 
-      var maxSteps = selectableElements.length;
+      var maxSteps = _selList.length;
 
       // Iterate ONLY through the selectableElements
       // Previous implentation went through siblings without respecting selectableElements
       for (var i = 1; (i < maxSteps) && (wrapEnd || ((indexOfSel+i) < maxSteps)); i++) {
-        var element = selectableElements[(indexOfSel+i) % maxSteps];
+        var element = _selList[(indexOfSel+i) % maxSteps];
         if(Selectable.canSelect(element)) {
           return _selectElement(element);
         }
@@ -223,7 +224,7 @@ abstract class LinearSelectable implements Selectable {
       return null;
     } 
 
-    return _selectElement(Selectable.findLastSelectable(selectableElements));
+    return _selectElement(Selectable.findLastSelectable(_selList));
   }
 
   /// Selects the given [element].
