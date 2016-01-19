@@ -9,6 +9,7 @@ library rei.src.selection.selectable;
 //---------------------------------------------------------------------
 
 import 'dart:html' as html;
+import 'package:polymer/polymer.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -31,6 +32,10 @@ abstract class Selectable {
   static const String notSelectableAttribute = 'data-not-selectable';
   /// The event fired when the selected element is changed.
   static const String selectionChangedEvent = 'selectionchange';
+  /// The event fired when the selection moves off element
+  static const String selectionOffEvent = 'selectionoff';
+  ///
+  static html.Element activeSelection = null;
 
   //---------------------------------------------------------------------
   // Properties
@@ -62,8 +67,8 @@ abstract class Selectable {
   /// When entering a [Selectable] area the [previous] element that was
   /// was selected should be passed into the method. This gives the
   /// implementation the ability to make a decision based on the previously
-  /// selected element.
-  void select([html.Element previous = null]);
+  /// selected element. Returns selected element
+  html.Element select([html.Element previous = null]);
 
   /// Exits the selectable area.
   ///
@@ -101,6 +106,7 @@ abstract class Selectable {
     return !element.attributes.containsKey(notSelectableAttribute) &&
         element is! html.StyleElement &&
         element is! html.TemplateElement;
+        // Note:: you might also want to check tab-index -1 as that's the web convention for not selectable??
   }
 
   /// Finds the first [html.Element] in [elements] that can be selected.
@@ -156,5 +162,25 @@ abstract class Selectable {
 
     // Not selectable!
     return null;
+  }
+
+  /// Select Item 
+  /// 
+  /// Triggers the DOM event or calls the select function
+  /// See if the selection hierarchy needs to be entered further
+  static html.Element selectElement(html.Element element, [html.Element previous = null]) {
+    if (element is Selectable) {
+      var selectable = element as Selectable;
+      return selectable.select(previous);
+    } else {
+      if(activeSelection != null) {
+        activeSelection.dispatchEvent(new html.CustomEvent(selectionOffEvent, canBubble: true, cancelable:true, detail: element));
+      }
+
+      activeSelection = element;
+
+      element.dispatchEvent(new html.CustomEvent(selectionChangedEvent, canBubble: true, cancelable:true, detail: element));
+      return element;
+    }
   }
 }

@@ -50,7 +50,7 @@ class SelectionGroup extends PolymerElement
   Direction direction = Direction.horizontal;
   @override
   @Property(reflectToAttribute: true)
-  bool canMoveBack = true;
+  bool canMoveBack = false;
   @override
   @Property(reflectToAttribute: true)
   bool wrapStart = false;
@@ -79,6 +79,9 @@ class SelectionGroup extends PolymerElement
   @override
   List<html.Element> get selectableElements =>
       (Polymer.dom(this) as PolymerDom).children;
+
+  @override
+  html.Element selectInternal(html.Element previous) => selectedElement; // Use last selected
 
   //---------------------------------------------------------------------
   // PolymerSerialize

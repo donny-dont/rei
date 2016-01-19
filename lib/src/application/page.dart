@@ -217,7 +217,7 @@ class Page {
   void onRightShoulder() {}
 
   void updatePage(double time) {}
-  void selectElement(html.Element selected) {}
+  html.Element selectElement(html.Element selected) {}
 
   //---------------------------------------------------------------------
   // Private methods
