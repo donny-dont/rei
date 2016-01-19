@@ -254,15 +254,7 @@ abstract class LinearSelectable implements Selectable {
     _selectedElement = element;
 
     // See if the selection hierarchy needs to be entered further
-    if (element is Selectable) {
-      var selectable = element as Selectable;
-
-      element = selectable.select(previous);
-    } else {
-      element.dispatchEvent(new html.CustomEvent(Selectable.selectionChangedEvent, canBubble: true, cancelable:true, detail: element));
-    }
-
-    return element;
+    return Selectable.selectElement(element, previous);
   }
 
 }

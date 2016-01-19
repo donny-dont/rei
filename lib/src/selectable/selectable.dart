@@ -32,6 +32,10 @@ abstract class Selectable {
   static const String notSelectableAttribute = 'data-not-selectable';
   /// The event fired when the selected element is changed.
   static const String selectionChangedEvent = 'selectionchange';
+  /// The event fired when the selection moves off element
+  static const String selectionOffEvent = 'selectionoff';
+  ///
+  static html.Element activeSelection = null;
 
   //---------------------------------------------------------------------
   // Properties
@@ -158,5 +162,25 @@ abstract class Selectable {
 
     // Not selectable!
     return null;
+  }
+
+  /// Select Item 
+  /// 
+  /// Triggers the DOM event or calls the select function
+  /// See if the selection hierarchy needs to be entered further
+  static html.Element selectElement(html.Element element, [html.Element previous = null]) {
+    if (element is Selectable) {
+      var selectable = element as Selectable;
+      return selectable.select(previous);
+    } else {
+      if(activeSelection != null) {
+        activeSelection.dispatchEvent(new html.CustomEvent(selectionOffEvent, canBubble: true, cancelable:true, detail: element));
+      }
+
+      activeSelection = element;
+
+      element.dispatchEvent(new html.CustomEvent(selectionChangedEvent, canBubble: true, cancelable:true, detail: element));
+      return element;
+    }
   }
 }
