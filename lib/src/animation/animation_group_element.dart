@@ -1,55 +1,46 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
-/// Contains the [SequencedAnimation] mixin.
-library rei.src.transform.sequenced_animation;
+/// Contains the [AnimationElement] mixin.
+library rei.src.transform.animation_element;
+
+//---------------------------------------------------------------------
+// Standard libraries
+//---------------------------------------------------------------------
+
+import 'dart:html' as html;
 
 //---------------------------------------------------------------------
 // Imports
 //---------------------------------------------------------------------
 
+import 'package:polymer/polymer.dart';
+
 import 'animation.dart';
 import 'animation_group.dart';
-import 'animation_timing.dart';
 import 'computed_timing.dart';
 
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
-
-abstract class SequencedAnimation implements AnimationGroup,
-                                             AnimationTiming,
-                                             ComputedTiming {
+abstract class AnimationGroupElement implements AnimationGroup,
+                                                ComputedTiming,
+                                                PolymerElement {
   //---------------------------------------------------------------------
-  // AnimationTiming
-  //---------------------------------------------------------------------
-
-  @override
-  num get duration {
-    var totalTime = 0.0;
-
-    for (var animation in animations) {
-      totalTime += animation.endTime;
-    }
-
-    return totalTime;
-  }
-
-  //---------------------------------------------------------------------
-  // ComputedTiming
+  // AnimationGroup
   //---------------------------------------------------------------------
 
   @override
-  void onLocalTimeUpdate() {
-    var time = animationTime;
+  List<ComputedTiming> get animations =>
+      Polymer.dom(this).children as List<ComputedTiming>;
 
-    // Update the current time for all the animations
-    for (var animation in animations) {
-      animation.currentTime = time;
+  //---------------------------------------------------------------------
+  // Callbacks
+  //---------------------------------------------------------------------
 
-      // Subtract the end time to get the correct time
-      time -= animation.endTime;
-    }
+  @Listen(Animation.animationTimingChangedEvent)
+  void onAnimationTimingChanged([html.CustomEvent event, _]) {
+
   }
 }

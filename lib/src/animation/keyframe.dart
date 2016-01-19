@@ -22,14 +22,12 @@ abstract class Keyframe<T> {
   /// the keyframe is determined by the offset which is a percentage of the
   /// animation's duration.
   num get frameOffset;
-  set frameOffset(num value);
 
   /// The bezier curve to use when computing the animation value.
   ///
   /// If no curve is specified then the enclosing animation's keyframe will be
   /// used instead.
   BezierCurve<T> get curve;
-  set curve(BezierCurve<T> value);
 
   /// The value of the keyframe.
   T get value;

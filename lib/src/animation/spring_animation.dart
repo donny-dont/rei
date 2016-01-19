@@ -9,13 +9,21 @@ library rei.src.animation.spring_animation;
 //---------------------------------------------------------------------
 
 import 'animation.dart';
+import 'animation_value.dart';
 
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
 /// An animation whose value is determined based on a spring.
-abstract class SpringAnimation implements Animation<num> {
+abstract class SpringAnimation implements Animation, AnimationValue<num> {
+  //---------------------------------------------------------------------
+  // Class variables
+  //---------------------------------------------------------------------
+
+  static const distanceThreshold = 0.0001;
+  static const velocityThreshold = 0.0001;
+
   //---------------------------------------------------------------------
   // Member variables
   //---------------------------------------------------------------------
@@ -35,20 +43,27 @@ abstract class SpringAnimation implements Animation<num> {
   /// The friction applied to the spring during movement.
   num get friction;
 
+  num get end;
+
   //---------------------------------------------------------------------
-  // Animation
+  // AnimationValue
   //---------------------------------------------------------------------
 
   @override
   num get value => _value;
 
-  @override
+  //---------------------------------------------------------------------
+  // AnimationValue
+  //---------------------------------------------------------------------
+
+  //@override
   void timeUpdate(double dt) {
     dt = dt * 0.001;
     var distance = end.toDouble() - _value;
     var distanceSquared = distance * distance;
 
-    if ((distanceSquared < Animation.threshold) && (_velocity * _velocity < 0.01)) {
+    if ((distanceSquared < distanceThreshold) &&
+        (_velocity * _velocity < velocityThreshold)) {
       _value = end.toDouble();
       _velocity = 0.0;
     } else {

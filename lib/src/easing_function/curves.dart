@@ -1,7 +1,7 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
-library rei.src.animation.easing_function_curves;
+library rei.src.easing_function.curves;
 
 //---------------------------------------------------------------------
 // Standard libraries

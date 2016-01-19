@@ -8,7 +8,6 @@ library rei.src.transform.animation_group;
 // Imports
 //---------------------------------------------------------------------
 
-import 'animation.dart';
 import 'computed_timing.dart';
 
 //---------------------------------------------------------------------

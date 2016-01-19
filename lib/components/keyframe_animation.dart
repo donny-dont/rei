@@ -27,14 +27,18 @@ import 'package:rei/playback_direction.dart';
 //---------------------------------------------------------------------
 
 /// Tag name for the class.
-const String _tagName = 'rei-keyframe';
+const String _tagName = 'rei-keyframe-animation';
 
 /// An element that holds keyframe information.
 @PolymerRegister(_tagName)
 class KeyframeAnimation extends PolymerElement
                            with animation.AnimationElement,
+                                animation.AnimationTimingElement,
+                                animation.ComputedTiming,
                                 animation.KeyframeAnimation<num>,
-                                animation.IntervalAnimation {
+                                PolymerSerialize
+                     implements animation.Animation,
+                                animation.AnimationTiming {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -56,24 +60,12 @@ class KeyframeAnimation extends PolymerElement
   /// value.
   @Property(reflectToAttribute: true)
   dynamic easing = EasingFunction.ease;
+
   @override
   @Property(reflectToAttribute: true)
   num playbackRate = 1.0;
-  @override
-  @Property(reflectToAttribute: true)
-  num delay = 0.0;
-  @override
-  @Property(reflectToAttribute: true)
-  int iterations = 1;
-  @Property(reflectToAttribute: true)
-  num duration = 1.0;
-  @Property(reflectToAttribute: true)
-  PlaybackDirection direction = PlaybackDirection.forward;
   @Property(reflectToAttribute: true)
   AnimationTarget animationTarget = AnimationTarget.opacity;
-
-  // \TODO end????
-  num get end => 1.0;
 
   //---------------------------------------------------------------------
   // Construction
@@ -98,10 +90,71 @@ class KeyframeAnimation extends PolymerElement
   }
 
   //---------------------------------------------------------------------
+  // PolymerSerialize
+  //---------------------------------------------------------------------
+
+  @override
+  dynamic deserialize(String value, Type type) {
+    if (type == null) {
+      if (value.startsWith('[')) {
+        type = List;
+      } else {
+        return deserializeEasingFunction(value);
+      }
+    } else if (type == PlaybackDirection) {
+      return deserializePlaybackDirection(value);
+    } else if (type == AnimationTarget) {
+      return deserializeAnimationTarget(value);
+    }
+
+    return super.deserialize(value, type);
+  }
+
+  @override
+  String serialize(Object value) {
+    if (value is EasingFunction) {
+      return serializeEasingFunction(value);
+    } else if (value is PlaybackDirection) {
+      return serializePlaybackDirection(value);
+    } else if (value is AnimationTarget) {
+      return serializeAnimationTarget(value);
+    } else {
+      return super.serialize(value);
+    }
+  }
+
+  //---------------------------------------------------------------------
   // KeyframeAnimation
   //---------------------------------------------------------------------
 
   @override
   List<animation.Keyframe<num>> get keyframes =>
       Polymer.dom(this).children as List<animation.Keyframe<num>>;
+
+  //---------------------------------------------------------------------
+  // Callbacks
+  //---------------------------------------------------------------------
+
+  @Observe('easing')
+  void easingChanged(dynamic value) {
+    var curveValues = (value is EasingFunction)
+        ? getEasingCurve(value)
+        : value;
+
+    curve = new BezierCurveScalar(curveValues as List<num>);
+  }
+
+  @Listen(animation.Animation.animationTimingChangedEvent)
+  void onAnimationTimingChanged([html.CustomEvent event, _]) {
+    var animationElement = event.detail;
+
+    if (animationElement == animation.Keyframe) {
+      // Stop propagation as keyframe changes do not affect the overall timing
+      // of this animation. They just affect the computed keyframes
+      event.stopPropagation();
+
+      // Recompute the keyframes
+      computeKeyframes();
+    }
+  }
 }

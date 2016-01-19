@@ -1,7 +1,7 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
-library rei.easing_function;
+library rei.src.easing_function.easing_function;
 
 //---------------------------------------------------------------------
 // Imports

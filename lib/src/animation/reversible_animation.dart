@@ -1,8 +1,8 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
-/// Contains the [KeyframeAnimation] class.
-library rei.src.animation.keyframe_animation;
+/// Contains the [ReversibleAnimation] mixin.
+library rei.src.animation.reversible_animation;
 
 //---------------------------------------------------------------------
 // Imports
@@ -18,7 +18,7 @@ import 'animation.dart';
 ///
 /// This is not included in [Animation] as any non-interval based animation
 /// cannot be reversed.
-abstract class ReversibleAnimation implements Animation2 {
+abstract class ReversibleAnimation implements Animation {
   //---------------------------------------------------------------------
   // Public methods
   //---------------------------------------------------------------------

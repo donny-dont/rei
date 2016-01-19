@@ -1,8 +1,8 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
-/// Contains the [EasingAnimation] class.
-library rei.components.easing_animation;
+/// Contains the [Transition] class.
+library rei.components.transition;
 
 //---------------------------------------------------------------------
 // Standard libraries
@@ -16,7 +16,7 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/animation.dart';
+import 'package:rei/animation.dart' as animation;
 import 'package:rei/animation_target.dart';
 import 'package:rei/bezier_curve.dart';
 import 'package:rei/easing_function.dart';
@@ -27,15 +27,15 @@ import 'package:rei/playback_direction.dart';
 //---------------------------------------------------------------------
 
 /// Tag name for the class.
-const String _tagName = 'rei-easing-animation';
+const String _tagName = 'rei-transition';
 
 /// An element that performs an easing animation.
 @PolymerRegister(_tagName)
-class EasingAnimation extends PolymerElement
-                         with AnimationElement,
-                              BezierCurveAnimation<num>,
-                              IntervalAnimation,
-                              PolymerSerialize {
+class Transition extends PolymerElement
+                       with animation.AnimationElement,
+                            animation.ComputedTiming,
+                            animation.Transition<num>,
+                            PolymerSerialize {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -65,7 +65,12 @@ class EasingAnimation extends PolymerElement
   num delay = 0.0;
   @override
   @Property(reflectToAttribute: true)
-  int iterations = 1;
+  num endDelay = 0.0;
+  @override
+  @Property(reflectToAttribute: true)
+  num iterationStart = 0.0;
+  @Property(reflectToAttribute: true)
+  num iterations = 1.0;
   @Property(reflectToAttribute: true)
   num duration = 1.0;
   @Property(reflectToAttribute: true)
@@ -77,19 +82,22 @@ class EasingAnimation extends PolymerElement
   @Property(reflectToAttribute: true)
   AnimationTarget animationTarget = AnimationTarget.opacity;
 
+  void play() {}
+  void pause() {}
+
   //---------------------------------------------------------------------
   // Construction
   //---------------------------------------------------------------------
 
-  /// Creates an instance of the [EasingAnimation] class.
-  factory EasingAnimation() =>
-      new html.Element.tag(customTagName) as EasingAnimation;
+  /// Creates an instance of the [Transition] class.
+  factory Transition() =>
+      new html.Element.tag(customTagName) as Transition;
 
-  /// Create an instance of the [EasingAnimation] class.
+  /// Create an instance of the [Transition] class.
   ///
   /// This constructor should not be called directly. Instead use the
   /// default constructor.
-  EasingAnimation.created() : super.created();
+  Transition.created() : super.created();
 
   //---------------------------------------------------------------------
   // PolymerElement
@@ -99,46 +107,38 @@ class EasingAnimation extends PolymerElement
     style.display = 'none';
   }
 
-  void attached() {
-    async(attachedAnimationElement);
-  }
-
-  void detached() {
-    detachedAnimationElement();
-  }
-
   //---------------------------------------------------------------------
-  // PolymerSerialize
-  //---------------------------------------------------------------------
+    // PolymerSerialize
+    //---------------------------------------------------------------------
 
-  @override
-  dynamic deserialize(String value, Type type) {
-    if (type == dynamic) {
-      if (value.startsWith('[')) {
-        type = List;
-      } else {
-        return deserializeEasingFunction(value);
+    @override
+    dynamic deserialize(String value, Type type) {
+      if (type == dynamic) {
+        if (value.startsWith('[')) {
+          type = List;
+        } else {
+          return deserializeEasingFunction(value);
+        }
+      } else if (type == PlaybackDirection) {
+        return deserializePlaybackDirection(value);
+      } else if (type == AnimationTarget) {
+        return deserializeAnimationTarget(value);
       }
-    } else if (type == PlaybackDirection) {
-      return deserializePlaybackDirection(value);
-    } else if (type == AnimationTarget) {
-      return deserializeAnimationTarget(value);
+
+      return super.deserialize(value, type);
     }
 
-    return super.deserialize(value, type);
-  }
-
-  @override
-  String serialize(Object value) {
-    if (value is EasingFunction) {
-      return serializeEasingFunction(value);
-    } else if (value is PlaybackDirection) {
-      return serializePlaybackDirection(value);
-    } else if (value is AnimationTarget) {
-      return serializeAnimationTarget(value);
-    } else {
-      return super.serialize(value);
-    }
+    @override
+    String serialize(Object value) {
+      if (value is EasingFunction) {
+        return serializeEasingFunction(value);
+      } else if (value is PlaybackDirection) {
+        return serializePlaybackDirection(value);
+      } else if (value is AnimationTarget) {
+        return serializeAnimationTarget(value);
+      } else {
+        return super.serialize(value);
+      }
   }
 
   //---------------------------------------------------------------------

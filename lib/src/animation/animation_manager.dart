@@ -50,7 +50,7 @@ class AnimationManager extends RegistrationManager<AnimationElement> {
     updateRegistration();
 
     for (var element in registered) {
-      element.update(dt);
+      element.currentTime += dt;
     }
   }
 }

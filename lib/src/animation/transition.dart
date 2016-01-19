@@ -1,8 +1,8 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
-/// Contains the [BezierCurveAnimation] class.
-library rei.src.animation.bezier_curve_animation;
+/// Contains the [Transition] mixin.
+library rei.src.animation.transition;
 
 //---------------------------------------------------------------------
 // Standard libraries
@@ -17,61 +17,31 @@ import 'dart:html' as html;
 import 'package:rei/bezier_curve.dart';
 
 import 'animation.dart';
-import 'animation_target_value.dart';
+import 'animation_value.dart';
 import 'computed_timing.dart';
 
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
-/// An animation whose value is determined by a bezier curve.
-abstract class BezierCurveAnimation<T> implements Animation<T> {
+/// An animation which transitions between two values, [start] and [end], using
+/// a bezier [curve] to compute the frames between.
+///
+/// A [Transition] should be used for simple animations that do not require
+/// multiple keyframes. It functions similarly to a CSS transition. It is also
+/// functionally equivalent to a keyframe animation with two frames.
+abstract class Transition<T> implements Animation,
+                                        AnimationValue<T>,
+                                        ComputedTiming {
   //---------------------------------------------------------------------
   // Member variables
   //---------------------------------------------------------------------
 
+  /// The animated element.
+  html.Element _animatedElement;
+  /// The value of the animation.
   T _value;
 
-  //---------------------------------------------------------------------
-  // Properties
-  //---------------------------------------------------------------------
-
-  /// The bezier curve.
-  BezierCurve<T> get curve;
-  /// The starting value.
-  T get start;
-  /// The duration of the animation.
-  num get duration;
-
-  //---------------------------------------------------------------------
-  // Animation
-  //---------------------------------------------------------------------
-
-  @override
-  T get value => _value;
-
-  @override
-  void timeUpdate(double dt) {
-    currentTime += dt;
-
-    _value = curve.solve(animationTime, duration, start, end);
-  }
-
-  //---------------------------------------------------------------------
-  // IntervalAnimation
-  //---------------------------------------------------------------------
-
-  double get currentTime;
-  set currentTime(double value);
-  double get animationTime;
-}
-
-/// An animation whose computed value is based on a single bezier curve.
-///
-/// A [BezierCurveAnimation] is the simplest animation type and functions the
-/// same as a CSS transition. It contains a [start] value and an [end] value
-/// with which the animation is computed using over the [duration].
-abstract class BezierCurveAnimation2<T> implements ComputedTiming, Animation2 {
   //---------------------------------------------------------------------
   // Properties
   //---------------------------------------------------------------------
@@ -84,13 +54,27 @@ abstract class BezierCurveAnimation2<T> implements ComputedTiming, Animation2 {
   T get end;
 
   //---------------------------------------------------------------------
+  // Animation
+  //---------------------------------------------------------------------
+
+  html.Element get animatedElement => _animatedElement;
+  set animatedElement(html.Element value) {
+    _animatedElement = value;
+  }
+
+  //---------------------------------------------------------------------
+  // AnimationValue
+  //---------------------------------------------------------------------
+
+  @override
+  T get value => _value;
+
+  //---------------------------------------------------------------------
   // ComputedTiming
   //---------------------------------------------------------------------
 
   @override
   void onLocalTimeUpdate() {
-    var value = curve.solve(animationTime, duration, start, end) as num;
-
-    applyAnimationTargetValue(animationTarget, animatedElement, value);
+    _value = curve.solve(animationTime, duration, start, end);
   }
 }

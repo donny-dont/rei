@@ -16,12 +16,14 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/components/easing_animation.dart';
 import 'package:rei/components/selection_group.dart';
 import 'package:rei/components/transform.dart';
 import 'package:rei/components/transform_group.dart';
+import 'package:rei/components/transition.dart';
+import 'package:rei/components/keyframe.dart';
+import 'package:rei/components/keyframe_animation.dart';
 import 'package:rei/components/kinetic_animation.dart';
-import 'package:rei/animation.dart';
+import 'package:rei/animation.dart' as animation;
 import 'package:rei/selection_visualizer.dart';
 import 'package:rei/transformable.dart';
 import 'package:rei/src/bounds.dart';
@@ -33,7 +35,7 @@ import 'package:rei/src/bounds.dart';
 /// Application entry-point.
 /// [TransformGroup]
 /// [Transform]
-/// [EasingAnimation]
+/// [Transition]
 /// [KineticAnimation]
 Future<Null> main() async {
   await initPolymer();
@@ -55,14 +57,24 @@ Future<Null> main() async {
   visualizer.root = root;
 
   // Create the animation manager
-  var animationManager = new AnimationManager();
+  //var animationManager = new animation.AnimationManager();
 
   var lastTime = await html.window.animationFrame;
+  var animations = html.querySelectorAll('rei-transition,rei-keyframe-animation') as List<animation.ComputedTiming>;
+  print(animations);
+
+  for (var animation in animations) {
+    animation.calculateTimings();
+    animation.animatedElement = (animation as html.Element).parent;
+  }
 
   while (true) {
     var time = await html.window.animationFrame;
 
-    animationManager.update(time - lastTime);
+    for (var animation in animations) {
+      animation.currentTime = time;
+    }
+    //animationManager.update(time - lastTime);
     transformableManager.update();
     visualizer.draw();
 

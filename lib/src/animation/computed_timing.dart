@@ -11,13 +11,17 @@ library rei.src.transform.computed_timing;
 import 'package:rei/playback_direction.dart';
 
 import 'animation.dart';
+import 'animation_target_value.dart';
 import 'animation_timing.dart';
+import 'animation_value.dart';
 
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
-abstract class ComputedTiming implements AnimationTiming, Animation2 {
+abstract class ComputedTiming implements Animation,
+                                         AnimationValue,
+                                         AnimationTiming {
   //---------------------------------------------------------------------
   // Member variables
   //---------------------------------------------------------------------
@@ -77,11 +81,12 @@ abstract class ComputedTiming implements AnimationTiming, Animation2 {
   // Animation
   //---------------------------------------------------------------------
 
+  @override
   double get currentTime => _currentTime;
-  set currentTime(num value) {
+  set currentTime(num time) {
     var lastTime = _currentTime;
 
-    _currentTime = value.toDouble();
+    _currentTime = time.toDouble();
 
     var complete = false;
 
@@ -103,6 +108,8 @@ abstract class ComputedTiming implements AnimationTiming, Animation2 {
       // Notify the implementation that the value is changed
       if (lastAnimationTime != _animationTime) {
         onLocalTimeUpdate();
+
+        applyAnimationTargetValue(animationTarget, animatedElement, value);
       }
 
       // \TODO Send the completion event

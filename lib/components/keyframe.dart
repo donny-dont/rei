@@ -58,7 +58,7 @@ class Keyframe extends PolymerElement with animation.Keyframe<num>,
   /// The easing function or bezier curve to use when computing the animation
   /// value.
   @Property(reflectToAttribute: true)
-  dynamic easing = EasingFunction.ease;
+  dynamic easing;
 
   //---------------------------------------------------------------------
   // Construction
@@ -88,7 +88,7 @@ class Keyframe extends PolymerElement with animation.Keyframe<num>,
 
   @override
   dynamic deserialize(String value, Type type) {
-    if (type == dynamic) {
+    if (type == null) {
       if (value.startsWith('[')) {
         type = List;
       } else {
@@ -111,9 +111,18 @@ class Keyframe extends PolymerElement with animation.Keyframe<num>,
   @Observe('easing')
   void easingChanged(dynamic value) {
     var curveValues = (value is EasingFunction)
-        ? animation.getEasingCurve(value)
+        ? getEasingCurve(value)
         : value;
 
     curve = new BezierCurveScalar(curveValues as List<num>);
+
+    // Notify that the animation has changed
+    fire(animation.Animation.animationTimingChangedEvent);
+  }
+
+  @Observe('frameOffset')
+  void frameOffsetChanged(num value) {
+    // Notify that the animation has changed
+    fire(animation.Animation.animationTimingChangedEvent);
   }
 }

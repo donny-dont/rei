@@ -27,65 +27,12 @@ import 'animation_target_value.dart';
 //---------------------------------------------------------------------
 
 @behavior
-abstract class AnimationElement implements Animation<num> {
-  //---------------------------------------------------------------------
-  // Class variables
-  //---------------------------------------------------------------------
+abstract class AnimationElement implements Animation {
+  void play() {
 
-  static const String animationElementReadyEvent = 'animationelementready';
-
-  //---------------------------------------------------------------------
-  // Member variables
-  //---------------------------------------------------------------------
-
-  /// The [html.Element] to apply the animation to.
-  html.Element _animationElement;
-
-  //---------------------------------------------------------------------
-  // Properties
-  //---------------------------------------------------------------------
-
-  /// The [html.Element] to apply the animation to.
-  html.Element get animationElement => _animationElement;
-  set animationElement(html.Element value) {
-    var animationManager = new AnimationManager();
-
-    if (_animationElement != null) {
-      animationManager.remove(this);
-    }
-
-    _animationElement = value;
-
-    if (_animationElement != null) {
-      animationManager.add(this);
-    }
   }
 
-  AnimationTarget get animationTarget;
-  num get playbackRate;
+  void pause() {
 
-  //---------------------------------------------------------------------
-  // PolymerElement
-  //---------------------------------------------------------------------
-
-  // \TODO Change to appropriate names after https://github.com/dart-lang/sdk/issues/23770
-
-  void attachedAnimationElement() {
-    _animationElement.dispatchEvent(new html.CustomEvent(animationElementReadyEvent, canBubble: true, cancelable:true, detail: _animationElement));
-  }
-
-  void detachedAnimationElement() {
-    // Don't keep a reference to the animation element
-    _animationElement = null;
-  }
-
-  //---------------------------------------------------------------------
-  // Public methods
-  //---------------------------------------------------------------------
-
-  void update(double dt) {
-    timeUpdate(dt * playbackRate);
-
-    applyAnimationTargetValue(animationTarget, animationElement, value);
   }
 }

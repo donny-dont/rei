@@ -52,37 +52,48 @@
   <rei-selection-group style="position: relative;">
     <rei-transform-group>
       <div class="large color0"></div>
-      <rei-easing-animation animation-target="saturate" end="1" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      <rei-transition animation-target="opacity" end="1" duration="1000" iterations="1000" direction="alternate"></rei-transition>
       <rei-transform>
-        <rei-easing-animation end="100" animation-target="translateX" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+        <rei-transition end="100" animation-target="translateX" duration="1000" iterations="1000" direction="alternate"></rei-transition>
       </rei-transform>
     </rei-transform-group>
     <rei-transform-group x="256">
       <div class="large color1"></div>
-      <rei-easing-animation animation-target="huerotate" end="360" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      <rei-transition animation-target="huerotate" end="360" duration="1000" iterations="1000" direction="alternate"></rei-transition>
       <rei-transform y="128">
-        <rei-easing-animation start="128" end="228" animation-target="translateY" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+        <rei-transition start="128" end="228" animation-target="translateY" duration="1000" iterations="1000" direction="alternate"></rei-transition>
       </rei-transform>
     </rei-transform-group>
     <rei-transform-group x="512">
       <div class="large color2"></div>
-      <rei-easing-animation animation-target="invert" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      <rei-transition animation-target="invert" duration="1000" iterations="1000" direction="alternate"></rei-transition>
       <rei-transform y="256">
-        <rei-easing-animation end="100" animation-target="translateX" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+        <rei-transition end="100" animation-target="translateX" duration="1000" iterations="1000" direction="alternate"></rei-transition>
       </rei-transform>
     </rei-transform-group>
     <rei-transform-group x="768">
       <div class="large color3"></div>
-      <rei-easing-animation animation-target="sepia" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      <rei-transition animation-target="sepia" duration="1000" iterations="1000" direction="alternate"></rei-transition>
       <rei-transform y="384">
-        <rei-easing-animation start="384" end="484" animation-target="translateY" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+        <rei-transition start="384" end="484" animation-target="translateY" duration="1000" iterations="1000" direction="alternate"></rei-transition>
       </rei-transform>
     </rei-transform-group>
     <rei-transform-group x="1024">
       <div class="large color0"></div>
-      <rei-easing-animation animation-target="sepia" duration="1000" iterations="1000" direction="alternate"></rei-easing-animation>
+      <rei-transition animation-target="sepia" duration="1000" iterations="1000" direction="alternate"></rei-transition>
       <rei-transform>
-        <rei-kinetic-animation end="200" animation-target="translateY"></rei-kinetic-animation>
+        <rei-keyframe-animation animation-target="translateY" duration="10000" iterations="1000" direction="alternate">
+          <rei-keyframe value="0" easing="easeIn"></rei-keyframe>
+          <rei-keyframe value="100"></rei-keyframe>
+          <rei-keyframe value="100" easing="easeInOutBack"></rei-keyframe>
+          <rei-keyframe value="300"></rei-keyframe>
+          <rei-keyframe value="300" easing="easeInOutBack"></rei-keyframe>
+          <rei-keyframe value="600"></rei-keyframe>
+          <rei-keyframe value="600" easing="easeInOutBack"></rei-keyframe>
+          <rei-keyframe value="1000"></rei-keyframe>
+          <rei-keyframe value="1000" easing="easeOutBack"></rei-keyframe>
+          <rei-keyframe value="1500"></rei-keyframe>
+        </rei-keyframe-animation>
       </rei-transform>
     </rei-transform-group>
   </rei-selection-group>
