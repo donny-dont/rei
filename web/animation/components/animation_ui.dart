@@ -9,6 +9,7 @@ library rei.web.animation.components.animation_ui;
 // Standard libraries
 //---------------------------------------------------------------------
 
+import 'dart:async';
 import 'dart:html' as html;
 
 //---------------------------------------------------------------------
@@ -17,6 +18,8 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
+
+import 'package:rei/animation.dart';
 
 import 'removable.dart';
 
@@ -92,10 +95,17 @@ class AnimationUI extends PolymerElement {
 
     elementDom.children.clear();
 
-    var animation = animationUI.createAnimation();
-    animatedElement.animationElement = animation;
+    var animation = animationUI.createAnimation() as Animation;
+    animation.animatedElement = animatedElement;
 
     elementDom.append(animation);
+
+    async(() {
+      if (animation is ComputedTiming) {
+        animation.calculateTimings();
+      }
+      animation.play();
+    });
   }
 
   @reflectable

@@ -26,7 +26,7 @@ import 'removable.dart';
 
 import 'package:rei/components/layout.dart';
 
-import 'keyframe_animation_ui.dart';
+import 'keyframe_ui.dart';
 import 'interval_animation_ui.dart';
 
 //---------------------------------------------------------------------

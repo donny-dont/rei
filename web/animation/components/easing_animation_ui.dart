@@ -18,6 +18,7 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
+import 'package:rei/animation.dart';
 import 'package:rei/animation_target.dart';
 import 'package:rei/easing_function.dart';
 
@@ -44,9 +45,9 @@ class EasingAnimationUI extends PolymerElement with EnumOption {
   //---------------------------------------------------------------------
 
   /// The value for the keyframe.
-  @property String value = '0';
+  @property String easingFunction;
   /// The offset for the keyframe.
-  @property String frameOffset = '';
+  @property String animationTarget;
 
   //---------------------------------------------------------------------
   // Construction
@@ -80,6 +81,17 @@ class EasingAnimationUI extends PolymerElement with EnumOption {
         AnimationTarget.values,
         serializeAnimationTarget
     );
+  }
+
+  void applyValues(Animation animation) {
+    if (animation is EasingValue) {
+      var easingValue = animation as EasingValue;
+      print('adding easing function');
+      easingValue.easing = deserializeEasingFunction(easingFunction);
+      easingValue.createCurve();
+      print(easingValue.easing);
+    }
+    animation.animationTarget = deserializeAnimationTarget(animationTarget);
   }
 
   //---------------------------------------------------------------------

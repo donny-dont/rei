@@ -1,0 +1,29 @@
+<dom-module id="rei-animation-timing-ui">
+  <template>
+    <style type="text/less" include="rei-styling"></style>
+    <div class="value-area">
+      <div>Delay</div>
+      <input type="number" value="{{delay::input}}">
+    </div>
+    <div class="value-area">
+      <div>End delay</div>
+      <input type="number" value="{{endDelay::input}}">
+    </div>
+    <div class="value-area">
+      <div>Iteration start</div>
+      <input type="number" value="{{iterationStart::input}}">
+    </div>
+    <div class="value-area">
+      <div>Iterations</div>
+      <input type="number" value="{{iterations::input}}">
+    </div>
+    <div class="value-area">
+      <div>Duration</div>
+      <input type="number" value="{{duration::input}}">
+    </div>
+    <div class="value-area">
+      <div>Playback Direction</div>
+      <select id="playback" on-change="changePlaybackDirection"></select>
+    </div>
+  </template>
+</dom-module>

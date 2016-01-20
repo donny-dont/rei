@@ -9,22 +9,15 @@
       <div id="title">Interval Animation</div>
       <div id="remove" class="button" on-click="removeSelf"></div>
     </div>
+    <div class="value-area">
+      <div>Start</div>
+      <input type="number" value="{{start::input}}">
+    </div>
+    <div class="value-area">
+      <div>End</div>
+      <input type="number" value="{{end::input}}">
+    </div>
     <rei-easing-animation-ui id="easing"></rei-easing-animation-ui>
-    <div class="value-area">
-      <div>Duration</div>
-      <input type="number" value="{{duration::input}}">
-    </div>
-    <div class="value-area">
-      <div>Delay</div>
-      <input type="number" value="{{delay::input}}">
-    </div>
-    <div class="value-area">
-      <div>Iterations</div>
-      <input type="number" value="{{iterations::input}}">
-    </div>
-    <div class="value-area">
-      <div>Playback Direction</div>
-      <select id="playback" on-change="changePlaybackDirection"></select>
-    </div>
+    <rei-animation-timing-ui id="timing"></rei-animation-timing-ui>
   </template>
 </dom-module>

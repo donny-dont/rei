@@ -25,7 +25,9 @@ import 'removable.dart';
 //---------------------------------------------------------------------
 
 import 'package:rei/components/layout.dart';
+import 'package:rei/components/keyframe_animation.dart';
 
+import 'animation_creator.dart';
 import 'easing_animation_ui.dart';
 import 'keyframe_ui.dart';
 
@@ -37,7 +39,7 @@ import 'keyframe_ui.dart';
 const String _tagName = 'rei-keyframe-animation-ui';
 
 @PolymerRegister(_tagName)
-class KeyframeAnimationUI extends PolymerElement with Removable {
+class KeyframeAnimationUI extends PolymerElement with Removable implements AnimationCreator {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -58,6 +60,14 @@ class KeyframeAnimationUI extends PolymerElement with Removable {
   /// This constructor should not be called directly. Instead use the
   /// default constructor.
   KeyframeAnimationUI.created() : super.created();
+
+  //---------------------------------------------------------------------
+  // AnimationCreator
+  //---------------------------------------------------------------------
+
+  @override
+  Future<html.Element> createAnimation() {
+  }
 
   //---------------------------------------------------------------------
   // Callbacks

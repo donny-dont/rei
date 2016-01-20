@@ -18,6 +18,8 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
+import 'package:rei/components/keyframe.dart';
+
 import 'removable.dart';
 
 //---------------------------------------------------------------------
@@ -58,4 +60,12 @@ class KeyframeUI extends PolymerElement with Removable {
   /// This constructor should not be called directly. Instead use the
   /// default constructor.
   KeyframeUI.created() : super.created();
+
+  //---------------------------------------------------------------------
+  // Construction
+  //---------------------------------------------------------------------
+
+  Keyframe createKeyframe() {
+
+  }
 }
