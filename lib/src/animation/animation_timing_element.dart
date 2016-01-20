@@ -43,7 +43,7 @@ abstract class AnimationTimingElement implements AnimationTiming,
   num iterationStart = 0.0;
   @override
   @Property(reflectToAttribute: true)
-  int iterations = 1;
+  num iterations = 1;
   @Property(reflectToAttribute: true)
   num duration = 1.0;
   @Property(reflectToAttribute: true)
