@@ -29,10 +29,14 @@ import 'animation_target_value.dart';
 @behavior
 abstract class AnimationElement implements Animation {
   void play() {
+    var manager = new AnimationManager();
 
+    manager.add(this);
   }
 
   void pause() {
+    var manager = new AnimationManager();
 
+    manager.remove(this);
   }
 }
