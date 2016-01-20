@@ -16,7 +16,7 @@ import 'animation_value.dart';
 //---------------------------------------------------------------------
 
 /// An animation whose value is determined based on a spring.
-abstract class SpringAnimation implements Animation, AnimationValue<num> {
+abstract class SpringAnimation implements Animation, AnimationValue {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------

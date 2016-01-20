@@ -30,9 +30,9 @@ import 'computed_timing.dart';
 /// A [Transition] should be used for simple animations that do not require
 /// multiple keyframes. It functions similarly to a CSS transition. It is also
 /// functionally equivalent to a keyframe animation with two frames.
-abstract class Transition<T> implements Animation,
-                                        AnimationValue<T>,
-                                        ComputedTiming {
+abstract class Transition implements Animation,
+                                     AnimationValue,
+                                     ComputedTiming {
   //---------------------------------------------------------------------
   // Member variables
   //---------------------------------------------------------------------
@@ -40,18 +40,18 @@ abstract class Transition<T> implements Animation,
   /// The animated element.
   html.Element _animatedElement;
   /// The value of the animation.
-  T _value;
+  dynamic _value;
 
   //---------------------------------------------------------------------
   // Properties
   //---------------------------------------------------------------------
 
   /// The bezier curve.
-  BezierCurve<T> get curve;
+  BezierCurve get curve;
   /// The starting value of the animation.
-  T get start;
+  dynamic get start;
   /// The ending value of the animation.
-  T get end;
+  dynamic get end;
 
   //---------------------------------------------------------------------
   // Animation
@@ -67,7 +67,7 @@ abstract class Transition<T> implements Animation,
   //---------------------------------------------------------------------
 
   @override
-  T get value => _value;
+  dynamic get value => _value;
 
   //---------------------------------------------------------------------
   // ComputedTiming

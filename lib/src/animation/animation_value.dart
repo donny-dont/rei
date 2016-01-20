@@ -7,7 +7,7 @@ library rei.src.animation.animation_value;
 // Library contents
 //---------------------------------------------------------------------
 
-abstract class AnimationValue<T> {
+abstract class AnimationValue {
   /// The value of the animation at it's current time.
-  T get value;
+  dynamic get value;
 }

@@ -35,10 +35,9 @@ class KeyframeAnimation extends PolymerElement
                            with animation.AnimationElement,
                                 animation.AnimationTimingElement,
                                 animation.ComputedTiming,
-                                animation.KeyframeAnimation<num>,
-                                PolymerSerialize
-                     implements animation.Animation,
-                                animation.AnimationTiming {
+                                animation.EasingValue,
+                                animation.KeyframeAnimation,
+                                PolymerSerialize {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -47,25 +46,17 @@ class KeyframeAnimation extends PolymerElement
   static const String customTagName = _tagName;
 
   //---------------------------------------------------------------------
-  // Member variables
-  //---------------------------------------------------------------------
-
-  BezierCurve<num> curve;
-
-  //---------------------------------------------------------------------
   // Attributes
   //---------------------------------------------------------------------
-
-  /// The easing function or bezier curve to use when computing the animation
-  /// value.
-  @Property(reflectToAttribute: true)
-  dynamic easing = EasingFunction.ease;
 
   @override
   @Property(reflectToAttribute: true)
   num playbackRate = 1.0;
   @Property(reflectToAttribute: true)
   AnimationTarget animationTarget = AnimationTarget.opacity;
+  @override
+  @Property(reflectToAttribute: true)
+  dynamic easing = EasingFunction.ease;
 
   //---------------------------------------------------------------------
   // Construction
@@ -95,7 +86,7 @@ class KeyframeAnimation extends PolymerElement
 
   @override
   dynamic deserialize(String value, Type type) {
-    if (type == null) {
+    if (type == animation.EasingValue.easingType) {
       if (value.startsWith('[')) {
         type = List;
       } else {
@@ -128,21 +119,12 @@ class KeyframeAnimation extends PolymerElement
   //---------------------------------------------------------------------
 
   @override
-  List<animation.Keyframe<num>> get keyframes =>
-      Polymer.dom(this).children as List<animation.Keyframe<num>>;
+  List<animation.Keyframe> get keyframes =>
+      Polymer.dom(this).children as List<animation.Keyframe>;
 
   //---------------------------------------------------------------------
   // Callbacks
   //---------------------------------------------------------------------
-
-  @Observe('easing')
-  void easingChanged(dynamic value) {
-    var curveValues = (value is EasingFunction)
-        ? getEasingCurve(value)
-        : value;
-
-    curve = new BezierCurveScalar(curveValues as List<num>);
-  }
 
   @Listen(animation.Animation.animationTimingChangedEvent)
   void onAnimationTimingChanged([html.CustomEvent event, _]) {

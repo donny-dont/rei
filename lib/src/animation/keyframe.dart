@@ -15,7 +15,7 @@ import 'package:rei/bezier_curve.dart';
 //---------------------------------------------------------------------
 
 /// Represents a keyframe within an animation.
-abstract class Keyframe<T> {
+abstract class Keyframe {
   /// The offset of the start of the keyframe.
   ///
   /// This needs to be a value in the range \[0, 1\]. The actual duration of
@@ -27,8 +27,8 @@ abstract class Keyframe<T> {
   ///
   /// If no curve is specified then the enclosing animation's keyframe will be
   /// used instead.
-  BezierCurve<T> get curve;
+  BezierCurve get curve;
 
   /// The value of the keyframe.
-  T get value;
+  dynamic get value;
 }

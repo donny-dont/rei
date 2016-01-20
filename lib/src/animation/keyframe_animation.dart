@@ -25,9 +25,9 @@ import 'keyframe.dart';
 // Library contents
 //---------------------------------------------------------------------
 
-abstract class KeyframeAnimation<T> implements Animation,
-                                               AnimationValue<T>,
-                                               ComputedTiming {
+abstract class KeyframeAnimation implements Animation,
+                                            AnimationValue,
+                                            ComputedTiming {
   //---------------------------------------------------------------------
   // Member variables
   //---------------------------------------------------------------------
@@ -35,19 +35,19 @@ abstract class KeyframeAnimation<T> implements Animation,
   /// The animated element.
   html.Element _animatedElement;
   /// The current value of the animation.
-  T _value;
+  dynamic _value;
   /// The computed keyframes.
-  final List<Keyframe<T>> _computedKeyframes = <Keyframe<T>>[];
+  final List<Keyframe> _computedKeyframes = <Keyframe>[];
 
   //---------------------------------------------------------------------
   // Properties
   //---------------------------------------------------------------------
 
   /// The keyframes associated with the animation.
-  List<Keyframe<T>> get keyframes;
+  List<Keyframe> get keyframes;
 
   /// The bezier curve used to animate the value.
-  BezierCurve<T> get curve;
+  BezierCurve get curve;
 
   //---------------------------------------------------------------------
   // Animation
@@ -69,7 +69,7 @@ abstract class KeyframeAnimation<T> implements Animation,
   //---------------------------------------------------------------------
 
   @override
-  T get value => _value;
+  dynamic get value => _value;
 
   //---------------------------------------------------------------------
   // AnimationValue
@@ -194,7 +194,7 @@ abstract class KeyframeAnimation<T> implements Animation,
 ///
 /// If the [curve] is not provided then its value is set to the value of the
 /// [KeyframeAnimation]'s curve.
-class _ComputedKeyframe<T> implements Keyframe<T> {
+class _ComputedKeyframe implements Keyframe {
   //---------------------------------------------------------------------
   // Keyframe
   //---------------------------------------------------------------------
@@ -202,9 +202,9 @@ class _ComputedKeyframe<T> implements Keyframe<T> {
   @override
   final double frameOffset;
   @override
-  final BezierCurve<T> curve;
+  final BezierCurve curve;
   @override
-  final T value;
+  final dynamic value;
 
   //---------------------------------------------------------------------
   // Construction

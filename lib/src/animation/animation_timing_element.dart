@@ -26,7 +26,8 @@ import 'computed_timing.dart';
 //---------------------------------------------------------------------
 
 @behavior
-abstract class AnimationTimingElement implements AnimationTiming, ComputedTiming {
+abstract class AnimationTimingElement implements AnimationTiming,
+                                                 ComputedTiming {
   //---------------------------------------------------------------------
   // Attributes
   //---------------------------------------------------------------------

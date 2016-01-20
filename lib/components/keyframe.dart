@@ -29,7 +29,8 @@ const String _tagName = 'rei-keyframe';
 
 /// An element that holds keyframe information.
 @PolymerRegister(_tagName)
-class Keyframe extends PolymerElement with animation.Keyframe<num>,
+class Keyframe extends PolymerElement with animation.EasingValue,
+                                           animation.Keyframe,
                                            PolymerSerialize {
   //---------------------------------------------------------------------
   // Class variables
@@ -37,13 +38,6 @@ class Keyframe extends PolymerElement with animation.Keyframe<num>,
 
   /// The name of the tag.
   static const String customTagName = _tagName;
-
-  //---------------------------------------------------------------------
-  // Member variables
-  //---------------------------------------------------------------------
-
-  @override
-  BezierCurve<num> curve;
 
   //---------------------------------------------------------------------
   // Attributes
@@ -55,8 +49,7 @@ class Keyframe extends PolymerElement with animation.Keyframe<num>,
   @override
   @Property(reflectToAttribute: true)
   num frameOffset;
-  /// The easing function or bezier curve to use when computing the animation
-  /// value.
+  @override
   @Property(reflectToAttribute: true)
   dynamic easing;
 
@@ -88,7 +81,7 @@ class Keyframe extends PolymerElement with animation.Keyframe<num>,
 
   @override
   dynamic deserialize(String value, Type type) {
-    if (type == null) {
+    if (type == animation.EasingValue.easingType) {
       if (value.startsWith('[')) {
         type = List;
       } else {
@@ -107,18 +100,6 @@ class Keyframe extends PolymerElement with animation.Keyframe<num>,
   //---------------------------------------------------------------------
   // Callbacks
   //---------------------------------------------------------------------
-
-  @Observe('easing')
-  void easingChanged(dynamic value) {
-    var curveValues = (value is EasingFunction)
-        ? getEasingCurve(value)
-        : value;
-
-    curve = new BezierCurveScalar(curveValues as List<num>);
-
-    // Notify that the animation has changed
-    fire(animation.Animation.animationTimingChangedEvent);
-  }
 
   @Observe('frameOffset')
   void frameOffsetChanged(num value) {

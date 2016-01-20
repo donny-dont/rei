@@ -33,8 +33,10 @@ const String _tagName = 'rei-transition';
 @PolymerRegister(_tagName)
 class Transition extends PolymerElement
                        with animation.AnimationElement,
+                            animation.AnimationTimingElement,
                             animation.ComputedTiming,
-                            animation.Transition<num>,
+                            animation.EasingValue,
+                            animation.Transition,
                             PolymerSerialize {
   //---------------------------------------------------------------------
   // Class variables
@@ -44,46 +46,23 @@ class Transition extends PolymerElement
   static const String customTagName = _tagName;
 
   //---------------------------------------------------------------------
-  // Member variables
-  //---------------------------------------------------------------------
-
-  BezierCurve<num> curve;
-
-  //---------------------------------------------------------------------
   // Attributes
   //---------------------------------------------------------------------
 
-  /// The easing function or bezier curve to use when computing the animation
-  /// value.
+  @override
+  @Property(reflectToAttribute: true)
+  num playbackRate = 1.0;
+  @Property(reflectToAttribute: true)
+  AnimationTarget animationTarget = AnimationTarget.opacity;
+  @override
   @Property(reflectToAttribute: true)
   dynamic easing = EasingFunction.ease;
   @override
   @Property(reflectToAttribute: true)
-  num playbackRate = 1.0;
-  @override
-  @Property(reflectToAttribute: true)
-  num delay = 0.0;
-  @override
-  @Property(reflectToAttribute: true)
-  num endDelay = 0.0;
-  @override
-  @Property(reflectToAttribute: true)
-  num iterationStart = 0.0;
-  @Property(reflectToAttribute: true)
-  num iterations = 1.0;
-  @Property(reflectToAttribute: true)
-  num duration = 1.0;
-  @Property(reflectToAttribute: true)
   num start = 0.0;
+  @override
   @Property(reflectToAttribute: true)
   num end = 1.0;
-  @Property(reflectToAttribute: true)
-  PlaybackDirection direction = PlaybackDirection.forward;
-  @Property(reflectToAttribute: true)
-  AnimationTarget animationTarget = AnimationTarget.opacity;
-
-  void play() {}
-  void pause() {}
 
   //---------------------------------------------------------------------
   // Construction
@@ -108,49 +87,36 @@ class Transition extends PolymerElement
   }
 
   //---------------------------------------------------------------------
-    // PolymerSerialize
-    //---------------------------------------------------------------------
+  // PolymerSerialize
+  //---------------------------------------------------------------------
 
-    @override
-    dynamic deserialize(String value, Type type) {
-      if (type == dynamic) {
-        if (value.startsWith('[')) {
-          type = List;
-        } else {
-          return deserializeEasingFunction(value);
-        }
-      } else if (type == PlaybackDirection) {
-        return deserializePlaybackDirection(value);
-      } else if (type == AnimationTarget) {
-        return deserializeAnimationTarget(value);
+  @override
+  dynamic deserialize(String value, Type type) {
+    if (type == animation.EasingValue.easingType) {
+      if (value.startsWith('[')) {
+        type = List;
+      } else {
+        return deserializeEasingFunction(value);
       }
-
-      return super.deserialize(value, type);
+    } else if (type == PlaybackDirection) {
+      return deserializePlaybackDirection(value);
+    } else if (type == AnimationTarget) {
+      return deserializeAnimationTarget(value);
     }
 
-    @override
-    String serialize(Object value) {
-      if (value is EasingFunction) {
-        return serializeEasingFunction(value);
-      } else if (value is PlaybackDirection) {
-        return serializePlaybackDirection(value);
-      } else if (value is AnimationTarget) {
-        return serializeAnimationTarget(value);
-      } else {
-        return super.serialize(value);
-      }
+    return super.deserialize(value, type);
   }
 
-  //---------------------------------------------------------------------
-  // Callbacks
-  //---------------------------------------------------------------------
-
-  @Observe('easing')
-  void easingChanged(dynamic value) {
-    var curveValues = (value is EasingFunction)
-        ? getEasingCurve(value)
-        : value;
-
-    curve = new BezierCurveScalar(curveValues as List<num>);
+  @override
+  String serialize(Object value) {
+    if (value is EasingFunction) {
+      return serializeEasingFunction(value);
+    } else if (value is PlaybackDirection) {
+      return serializePlaybackDirection(value);
+    } else if (value is AnimationTarget) {
+      return serializeAnimationTarget(value);
+    } else {
+      return super.serialize(value);
+    }
   }
 }
