@@ -22,13 +22,19 @@ import 'package:rei/playback_direction.dart';
 abstract class AnimationTiming {
   /// The number of milliseconds before the animation effect becomes active.
   num get delay;
+  set delay(num value);
   /// The number of milliseconds after the animation effect completes before
   /// the animation is fully complete.
   num get endDelay;
+  set endDelay(num value);
   num get iterationStart;
+  set iterationStart(num value);
   /// The number of iterations for the animation.
   num get iterations;
+  set iterations(num value);
   /// The duration for a single iteration of the animation in milliseconds.
   num get duration;
+  set duration(num value);
   PlaybackDirection get direction;
+  set direction(PlaybackDirection value);
 }
