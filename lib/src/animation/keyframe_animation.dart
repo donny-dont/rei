@@ -113,7 +113,7 @@ abstract class KeyframeAnimation implements Animation,
     var lastFrame = frameCount - 1;
 
     // Frame count should always be at least 2
-    assert(frameCount > 2);
+    assert(frameCount >= 2);
 
     // Do a pass over the keyframes to get the offsets.
     var offsets = new List<num>(frameCount);
