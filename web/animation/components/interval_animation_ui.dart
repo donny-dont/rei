@@ -19,10 +19,7 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
-import 'package:rei/playback_direction.dart';
-
 import 'animation_creator.dart';
-import 'enum_option.dart';
 import 'removable.dart';
 
 //---------------------------------------------------------------------
@@ -93,6 +90,7 @@ class IntervalAnimationUI extends PolymerElement
     var easingUI = $['easing'] as EasingAnimationUI;
     easingUI.applyValues(animation);
 
+    // Get timing values
     var timingUI = $['timing'] as AnimationTimingUI;
     timingUI.applyValues(animation);
 

@@ -4,14 +4,23 @@
       :host {
         @apply(--layout-vertical);
       }
+
+      #animation-title {
+        @apply(--title-small);
+      }
     </style>
     <div class="header">
       <div id="title">Sequenced Animation</div>
       <div id="remove" class="button" on-click="removeSelf"></div>
     </div>
     <div class="header">
-      <div id="frame-title">Animations</div>
-      <div id="add" class="button" on-click="addKeyframe"></div>
+      <div id="animation-title">Animations</div>
+      <div id="add" class="button add" on-click="showMenu"></div>
+      <div id="menu" class="hide">
+        <div on-click="addTransition">Interval</div>
+        <div on-click="addSyncedAnimation">Synced</div>
+        <div on-click="addKeyframeAnimation">Keyframe</div>
+      </div>
     </div>
     <div id="content">
       <content></content>

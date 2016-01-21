@@ -1,8 +1,8 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
-/// Contains the [Animatable] mixin.
-library rei.src.animatable;
+/// Contains the [Removable] mixin.
+library rei.web.animation.removable;
 
 //---------------------------------------------------------------------
 // Standard libraries

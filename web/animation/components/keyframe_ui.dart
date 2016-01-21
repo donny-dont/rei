@@ -23,6 +23,14 @@ import 'package:rei/components/keyframe.dart';
 import 'removable.dart';
 
 //---------------------------------------------------------------------
+// Component imports
+//---------------------------------------------------------------------
+
+import 'package:rei/components/layout.dart';
+
+import 'styling.dart';
+
+//---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
@@ -44,6 +52,8 @@ class KeyframeUI extends PolymerElement with Removable {
 
   /// The value for the keyframe.
   @property String value = '0';
+  /// The easing function to use.
+  @property String easing;
   /// The offset for the keyframe.
   @property String frameOffset;
 
@@ -66,6 +76,14 @@ class KeyframeUI extends PolymerElement with Removable {
   //---------------------------------------------------------------------
 
   Keyframe createKeyframe() {
+    var keyframe = new Keyframe();
 
+    keyframe.value = double.parse(value);
+
+    if ((frameOffset != null) && (frameOffset.length != 0)) {
+      keyframe.frameOffset = double.parse(frameOffset);
+    }
+
+    return keyframe;
   }
 }

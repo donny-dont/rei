@@ -21,6 +21,8 @@ import 'package:web_components/web_components.dart' show HtmlImport;
 
 import 'package:rei/animation.dart';
 
+import 'addable.dart';
+import 'animation_creator.dart';
 import 'removable.dart';
 
 //---------------------------------------------------------------------
@@ -29,10 +31,6 @@ import 'removable.dart';
 
 import 'package:rei/components/layout.dart';
 
-import 'animation_creator.dart';
-import 'interval_animation_ui.dart';
-import 'keyframe_animation_ui.dart';
-import 'keyframe_ui.dart';
 import 'styling.dart';
 
 //---------------------------------------------------------------------
@@ -43,7 +41,7 @@ import 'styling.dart';
 const String _tagName = 'rei-animation-ui';
 
 @PolymerRegister(_tagName)
-class AnimationUI extends PolymerElement {
+class AnimationUI extends PolymerElement with Addable {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -113,38 +111,6 @@ class AnimationUI extends PolymerElement {
 
   }
 
-  @reflectable
-  void showMenu([html.Event event, _]) {
-    $['menu'].classes.remove('hide');
-  }
-
-  @reflectable
-  void hideMenu([html.Event event, _]) {
-    $['menu'].classes.add('hide');
-  }
-
-  @reflectable
-  void addIntervalAnimation([html.Event event, _]) {
-    new PolymerDom(this).append(new IntervalAnimationUI());
-
-    hideMenu();
-    _disableAdd();
-  }
-
-  @reflectable
-  void addKeyframeAnimation([html.Event event, _]) {
-    var keyframeAnimation = new KeyframeAnimationUI();
-
-    // Add an initial keyframe
-    Polymer.dom(keyframeAnimation).append(new KeyframeUI());
-
-    // Add the keyframe animation
-    new PolymerDom(this).append(keyframeAnimation);
-
-    hideMenu();
-    _disableAdd();
-  }
-
   @Listen(Removable.removeElementEvent)
   void onRemoveElement([html.CustomEvent event, _]) {
     event.stopPropagation();
@@ -153,6 +119,12 @@ class AnimationUI extends PolymerElement {
 
     // Add the button back
     _enableAdd();
+  }
+
+  void onElementAdded() {
+    super.onElementAdded();
+
+    _disableAdd();
   }
 
   /// Removes the ability to click the add button

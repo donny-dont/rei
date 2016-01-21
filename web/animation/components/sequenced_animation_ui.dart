@@ -2,8 +2,8 @@
 // Please see the AUTHORS file for details. All rights reserved.
 
 /// Contains the [KeyframeAnimationUI] class.
-@HtmlImport('keyframe_animation_ui.html')
-library rei.web.animation.components.keyframe_animation_ui;
+@HtmlImport('sequenced_animation_ui.html')
+library rei.web.animation.components.sequenced_animation_ui;
 
 //---------------------------------------------------------------------
 // Standard libraries
@@ -18,6 +18,7 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
+import 'addable.dart';
 import 'removable.dart';
 
 //---------------------------------------------------------------------
@@ -26,8 +27,7 @@ import 'removable.dart';
 
 import 'package:rei/components/layout.dart';
 
-import 'keyframe_ui.dart';
-import 'interval_animation_ui.dart';
+import 'styling.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -37,7 +37,7 @@ import 'interval_animation_ui.dart';
 const String _tagName = 'rei-sequenced-animation-ui';
 
 @PolymerRegister(_tagName)
-class KeyframeAnimationUI extends PolymerElement with Removable {
+class SequencedAnimationUI extends PolymerElement with Addable, Removable {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -49,22 +49,13 @@ class KeyframeAnimationUI extends PolymerElement with Removable {
   // Construction
   //---------------------------------------------------------------------
 
-  /// Creates an instance of the [KeyframeAnimationUI] class.
-  factory KeyframeAnimationUI() =>
-      new html.Element.tag(customTagName) as KeyframeAnimationUI;
+  /// Creates an instance of the [SequencedAnimationUI] class.
+  factory SequencedAnimationUI() =>
+      new html.Element.tag(customTagName) as SequencedAnimationUI;
 
-  /// Create an instance of the [KeyframeAnimationUI] class.
+  /// Create an instance of the [SequencedAnimationUI] class.
   ///
   /// This constructor should not be called directly. Instead use the
   /// default constructor.
-  KeyframeAnimationUI.created() : super.created();
-
-  //---------------------------------------------------------------------
-  // Callbacks
-  //---------------------------------------------------------------------
-
-  @reflectable
-  void addKeyframe([html.Event event, _]) {
-    Polymer.dom(this).append(new KeyframeUI());
-  }
+  SequencedAnimationUI.created() : super.created();
 }
