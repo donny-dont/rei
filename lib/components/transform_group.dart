@@ -24,7 +24,7 @@ import '../property.dart';
 import '../selectable.dart';
 import '../transformable.dart';
 
-import 'layout.dart';
+import 'layout.dart' as layout;
 
 //---------------------------------------------------------------------
 // Library contents
@@ -35,6 +35,8 @@ const String _tagName = 'rei-transform-group';
 
 /// Contains a linear selectable group of elements whose position will be
 /// transformed.
+///
+/// This element uses styling from within [layout].
 @PolymerRegister(_tagName)
 class TransformGroup extends PolymerElement
                         with Animatable,

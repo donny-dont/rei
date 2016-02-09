@@ -23,7 +23,7 @@ import '../direction.dart';
 import '../transformable.dart';
 import '../property.dart';
 
-import 'layout.dart';
+import 'layout.dart' as layout;
 
 //---------------------------------------------------------------------
 // Library contents
@@ -32,6 +32,9 @@ import 'layout.dart';
 /// Tag name for the class.
 const String _tagName = 'rei-scrollbar';
 
+/// A scrollbar element.
+///
+/// This element uses styling from within [layout].
 @PolymerRegister(_tagName)
 class Scrollbar extends PolymerElement
                    with Animatable,

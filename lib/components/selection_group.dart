@@ -22,7 +22,7 @@ import '../direction.dart';
 import '../property.dart';
 import '../selectable.dart';
 
-import 'layout.dart';
+import 'layout.dart' as layout;
 
 //---------------------------------------------------------------------
 // Library contents
@@ -32,6 +32,8 @@ import 'layout.dart';
 const String _tagName = 'rei-selection-group';
 
 /// Contains a linear selectable group of elements.
+///
+/// This element uses styling from within [layout].
 @PolymerRegister(_tagName)
 class SelectionGroup extends PolymerElement
     with LinearSelectable, PolymerSerialize {

@@ -26,7 +26,7 @@ import '../selectable.dart';
 import '../transformable.dart';
 
 import 'kinetic_animation.dart';
-import 'layout.dart';
+import 'layout.dart' as layout;
 import 'scrollbar.dart';
 
 //---------------------------------------------------------------------
@@ -43,6 +43,8 @@ const String _tagName = 'rei-scrollable-group';
 /// A [Scrollbar] is visible if [scrollbar] is true. Otherwise it will not be
 /// displayed. This is only useful if the size of the scrollable area is
 /// finite.
+///
+/// This element uses styling from within [layout].
 @PolymerRegister(_tagName)
 class ScrollableGroup extends PolymerElement
                          with Animatable,
