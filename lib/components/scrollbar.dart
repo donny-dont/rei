@@ -66,22 +66,6 @@ class Scrollbar extends PolymerElement
   Direction direction = Direction.horizontal;
 
   //---------------------------------------------------------------------
-  // PolymerElement
-  //---------------------------------------------------------------------
-
-  void ready() {
-    readyTransformableElement();
-  }
-
-  void attached() {
-    attachedTransformableElement();
-  }
-
-  void detached() {
-    detachedTransformableElement();
-  }
-
-  //---------------------------------------------------------------------
   // Animatable
   //---------------------------------------------------------------------
 

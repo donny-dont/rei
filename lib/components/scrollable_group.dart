@@ -130,18 +130,6 @@ class ScrollableGroup extends PolymerElement
   // PolymerElement
   //---------------------------------------------------------------------
 
-  void ready() {
-    readyTransformableElement();
-  }
-
-  void attached() {
-    attachedTransformableElement();
-  }
-
-  void detached() {
-    detachedTransformableElement();
-  }
-
   void scrollTo(num value) {
     var animation = $['animation'] as KineticAnimation;
 

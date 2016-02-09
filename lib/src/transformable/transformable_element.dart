@@ -27,7 +27,7 @@ import 'transformable_manager.dart';
 //---------------------------------------------------------------------
 
 @behavior
-abstract class TransformableElement {
+abstract class TransformableElement implements PolymerBase {
   //---------------------------------------------------------------------
   // Properties
   //---------------------------------------------------------------------
@@ -39,35 +39,6 @@ abstract class TransformableElement {
   html.Element get transformableElement;
 
   TransformOrigin get transformOrigin;
-
-  //---------------------------------------------------------------------
-  // PolymerElement
-  //---------------------------------------------------------------------
-
-  // \TODO Change to appropriate names after https://github.com/dart-lang/sdk/issues/23770
-
-  void readyTransformableElement() {
-    var style = transformableElement.style;
-
-    // Set the origin to the upper left corner
-    style.transformOrigin = transformOriginStyle(transformOrigin);
-
-    // Adding will change property
-    style.willChange = 'transform';
-
-    // In webkit browsers a 2D transform will not promote the element to its
-    // own compositor layer. To force this the backface-visibility attribute
-    // is set to hidden.
-    style.backfaceVisibility = 'hidden';
-  }
-
-  void attachedTransformableElement() {
-    new TransformableManager().add(this);
-  }
-
-  void detachedTransformableElement() {
-    new TransformableManager().remove(this);
-  }
 
   //---------------------------------------------------------------------
   // Public methods
@@ -89,4 +60,31 @@ abstract class TransformableElement {
   bool get propagateTransformChange => false;
 
   bool updateWorldMatrix();
+
+  //---------------------------------------------------------------------
+  // Polymer Lifecycle
+  //---------------------------------------------------------------------
+
+  static void ready(TransformableElement element) {
+    var style = element.transformableElement.style;
+
+    // Set the origin to the upper left corner
+    style.transformOrigin = transformOriginStyle(element.transformOrigin);
+
+    // Adding will change property
+    style.willChange = 'transform';
+
+    // In webkit browsers a 2D transform will not promote the element to its
+    // own compositor layer. To force this the backface-visibility attribute
+    // is set to hidden.
+    style.backfaceVisibility = 'hidden';
+  }
+
+  static void attached(TransformableElement element) {
+    new TransformableManager().add(element);
+  }
+
+  static void detached(TransformableElement element) {
+    new TransformableManager().remove(element);
+  }
 }

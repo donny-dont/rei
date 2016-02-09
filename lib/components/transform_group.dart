@@ -114,22 +114,6 @@ class TransformGroup extends PolymerElement
   html.Element get transformableElement => this;
 
   //---------------------------------------------------------------------
-  // PolymerElement
-  //---------------------------------------------------------------------
-
-  void ready() {
-    readyTransformableElement();
-  }
-
-  void attached() {
-    attachedTransformableElement();
-  }
-
-  void detached() {
-    detachedTransformableElement();
-  }
-
-  //---------------------------------------------------------------------
   // PolymerSerialize
   //---------------------------------------------------------------------
 
