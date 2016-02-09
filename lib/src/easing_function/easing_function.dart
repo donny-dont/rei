@@ -7,7 +7,7 @@ library rei.src.easing_function.easing_function;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/src/enum_serializer.dart';
+import '../enum_serializer.dart';
 
 //---------------------------------------------------------------------
 // Library contents

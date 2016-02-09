@@ -10,8 +10,8 @@ library rei.src.transform.easing_value;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/bezier_curve.dart';
-import 'package:rei/easing_function.dart';
+import '../../bezier_curve.dart';
+import '../../easing_function.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -30,7 +30,7 @@ abstract class EasingValue {
   /// Unfortunately the serialization needs to be done in the defining class so
   /// this value can be used there to determine if the easing value is the one
   /// being serialized.
-  static const Type easingType = dynamic;
+  static const Type easingType = null;
 
   //---------------------------------------------------------------------
   // Member variables

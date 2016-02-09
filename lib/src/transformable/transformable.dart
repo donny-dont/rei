@@ -17,8 +17,8 @@ import 'dart:typed_data';
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/transform_origin.dart';
-import 'package:rei/src/matrix_math.dart';
+import '../../transform_origin.dart';
+import '../matrix_math.dart';
 
 //---------------------------------------------------------------------
 // Library contents

@@ -8,7 +8,7 @@ library rei.src.transform.computed_timing;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/playback_direction.dart';
+import '../../playback_direction.dart';
 
 import 'animation.dart';
 import 'animation_target_value.dart';

@@ -16,7 +16,7 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/direction.dart';
+import '../../direction.dart';
 
 import 'selectable.dart';
 

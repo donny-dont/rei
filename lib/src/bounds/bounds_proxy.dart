@@ -14,7 +14,7 @@ import 'dart:html' as html;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/src/bounds.dart';
+import '../../src/bounds.dart';
 
 //---------------------------------------------------------------------
 // Library contents

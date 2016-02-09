@@ -8,7 +8,7 @@ library rei.direction;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/src/enum_serializer.dart';
+import 'src/enum_serializer.dart';
 
 //---------------------------------------------------------------------
 // Library contents

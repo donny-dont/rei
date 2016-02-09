@@ -18,9 +18,9 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/transformable.dart';
-import 'package:rei/transform_origin.dart';
-import 'package:rei/selectable.dart';
+import '../transformable.dart';
+import '../transform_origin.dart';
+import '../selectable.dart';
 
 //---------------------------------------------------------------------
 // Library contents

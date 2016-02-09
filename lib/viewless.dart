@@ -1,14 +1,8 @@
 // Copyright (c) 2015, the Rei Project Authors.
 // Please see the AUTHORS file for details. All rights reserved.
 
-/// Contains the [Animatable] mixin.
-library rei.src.animatable;
-
-//---------------------------------------------------------------------
-// Standard libraries
-//---------------------------------------------------------------------
-
-import 'dart:html' as html;
+/// Contains the [Viewless] mixin.
+library rei.src.transform.transformable;
 
 //---------------------------------------------------------------------
 // Imports
@@ -16,23 +10,17 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'animation.dart';
-
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
 @behavior
-abstract class Animatable {
+abstract class Viewless implements PolymerElement {
   //---------------------------------------------------------------------
-  // Properties
-  //---------------------------------------------------------------------
-
-  /// The element that should be animated.
-  html.Element get animatableElement;
-
-  //---------------------------------------------------------------------
-  // Callbacks
+  // Polymer lifecycle
   //---------------------------------------------------------------------
 
+  static void ready(Viewless element) {
+    element.style.display = 'none';
+  }
 }

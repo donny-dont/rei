@@ -18,9 +18,10 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
-import 'package:rei/animatable.dart';
-import 'package:rei/direction.dart';
-import 'package:rei/transformable.dart';
+import '../animatable.dart';
+import '../direction.dart';
+import '../transformable.dart';
+import '../property.dart';
 
 import 'layout.dart';
 
@@ -62,7 +63,7 @@ class Scrollbar extends PolymerElement
   // Attributes
   //---------------------------------------------------------------------
 
-  @Property(reflectToAttribute: true)
+  @reiProperty
   Direction direction = Direction.horizontal;
 
   //---------------------------------------------------------------------

@@ -14,7 +14,7 @@ import 'dart:html' as html;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/bezier_curve.dart';
+import '../../bezier_curve.dart';
 
 import 'animation.dart';
 import 'animation_value.dart';

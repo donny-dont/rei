@@ -7,7 +7,7 @@ library rei.src.animation.animation_timing;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/playback_direction.dart';
+import '../../playback_direction.dart';
 
 //---------------------------------------------------------------------
 // Library contents

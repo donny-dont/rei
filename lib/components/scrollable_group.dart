@@ -18,15 +18,16 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
-import 'package:rei/components/kinetic_animation.dart';
-import 'package:rei/components/scrollbar.dart';
-import 'package:rei/animatable.dart';
-import 'package:rei/animation_target.dart';
-import 'package:rei/direction.dart';
-import 'package:rei/selectable.dart';
-import 'package:rei/transformable.dart';
+import '../animatable.dart';
+import '../animation_target.dart';
+import '../direction.dart';
+import '../property.dart';
+import '../selectable.dart';
+import '../transformable.dart';
 
+import 'kinetic_animation.dart';
 import 'layout.dart';
+import 'scrollbar.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -61,31 +62,31 @@ class ScrollableGroup extends PolymerElement
   //---------------------------------------------------------------------
 
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   Direction direction = Direction.horizontal;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   bool canMoveBack = true;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   bool wrapStart = false;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   bool wrapEnd = false;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num scaleX = 1.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num scaleY = 1.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num x = 0.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num y = 0.0;
   /// Whether the scrollbar should be visible.
-  @Property(reflectToAttribute: true)
+  @reiProperty
   bool scrollbar = false;
   @Property(computed: 'computeTarget(direction)')
   AnimationTarget animationTarget = AnimationTarget.translateX;

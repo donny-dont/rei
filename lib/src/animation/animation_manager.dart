@@ -8,7 +8,7 @@ library rei.src.animation.animation_manager;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/src/registration_manager.dart';
+import '../../src/registration_manager.dart';
 
 import 'animation_element.dart';
 

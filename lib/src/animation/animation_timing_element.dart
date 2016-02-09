@@ -16,7 +16,8 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/playback_direction.dart';
+import '../../playback_direction.dart';
+import '../../property.dart';
 
 import 'animation_timing.dart';
 import 'computed_timing.dart';
@@ -33,20 +34,20 @@ abstract class AnimationTimingElement implements AnimationTiming,
   //---------------------------------------------------------------------
 
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num delay = 0.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num endDelay = 0.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num iterationStart = 0.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num iterations = 1;
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num duration = 1.0;
-  @Property(reflectToAttribute: true)
+  @reiProperty
   PlaybackDirection direction = PlaybackDirection.forward;
 
   //---------------------------------------------------------------------

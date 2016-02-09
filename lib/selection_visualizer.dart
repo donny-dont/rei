@@ -14,8 +14,8 @@ import 'dart:html' as html;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/selectable.dart';
-import 'package:rei/src/bounds.dart';
+import 'selectable.dart';
+import 'src/bounds.dart';
 
 //---------------------------------------------------------------------
 // Library contents

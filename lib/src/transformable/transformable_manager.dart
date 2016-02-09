@@ -8,7 +8,7 @@ library rei.src.transformable.transformable_manager;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/src/registration_manager.dart';
+import '../registration_manager.dart';
 
 import 'transformable_element.dart';
 

@@ -18,8 +18,9 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
-import 'package:rei/direction.dart';
-import 'package:rei/selectable.dart';
+import '../direction.dart';
+import '../property.dart';
+import '../selectable.dart';
 
 import 'layout.dart';
 
@@ -46,16 +47,16 @@ class SelectionGroup extends PolymerElement
   //---------------------------------------------------------------------
 
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   Direction direction = Direction.horizontal;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   bool canMoveBack = true;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   bool wrapStart = false;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   bool wrapEnd = false;
 
   //---------------------------------------------------------------------

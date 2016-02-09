@@ -16,8 +16,10 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/transformable.dart';
-import 'package:rei/animatable.dart';
+import '../animatable.dart';
+import '../property.dart';
+import '../transformable.dart';
+import '../viewless.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -27,7 +29,10 @@ import 'package:rei/animatable.dart';
 const String _tagName = 'rei-transform';
 
 @PolymerRegister(_tagName)
-class Transform extends PolymerElement with Animatable, Transformable {
+class Transform extends PolymerElement
+                   with Animatable,
+                        Transformable,
+                        Viewless {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -40,16 +45,16 @@ class Transform extends PolymerElement with Animatable, Transformable {
   //---------------------------------------------------------------------
 
   /// The scaling in the X direction.
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num scaleX = 1.0;
   /// The scaling in the Y direction.
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num scaleY = 1.0;
   /// The translation in the X direction.
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num x = 0.0;
   /// The translation in the Y direction
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num y = 0.0;
 
   //---------------------------------------------------------------------
@@ -65,14 +70,6 @@ class Transform extends PolymerElement with Animatable, Transformable {
   /// This constructor should not be called directly. Instead use the
   /// default constructor.
   Transform.created() : super.created();
-
-  //---------------------------------------------------------------------
-  // PolymerElement
-  //---------------------------------------------------------------------
-
-  void ready() {
-    style.display = 'none';
-  }
 
   //---------------------------------------------------------------------
   // Animatable

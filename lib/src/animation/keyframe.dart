@@ -8,7 +8,7 @@ library rei.src.animation.keyframe;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/bezier_curve.dart';
+import '../../bezier_curve.dart';
 
 //---------------------------------------------------------------------
 // Library contents

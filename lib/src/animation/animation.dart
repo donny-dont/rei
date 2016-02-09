@@ -14,7 +14,7 @@ import 'dart:html' as html;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/animation_target.dart';
+import '../../animation_target.dart';
 
 //---------------------------------------------------------------------
 // Library contents

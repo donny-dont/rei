@@ -16,7 +16,7 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/animation_target.dart';
+import '../../animation_target.dart';
 
 import 'animation.dart';
 import 'animation_manager.dart';

@@ -13,7 +13,7 @@ import 'dart:typed_data';
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/easing_function.dart';
+import '../../easing_function.dart';
 
 //---------------------------------------------------------------------
 // Library contents

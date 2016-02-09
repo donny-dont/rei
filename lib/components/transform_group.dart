@@ -18,10 +18,11 @@ import 'dart:html' as html;
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
 
-import 'package:rei/animatable.dart';
-import 'package:rei/direction.dart';
-import 'package:rei/selectable.dart';
-import 'package:rei/transformable.dart';
+import '../animatable.dart';
+import '../direction.dart';
+import '../property.dart';
+import '../selectable.dart';
+import '../transformable.dart';
 
 import 'layout.dart';
 
@@ -53,28 +54,28 @@ class TransformGroup extends PolymerElement
   //---------------------------------------------------------------------
 
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   Direction direction = Direction.horizontal;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   bool canMoveBack = true;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   bool wrapStart = false;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   bool wrapEnd = false;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num scaleX = 1.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num scaleY = 1.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num x = 0.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num y = 0.0;
 
   //---------------------------------------------------------------------

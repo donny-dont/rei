@@ -16,8 +16,10 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/animation.dart';
-import 'package:rei/animation_target.dart';
+import '../animation.dart';
+import '../animation_target.dart';
+import '../property.dart';
+import '../viewless.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -31,7 +33,8 @@ const String _tagName = 'rei-kinetic-animation';
 class KineticAnimation extends PolymerElement
                           with AnimationElement,
                                SpringAnimation,
-                               PolymerSerialize {
+                               PolymerSerialize,
+                               Viewless {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -58,33 +61,17 @@ class KineticAnimation extends PolymerElement
   //---------------------------------------------------------------------
 
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num constant = 250.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num friction = 50.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num end = 0.0;
-  @Property(reflectToAttribute: true)
+  @reiProperty
   AnimationTarget animationTarget = AnimationTarget.opacity;
   num get playbackRate => 1.0;
-
-  //---------------------------------------------------------------------
-  // PolymerElement
-  //---------------------------------------------------------------------
-
-  void ready() {
-    style.display = 'none';
-  }
-
-  void attached() {
-    async(attachedAnimationElement);
-  }
-
-  void detached() {
-    detachedAnimationElement();
-  }
 
   //---------------------------------------------------------------------
   // PolymerSerialize

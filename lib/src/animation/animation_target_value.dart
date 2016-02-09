@@ -14,8 +14,8 @@ import 'dart:html' as html;
 // Imports
 //---------------------------------------------------------------------
 
-import 'package:rei/animation_target.dart';
-import 'package:rei/transformable.dart';
+import '../../animation_target.dart';
+import '../../transformable.dart';
 
 //---------------------------------------------------------------------
 // Library contents

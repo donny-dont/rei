@@ -16,9 +16,10 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/animation.dart' as animation;
-import 'package:rei/bezier_curve.dart';
-import 'package:rei/easing_function.dart';
+import '../animation.dart' as animation;
+import '../easing_function.dart';
+import '../property.dart';
+import '../viewless.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -31,7 +32,8 @@ const String _tagName = 'rei-keyframe';
 @PolymerRegister(_tagName)
 class Keyframe extends PolymerElement with animation.EasingValue,
                                            animation.Keyframe,
-                                           PolymerSerialize {
+                                           PolymerSerialize,
+                                           Viewless {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -44,13 +46,13 @@ class Keyframe extends PolymerElement with animation.EasingValue,
   //---------------------------------------------------------------------
 
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num value = 1.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num frameOffset;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   dynamic easing;
 
   //---------------------------------------------------------------------
@@ -66,14 +68,6 @@ class Keyframe extends PolymerElement with animation.EasingValue,
   /// This constructor should not be called directly. Instead use the
   /// default constructor.
   Keyframe.created() : super.created();
-
-  //---------------------------------------------------------------------
-  // PolymerElement
-  //---------------------------------------------------------------------
-
-  void ready() {
-    style.display = 'none';
-  }
 
   //---------------------------------------------------------------------
   // PolymerSerialize
