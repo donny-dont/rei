@@ -16,11 +16,12 @@ import 'dart:html' as html;
 
 import 'package:polymer/polymer.dart';
 
-import 'package:rei/animation.dart' as animation;
-import 'package:rei/animation_target.dart';
-import 'package:rei/bezier_curve.dart';
-import 'package:rei/easing_function.dart';
-import 'package:rei/playback_direction.dart';
+import '../animation.dart' as animation;
+import '../animation_target.dart';
+import '../easing_function.dart';
+import '../playback_direction.dart';
+import '../property.dart';
+import '../viewless.dart';
 
 //---------------------------------------------------------------------
 // Library contents
@@ -37,7 +38,8 @@ class Transition extends PolymerElement
                             animation.ComputedTiming,
                             animation.EasingValue,
                             animation.Transition,
-                            PolymerSerialize {
+                            PolymerSerialize,
+                            Viewless {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -50,18 +52,18 @@ class Transition extends PolymerElement
   //---------------------------------------------------------------------
 
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num playbackRate = 1.0;
-  @Property(reflectToAttribute: true)
+  @reiProperty
   AnimationTarget animationTarget = AnimationTarget.opacity;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   dynamic easing = EasingFunction.ease;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num start = 0.0;
   @override
-  @Property(reflectToAttribute: true)
+  @reiProperty
   num end = 1.0;
 
   //---------------------------------------------------------------------
@@ -77,14 +79,6 @@ class Transition extends PolymerElement
   /// This constructor should not be called directly. Instead use the
   /// default constructor.
   Transition.created() : super.created();
-
-  //---------------------------------------------------------------------
-  // PolymerElement
-  //---------------------------------------------------------------------
-
-  void ready() {
-    style.display = 'none';
-  }
 
   //---------------------------------------------------------------------
   // PolymerSerialize
