@@ -6,16 +6,15 @@ version: 0.0.1
 environment:
   sdk: '>=1.13.0 <2.0.0'
 dependencies:
-  polymer: '1.0.0-rc.6'
-  reflectable: '0.3.3'
-  web_components: '0.12.0+4'
-  less_dart: '^0.3.3'
+  polymer: ^1.0.0-rc.15
+  web_components: ^0.12.2+2
+  less_dart: ^0.3.3
 dev_dependencies:
-  test: '^0.12.5+1'
+  test: ^0.12.5+1
 transformers:
 - less_dart:
     compress: true
-- web_components:
+- polymer:
     entry_points:
     - test/src/animation/computed_timing_test.html
     - test/src/selection/linear_selectable_test.html
@@ -25,13 +24,5 @@ transformers:
     - web/transform/index.html
 - test/pub_serve:
     $include: test/**_test{.*,}.dart
-- reflectable:
-    entry_points:
-    - test/src/animation/computed_timing_test.dart
-    - test/src/selection/linear_selectable_test.dart
-    - web/animation/main.dart
-    - web/scrolling/main.dart
-    - web/selection/main.dart
-    - web/transform/main.dart
 - $dart2js:
     $include: '**/*.bootstrap.initialize.dart'
