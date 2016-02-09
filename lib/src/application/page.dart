@@ -15,15 +15,16 @@ import 'dart:html' as html;
 //---------------------------------------------------------------------
 
 import 'package:polymer/polymer.dart';
-import 'package:rei/input.dart';
-import 'package:rei/selectable.dart';
+
+import '../../input.dart';
+import '../../selectable.dart';
 
 //---------------------------------------------------------------------
 // Library contents
 //---------------------------------------------------------------------
 
 @behavior
-class Page {
+abstract class Page implements PolymerBase {
   //---------------------------------------------------------------------
   // Class variables
   //---------------------------------------------------------------------
@@ -80,15 +81,6 @@ class Page {
   /// screen.
   html.Rectangle highlightArea = new html.Rectangle(0, 0, 1920, 1080);
 
-  //---------------------------------------------------------------------
-  // PolymerElement
-  //---------------------------------------------------------------------
-
-  void attachedPage() {
-    // Determine if the controller needs to flip horizontally.
-    var dir = html.document.body.attributes['dir'];
-    _flipHorizontal = (dir != null) && (dir == 'rtl');
-  }
 
   //---------------------------------------------------------------------
   // Public methods
@@ -267,5 +259,16 @@ class Page {
     var modified = delay * _selectionModifier;
 
     return (modified > _minSelectionDelay) ? modified : _minSelectionDelay;
+  }
+
+
+  //---------------------------------------------------------------------
+  // PolymerElement
+  //---------------------------------------------------------------------
+
+  static void attached(Page element) {
+    // Determine if the controller needs to flip horizontally.
+    var dir = html.document.body.attributes['dir'];
+    element._flipHorizontal = (dir != null) && (dir == 'rtl');
   }
 }
