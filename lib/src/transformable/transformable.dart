@@ -100,7 +100,7 @@ abstract class Transformable {
 
   /// Callback for when a [transformationChangedEvent] occurs.
   @Listen(transformChangedEvent)
-  void onTransformChanged([html.CustomEvent event, _]) {
+  void onTransformChanged(html.CustomEvent event, [dynamic _]) {
     _isDirty = true;
 
     if (!propagateTransformChange) {

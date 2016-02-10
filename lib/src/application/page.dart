@@ -217,7 +217,7 @@ abstract class Page implements PolymerBase {
 
   /// Callback for when a selection is changed.
   @Listen(Selectable.selectionChangedEvent)
-  void onSelectionChange(html.CustomEvent event, _) {
+  void onSelectionChange(html.CustomEvent event, [dynamic _]) {
     var selectedElement = event.detail;
 
     if (selectedElement == _selectedElement) {

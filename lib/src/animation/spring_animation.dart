@@ -21,8 +21,8 @@ abstract class SpringAnimation implements Animation, AnimationValue {
   // Class variables
   //---------------------------------------------------------------------
 
-  static const distanceThreshold = 0.0001;
-  static const velocityThreshold = 0.0001;
+  static const double distanceThreshold = 0.0001;
+  static const double velocityThreshold = 0.0001;
 
   //---------------------------------------------------------------------
   // Member variables

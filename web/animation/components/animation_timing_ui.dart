@@ -107,7 +107,7 @@ class AnimationTimingUI extends PolymerElement with EnumOption {
   //---------------------------------------------------------------------
 
   @reflectable
-  void changePlaybackDirection([html.Event event, _]) {
+  void changePlaybackDirection(html.Event event, [dynamic _]) {
     set('direction', (event.target as html.SelectElement).value);
   }
 }

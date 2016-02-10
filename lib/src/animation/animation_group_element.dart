@@ -40,7 +40,7 @@ abstract class AnimationGroupElement implements AnimationGroup,
   //---------------------------------------------------------------------
 
   @Listen(Animation.animationTimingChangedEvent)
-  void onAnimationTimingChanged([html.CustomEvent event, _]) {
+  void onAnimationTimingChanged(html.CustomEvent event, [dynamic _]) {
 
   }
 }

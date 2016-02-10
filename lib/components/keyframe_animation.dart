@@ -121,7 +121,7 @@ class KeyframeAnimation extends PolymerElement
   //---------------------------------------------------------------------
 
   @Listen(animation.Animation.animationTimingChangedEvent)
-  void onAnimationTimingChanged([html.CustomEvent event, _]) {
+  void onAnimationTimingChanged(html.CustomEvent event, [dynamic _]) {
     var animationElement = event.detail;
 
     if (animationElement == animation.Keyframe) {
